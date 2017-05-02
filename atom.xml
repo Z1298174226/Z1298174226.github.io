@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://Z1298174226.github.io/"/>
+  <link href="http://www.lex-zhao.xyz/"/>
   <updated>2017-05-02T06:59:43.154Z</updated>
-  <id>http://Z1298174226.github.io/</id>
+  <id>http://www.lex-zhao.xyz/</id>
   
   <author>
     <name>Xudong Zhao</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>斐波那契堆</title>
-    <link href="http://Z1298174226.github.io/2017/05/02/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/"/>
-    <id>http://Z1298174226.github.io/2017/05/02/斐波那契堆/</id>
+    <link href="http://www.lex-zhao.xyz/2017/05/02/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/"/>
+    <id>http://www.lex-zhao.xyz/2017/05/02/斐波那契堆/</id>
     <published>2017-05-02T05:10:07.000Z</published>
     <updated>2017-05-02T06:59:43.154Z</updated>
     
@@ -124,14 +124,14 @@ Fibonacci-Heap-Extract-Min(H)
     </summary>
     
     
-      <category term="Algorithm" scheme="http://Z1298174226.github.io/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>Latch</title>
-    <link href="http://Z1298174226.github.io/2017/04/28/Latch/"/>
-    <id>http://Z1298174226.github.io/2017/04/28/Latch/</id>
+    <link href="http://www.lex-zhao.xyz/2017/04/28/Latch/"/>
+    <id>http://www.lex-zhao.xyz/2017/04/28/Latch/</id>
     <published>2017-04-28T07:40:52.000Z</published>
     <updated>2017-04-28T08:26:19.097Z</updated>
     
@@ -189,17 +189,17 @@ public class TestHarness {
     
     </summary>
     
-      <category term="技术" scheme="http://Z1298174226.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="java" scheme="http://Z1298174226.github.io/tags/java/"/>
+      <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>五月任务计划</title>
-    <link href="http://Z1298174226.github.io/2017/04/28/%E4%BA%94%E6%9C%88%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92/"/>
-    <id>http://Z1298174226.github.io/2017/04/28/五月任务计划/</id>
+    <link href="http://www.lex-zhao.xyz/2017/04/28/%E4%BA%94%E6%9C%88%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92/"/>
+    <id>http://www.lex-zhao.xyz/2017/04/28/五月任务计划/</id>
     <published>2017-04-28T04:59:25.000Z</published>
     <updated>2017-05-02T06:44:22.213Z</updated>
     
@@ -229,14 +229,14 @@ public class TestHarness {
     </summary>
     
     
-      <category term="planning" scheme="http://Z1298174226.github.io/tags/planning/"/>
+      <category term="planning" scheme="http://www.lex-zhao.xyz/tags/planning/"/>
     
   </entry>
   
   <entry>
     <title>synchronized关键字</title>
-    <link href="http://Z1298174226.github.io/2017/04/28/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-    <id>http://Z1298174226.github.io/2017/04/28/synchronized关键字/</id>
+    <link href="http://www.lex-zhao.xyz/2017/04/28/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <id>http://www.lex-zhao.xyz/2017/04/28/synchronized关键字/</id>
     <published>2017-04-28T04:24:43.000Z</published>
     <updated>2017-05-02T06:44:38.721Z</updated>
     
@@ -260,7 +260,7 @@ public class TestHarness {
     </summary>
     
     
-      <category term="java" scheme="http://Z1298174226.github.io/tags/java/"/>
+      <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
     
   </entry>
   

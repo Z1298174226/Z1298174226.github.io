@@ -44,7 +44,7 @@ public class TestHarness {
 <p><code>endGate.await();</code></p>
 <p>endGate此时关闭，要做的工作就是等待且为零的时刻，然后打开</p>
 <p>如果没用使用Latch工具而去获取并行线程的运行时间，线程在被创建之后将立即执行，显然，先启动的线程势必会领先于后启动的线程，并且活跃线程的数量会随着时间的推移而慢慢减少或者增加，竞争程度也将发生变化。有了这个工具，我们今后在编写并发程序是，只需要调用timeTasks函数，并向其传递任务参数，就可以获取并发时间了。</p>
-</article><ul class="pager blog-pager"><li class="previous"><a href="/2017/04/28/五月任务计划/" data-toggle="tooltip" data-placement="top" title="五月任务计划">上一篇</a></li></ul><div class="disqus-comments"><div class="comments"><div id="disqus_thread"></div></div></div><script>var url_parts = window.location.href.split("?");
+</article><ul class="pager blog-pager"><li class="previous"><a href="/2017/04/28/五月任务计划/" data-toggle="tooltip" data-placement="top" title="五月任务计划">上一篇</a></li><li class="next"><a href="/2017/05/02/斐波那契堆/" data-toggle="tooltip" data-placement="top" title="斐波那契堆">下一篇</a></li></ul><div class="disqus-comments"><div class="comments"><div id="disqus_thread"></div></div></div><script>var url_parts = window.location.href.split("?");
 var disqus_url = url_parts[0];
 (function () {
     console.log("enter disqus");

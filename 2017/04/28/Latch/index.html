@@ -133,7 +133,97 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        
+        <article id="post-Latch"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/04/28/Latch/">
+    	Latch
+    </a>
+  </h2>
+	<time>
+	  4月 28, 2017
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+	</section>
+	
+		<section class="toc-wrapper"></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>#Latch</p>
+<p><strong>同步工具</strong>类除了最熟悉的阻塞队列之外，还包括<strong>Semaphore、Barrier</strong>以及<strong>Latch</strong>。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。<br><a id="more"></a><br><strong>闭锁</strong>最形象的比喻是一扇Gate，在闭锁到达结束状态之前，这扇门始终处于关闭的状态，任何线程都无法通过。而当闭锁到达结束状态，这扇门将打开，进而允许所有的线程通过。一旦闭锁达到结束状态，这扇门将保持打开的状态，不会再关闭。换句话说，闭锁的作用是保持某些活动直到其他活动都完成才继续执行。<br>举个例子，我们都知道并发在某些情况下，可以极大地提升工作效率，缩短程序的运行时间，那么我们该如何去获取并发程序准确的运行时间，即在所有线程全部就绪的时刻启动时间，而在所有线程全部结束的时刻终止时间。Latch可以做到，看下面程序。</p>
+<pre><code><java>
+public class TestHarness {
+    public static String timeTask(int nThreads,final Runnable[] tasks) throws InterruptedException{
+        final CountDownLatch startGate=new CountDownLatch(1);
+        final CountDownLatch endGate=new CountDownLatch(nThreads);
+        for(Runnable task:tasks){
+            Thread t=new Thread(){
+                public void run(){
+                    try{
+                        startGate.await();
+                        try{
+                            task.run();
+                        }finally{
+                            //每个线程最终最后执行将endGate减1
+                            endGate.countDown();
+
+                        }
+                    }catch(InterruptedException e){
+
+                    }
+                }
+            };
+            t.start();
+        }
+        long startTime=System.nanoTime();
+        startGate.countDown();
+        endGate.await();
+        long endTime=System.nanoTime();
+        return "Time: "+(endTime-startTime)+"ns";
+    }
+</java></code></pre>
+
+<p>由于startGate被设置为等待</p>
+<p><code>startGate.await();</code></p>
+<p>因此每个线程首先要做的工作就是在启动门上等待，直到所有的线程全部就绪。并且，我们在为每个线程装载任务时</p>
+<p><code>finally{endGate.countDown();}</code></p>
+<p>保证没个线程最终都会执行使得endGate减1的任务</p>
+<p><code>startGate.countDown();</code></p>
+<p>注意startGate的初值为1，因此调用countDown方法后，门打开，此时线程开始执行</p>
+<p><code>endGate.await();</code></p>
+<p>endGate此时关闭，要做的工作就是等待且为零的时刻，然后打开</p>
+<p>如果没用使用Latch工具而去获取并行线程的运行时间，线程在被创建之后将立即执行，显然，先启动的线程势必会领先于后启动的线程，并且活跃线程的数量会随着时间的推移而慢慢减少或者增加，竞争程度也将发生变化。有了这个工具，我们今后在编写并发程序是，只需要调用timeTasks函数，并向其传递任务参数，就可以获取并发时间了。</p>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/java/">java</a>
+      
+	  </div>
+    
+	</section>
+	
+		<section id="comments">
+			<div id="disqus_thread"></div>
+		</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: 'Latch',
+		tools: true
+	}
+</script>
+
       </div>
       <aside class='l_side'>
         

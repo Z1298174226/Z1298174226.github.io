@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-05-03T10:24:38.830Z</updated>
+  <updated>2017-05-03T10:34:14.687Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>南京</title>
+    <link href="http://www.lex-zhao.xyz/2017/05/03/%E5%8D%97%E4%BA%AC/"/>
+    <id>http://www.lex-zhao.xyz/2017/05/03/南京/</id>
+    <published>2017-05-03T10:31:33.000Z</published>
+    <updated>2017-05-03T10:34:14.687Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;file:///G:/blog/source/_posts/南京/DSC_0626.JPG&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;file:///G:/blog/source/_posts/南京/DSC_0627.JPG&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="生活" scheme="http://www.lex-zhao.xyz/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="travelog" scheme="http://www.lex-zhao.xyz/tags/travelog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java编译机制</title>
+    <link href="http://www.lex-zhao.xyz/2017/05/03/java%E7%BC%96%E8%AF%91%E6%9C%BA%E5%88%B6/"/>
+    <id>http://www.lex-zhao.xyz/2017/05/03/java编译机制/</id>
+    <published>2017-05-03T10:30:06.000Z</published>
+    <updated>2017-05-03T10:30:06.553Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>斐波那契堆</title>
@@ -25,7 +60,7 @@
     <summary type="html">
     
       &lt;p&gt;#斐波那契堆&lt;br&gt;一个斐波那契堆具有如下性质：&lt;/p&gt;
-&lt;p&gt;堆有一组有序树组成，但是堆中的树不一定是二项树&lt;br&gt;斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）&lt;br&gt;堆中每个节点的数据结构包含如下域：&lt;br&gt;指向其父节点的指针域&lt;br&gt;指向其任意一个孩子的指针域&lt;br&gt;任意一个节点x的所有孩子被链接在一个双向链表环形链表中&lt;br&gt;节点x中保存有它的孩子的数目degree&lt;br&gt;节点x中存在一个域mark，用于表示自从x上一次称为另一个节点的子女以来，它是否失掉了一个孩子，TRUE表示是失去了，FALSE表示未失去&lt;br&gt;
+&lt;p&gt;堆有一组有序树组成，但是堆中的树不一定是二项树&lt;br&gt;斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）&lt;br&gt;堆中每个节点的数据结构包含如下域：&lt;br&gt;指向其父节点的指针域&lt;br&gt;指向其任意一个孩子的指针域&lt;br&gt;任意一个节点x的所有孩子被链接在一个双向链表环形链表中&lt;br&gt;节点x中保存有它的孩子的数目degree&lt;br&gt;节点x中存在一个域mark，用于表示自从x上一次称为另一个节点的子女以来，它是否失掉了一个孩子，TRUE表示是失去了，FALSE表示未失去&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -46,7 +81,7 @@
     <summary type="html">
     
       &lt;p&gt;#Latch&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;同步工具&lt;/strong&gt;类除了最熟悉的阻塞队列之外，还包括&lt;strong&gt;Semaphore、Barrier&lt;/strong&gt;以及&lt;strong&gt;Latch&lt;/strong&gt;。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;同步工具&lt;/strong&gt;类除了最熟悉的阻塞队列之外，还包括&lt;strong&gt;Semaphore、Barrier&lt;/strong&gt;以及&lt;strong&gt;Latch&lt;/strong&gt;。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -70,7 +105,7 @@
 &lt;ul&gt;
 &lt;li&gt;深入研究&lt;strong&gt;OSGi&lt;/strong&gt;，理解java模块化编程，以及OSGi如何打破类加载机制的双亲委派模型&lt;br&gt; 预期目标：开发一个&lt;strong&gt;Opendaylight&lt;/strong&gt;可用的Bundle，具体功能为获取网络拓普信息并建路&lt;/li&gt;
 &lt;li&gt;结合Spring技术内幕一书，研究&lt;strong&gt;Spring&lt;/strong&gt;源码，并以此进一步锤炼java&lt;/li&gt;
-&lt;li&gt;尝试编译OpenJDK
+&lt;li&gt;尝试编译OpenJDK&lt;/li&gt;&lt;/ul&gt;
     
     </summary>
     
@@ -91,7 +126,7 @@
     <summary type="html">
     
       &lt;p&gt;在&lt;strong&gt;并发编程&lt;/strong&gt;中，多线程同时并发访问的资源叫做&lt;strong&gt;临界资源&lt;/strong&gt;，当多个线程同时访问对象并要求操作相同资源时，分割了原子操作就有可能出现数据的不一致或数据不完整的情况，为避免这种情况的发生，我们会采取同步机制，以确保在某一时刻，方法内只允许有一个线程。&lt;/p&gt;
-&lt;p&gt;采用 synchronized 修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个 monitor (锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。&lt;br&gt;
+&lt;p&gt;采用 synchronized 修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个 monitor (锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

@@ -156,99 +156,12 @@
   </section>
   <section class="article typo">
 	  <p>#斐波那契堆<br>一个斐波那契堆具有如下性质：</p>
-<p>堆有一组有序树组成，但是堆中的树不一定是二项树<br>斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）<br>堆中每个节点的数据结构包含如下域：<br>指向其父节点的指针域<br>指向其任意一个孩子的指针域<br>任意一个节点x的所有孩子被链接在一个双向链表环形链表中<br>节点x中保存有它的孩子的数目degree<br>节点x中存在一个域mark，用于表示自从x上一次称为另一个节点的子女以来，它是否失掉了一个孩子，TRUE表示是失去了，FALSE表示未失去<br>斐波那契堆中的所有树的树根被保存在一个链表即根表中<br>对于一个斐波那契堆，min[H]保存了具有最小节点值的根节点<br>下图即为一个斐波那契堆的示例：<br><img src="file:///G:/blog/source/uploads/829863-20160104171120950-2110922480.png" alt=""><br>在计算机科学中，斐波那契堆是由树的集合所组成的堆数据结构。它比二项堆的平摊运行时间更好。斐波那契堆的名字来自于斐波那契数列，这些数列被用来做运行时间分析。</p>
-<p>求最小值(find-mininum), 插入(insert), 降低元素值(decrease-key)和合并(merge/union)可以在常数平摊时间内完成。删除(delete)和删除最小值(delete minimun)可以在O(log n)平摊时间内完成。</p>
-<p>在优先队列(priority queues)中使用斐波那契堆可以提升重要算法的渐进运行时间，例如Dijkstra算法，该算法用来计算一个图中两个结点的最短的距离。</p>
-<p>斐波那契堆是由一些树的集合所组成，其中每一棵树都满足最小堆(minimum-heap)的属性，也就是说树中每个子结点的值都大于或者等于其父结点的值，而最小值则处在根结点上。</p>
-<p>与二项堆不同，斐波那契堆中的树更加灵活，没有规定的形状，在极端情况下，堆中每个元素都是一棵单独的树。这种灵活性使得一些操作可以以“偷懒”的方式来执行，而“剩下”的工作将推迟到后面的操作中来完成。比如堆的合并仅仅将由树所组成的链表链接起来，而降低元素值(decrease key)有时直接从父结点中剪断而形成一棵新树。</p>
-<p>下面给出斐波那契堆中关键的量值：</p>
-<p>degree[x]:degree[x]: 表示结点x的子结点个数</p>
-<p>mark[x]:mark[x]: 一个结点是否被marked了（当执行decrease key操作时会用到）</p>
-<p>t(H):t(H): 表示堆中树的个数</p>
-<p>m(H):m(H): 表示被marked的结点数量</p>
-<p>Φ(H)=t(H)+2m(H):Φ(H)=t(H)+2m(H): 表示势函数</p>
-<p>如下图所示：</p>
-<p>从图中可以看出，一共有5棵树，即t(H)=5t(H)=5，最小值的指针指向元素值为3的根结点，在这棵包含最小值的树中，根结点有3个子结点，所以其degree等于3，整个斐波那契堆用 H 来表示。其中黑色表示被marked了，灰色表示没有被marked，所以m(H)=3m(H)=3，势函数 Φ(H)=t(H)+2m(H)=5+2∗3=11Φ(H)=t(H)+2m(H)=5+2∗3=11<br><img src="file:///G:/blog/source/uploads/20131028210633593.gif" alt=""></p>
-<p>###Algorithm for Fibonacci Heap Operations</p>
-<pre><code>
-Make-Fibonacci-Heap()
-n[H] := 0
-min[H] := NIL 
-return H
+<p>堆有一组有序树组成，但是堆中的树不一定是二项树<br>斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）<br>堆中每个节点的数据结构包含如下域：<br>指向其父节点的指针域<br>指向其任意一个孩子的指针域<br>任意一个节点x的所有孩子被链接在一个双向链表环形链表中<br>节点x中保存有它的孩子的数目degree<br>节点x中存在一个域mark，用于表示自从x上一次称为另一个节点的子女以来，它是否失掉了一个孩子，TRUE表示是失去了，FALSE表示未失去<br>
 
-Fibonacci-Heap-Minimum(H)
-return min[H]
-
-Fibonacci-Heap-Link(H,y,x)
-remove y from the root list of H
-make y a child of x
-degree[x] := degree[x] + 1
-mark[y] := FALSE
-
-CONSOLIDATE(H)
-for i:=0 to D(n[H])
-     Do A[i] := NIL
-for each node w in the root list of H
-    do x:= w
-       d:= degree[x]
-       while A[d] <> NIL
-           do y:=A[d]
-              if key[x]>key[y]
-                then exchange x<->y
-              Fibonacci-Heap-Link(H, y, x)
-              A[d]:=NIL
-             d:=d+1
-       A[d]:=x
-min[H]:=NIL
-for i:=0 to D(n[H])
-    do if A[i]<> NIL
-          then add A[i] to the root list of H
-               if min[H] = NIL or key[A[i]]<key[min[h]] then="" min[h]:="A[i]" fibonacci-heap-union(h1,h2)="" h="" :="Make-Fibonacci-Heap()" min[h]="" concatenate="" the="" root="" list="" of="" h2="" with="" if="" (min[h1]="NIL)" or="" (min[h2]="" <=""> NIL and min[H2] < min[H1])
-   then min[H] := min[H2]
-n[H] := n[H1] + n[H2]
-free the objects H1 and H2
-return H
-
-
-Fibonacci-Heap-Insert(H,x)
-degree[x] := 0
-p[x] := NIL
-child[x] := NIL
-left[x] := x
-right[x] := x
-mark[x] := FALSE
-concatenate the root list containing x with root list H
-if min[H] = NIL or key[x]<key[min[h]] then="" min[h]="" :="x" n[h]:="n[H]+1" fibonacci-heap-extract-min(h)="" z:="min[H]" if="" x="" <=""> NIL
-        then for each child x of z
-             do add x to the root list of H
-                p[x]:= NIL
-             remove z from the root list of H
-             if z = right[z]
-                then min[H]:=NIL
-                else min[H]:=right[z]
-                     CONSOLIDATE(H)
-             n[H] := n[H]-1
-return z
-
-Fibonacci-Heap-Decrease-Key(H,x,k)
-if k > key[x]
-   then error "new key is greater than current key"
-key[x] := k
-y := p[x]
-if y <> NIL and key[x]<key[y] then="" cut(h,="" x,="" y)="" cascading-cut(h,y)="" if="" key[x]<key[min[h]]="" min[h]="" :="x" cut(h,x,y)="" remove="" x="" from="" the="" child="" list="" of="" y,="" decrementing="" degree[y]="" add="" to="" root="" h="" p[x]:="NIL" mark[x]:="FALSE" z:="p[y]" z="" <=""> NIL
-  then if mark[y] = FALSE
-       then mark[y]:= TRUE
-       else CUT(H, y, z)
-            CASCADING-CUT(H, z)
-
-Fibonacci-Heap-Delete(H,x)
-Fibonacci-Heap-Decrease-Key(H,x,-infinity)
-Fibonacci-Heap-Extract-Min(H)
- </key[y]></key[min[h]]></key[min[h]]></-></code></pre>
-
-<p>关于斐波那契堆的操作具体参见<br><a href="http://gdeepak.com/IADSA/L22binomialfibonacciheaps.pdf" target="_blank" rel="external">http://gdeepak.com/IADSA/L22binomialfibonacciheaps.pdf</a></p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2017/05/02/斐波那契堆/">Read More</a>
+    </div>
     
     
     
@@ -284,52 +197,12 @@ Fibonacci-Heap-Extract-Min(H)
   </section>
   <section class="article typo">
 	  <p>#Latch</p>
-<p><strong>同步工具</strong>类除了最熟悉的阻塞队列之外，还包括<strong>Semaphore、Barrier</strong>以及<strong>Latch</strong>。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。 </p>
-<p><strong>闭锁</strong>最形象的比喻是一扇Gate，在闭锁到达结束状态之前，这扇门始终处于关闭的状态，任何线程都无法通过。而当闭锁到达结束状态，这扇门将打开，进而允许所有的线程通过。一旦闭锁达到结束状态，这扇门将保持打开的状态，不会再关闭。换句话说，闭锁的作用是保持某些活动直到其他活动都完成才继续执行。<br>举个例子，我们都知道并发在某些情况下，可以极大地提升工作效率，缩短程序的运行时间，那么我们该如何去获取并发程序准确的运行时间，即在所有线程全部就绪的时刻启动时间，而在所有线程全部结束的时刻终止时间。Latch可以做到，看下面程序。</p>
-<pre><code><java>
-public class TestHarness {
-    public static String timeTask(int nThreads,final Runnable[] tasks) throws InterruptedException{
-        final CountDownLatch startGate=new CountDownLatch(1);
-        final CountDownLatch endGate=new CountDownLatch(nThreads);
-        for(Runnable task:tasks){
-            Thread t=new Thread(){
-                public void run(){
-                    try{
-                        startGate.await();
-                        try{
-                            task.run();
-                        }finally{
-                            //每个线程最终最后执行将endGate减1
-                            endGate.countDown();
+<p><strong>同步工具</strong>类除了最熟悉的阻塞队列之外，还包括<strong>Semaphore、Barrier</strong>以及<strong>Latch</strong>。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。<br>
 
-                        }
-                    }catch(InterruptedException e){
-
-                    }
-                }
-            };
-            t.start();
-        }
-        long startTime=System.nanoTime();
-        startGate.countDown();
-        endGate.await();
-        long endTime=System.nanoTime();
-        return "Time: "+(endTime-startTime)+"ns";
-    }
-</java></code></pre>
-
-<p>由于startGate被设置为等待</p>
-<p><code>startGate.await();</code></p>
-<p>因此每个线程首先要做的工作就是在启动门上等待，直到所有的线程全部就绪。并且，我们在为每个线程装载任务时</p>
-<p><code>finally{endGate.countDown();}</code></p>
-<p>保证没个线程最终都会执行使得endGate减1的任务</p>
-<p><code>startGate.countDown();</code></p>
-<p>注意startGate的初值为1，因此调用countDown方法后，门打开，此时线程开始执行</p>
-<p><code>endGate.await();</code></p>
-<p>endGate此时关闭，要做的工作就是等待且为零的时刻，然后打开</p>
-<p>如果没用使用Latch工具而去获取并行线程的运行时间，线程在被创建之后将立即执行，显然，先启动的线程势必会领先于后启动的线程，并且活跃线程的数量会随着时间的推移而慢慢减少或者增加，竞争程度也将发生变化。有了这个工具，我们今后在编写并发程序是，只需要调用timeTasks函数，并向其传递任务参数，就可以获取并发时间了。</p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2017/04/28/Latch/">Read More</a>
+    </div>
     
     
     
@@ -368,19 +241,12 @@ public class TestHarness {
 <ul>
 <li>深入研究<strong>OSGi</strong>，理解java模块化编程，以及OSGi如何打破类加载机制的双亲委派模型<br> 预期目标：开发一个<strong>Opendaylight</strong>可用的Bundle，具体功能为获取网络拓普信息并建路</li>
 <li>结合Spring技术内幕一书，研究<strong>Spring</strong>源码，并以此进一步锤炼java</li>
-<li>尝试编译OpenJDK</li>
-</ul>
-<p>###论文目标</p>
-<ul>
-<li>5号之间将论文搞定</li>
-<li>15号之前完成论文翻译工作</li>
-</ul>
-<p>####出行</p>
-<ul>
-<li>争取在月内和女神实现<strong>厦门</strong>行</li>
-</ul>
+<li>尝试编译OpenJDK
 
-
+    
+	  <div class="readmore">
+      <a href="/2017/04/28/五月任务计划/">Read More</a>
+    </div>
     
     
     
@@ -416,18 +282,12 @@ public class TestHarness {
   </section>
   <section class="article typo">
 	  <p>在<strong>并发编程</strong>中，多线程同时并发访问的资源叫做<strong>临界资源</strong>，当多个线程同时访问对象并要求操作相同资源时，分割了原子操作就有可能出现数据的不一致或数据不完整的情况，为避免这种情况的发生，我们会采取同步机制，以确保在某一时刻，方法内只允许有一个线程。</p>
-<p>采用 synchronized 修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个 monitor (锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。</p>
-<p>这里就使用同步机制获取互斥锁的情况，进行几点说明：</p>
-<p>1、如果同一个方法内同时有两个或更多线程，则每个线程有自己的<strong>局部变量</strong>拷贝。</p>
-<p>2、类的每个实例都有自己的对象级别锁。当一个线程访问实例对象中的 synchronized 同步代码块或同步方法时，该线程便获取了该实例的对象级别锁，其他线程这时如果要访问 synchronized 同步代码块或同步方法，便需要阻塞等待，直到前面的线程从同步代码块或方法中退出，释放掉了该对象级别锁。</p>
-<p>3、访问同一个类的不同实例对象中的同步代码块，不存在阻塞等待获取对象锁的问题，因为它们获取的是各自实例的对象级别锁，相互之间没有影响。</p>
-<p>4、持有一个对象级别锁不会阻止该线程被交换出来，也不会阻塞其他线程访问同一示例对象中的非 synchronized 代码。当一个线程 A 持有一个对象级别锁（即进入了 synchronized 修饰的代码块或方法中）时，线程也有可能被交换出去，此时线程 B 有可能获取执行该对象中代码的时间，但它只能执行非同步代码（没有用 synchronized 修饰），当执行到同步代码时，便会被阻塞，此时可能线程规划器又让 A 线程运行，A 线程继续持有对象级别锁，当 A 线程退出同步代码时（即释放了对象级别锁），如果 B 线程此时再运行，便会获得该对象级别锁，从而执行 synchronized 中的代码。</p>
-<p>5、持有对象级别锁的线程会让其他线程阻塞在所有的 synchronized 代码外。例如，在一个类中有三个synchronized 方法 a，b，c，当线程 A 正在执行一个实例对象 M 中的方法 a 时，它便获得了该对象级别锁，那么其他的线程在执行同一实例对象（即对象 M）中的代码时，便会在所有的 synchronized 方法处阻塞，即在方法 a，b，c 处都要被阻塞，等线程 A 释放掉对象级别锁时，其他的线程才可以去执行方法 a，b 或者 c 中的代码，从而获得该对象级别锁。</p>
-<p>6、使用 synchronized（obj）同步语句块，可以获取指定对象上的对象级别锁。obj 为对象的引用，如果获取了 obj 对象上的对象级别锁，在并发访问 obj 对象时时，便会在其 synchronized 代码处阻塞等待，直到获取到该 obj对象的对象级别锁。当 obj 为 this 时，便是获取当前对象的对象级别锁。</p>
-<p>7、类级别锁被特定类的所有示例共享，它用于控制对 static 成员变量以及 static 方法的并发访问。具体用法与对象级别锁相似。</p>
-<p>8、互斥是实现同步的一种手段，临界区、互斥量和信号量都是主要的互斥实现方式。synchronized 关键字经过编译后，会在同步块的前后分别形成 monitorenter 和 monitorexit 这两个字节码指令。根据虚拟机规范的要求，在执行 monitorenter 指令时，首先要尝试获取对象的锁，如果获得了锁，把锁的计数器加 1，相应地，在执行 monitorexit 指令时会将锁计数器减 1，当计数器为 0 时，锁便被释放了。由于 synchronized 同步块对同一个线程是可重入的，因此一个线程可以多次获得同一个对象的互斥锁，同样，要释放相应次数的该互斥锁，才能最终释放掉该锁。</p>
+<p>采用 synchronized 修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个 monitor (锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。<br>
 
-
+    
+	  <div class="readmore">
+      <a href="/2017/04/28/synchronized关键字/">Read More</a>
+    </div>
     
     
     

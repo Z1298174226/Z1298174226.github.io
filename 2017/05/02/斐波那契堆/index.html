@@ -1,89 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>斐波那契堆 - Lex-Zhao</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#斐波那契堆一个斐波那契堆具有如下性质： 堆有一组有序树组成，但是堆中的树不一定是二项树斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）堆中每个节点的数据结构包含如下域：指向其父节点的指针域指向其任意一个孩子的指针域任意一个节点x的所有孩子被链接在一个双向链表环形链表中节点x中保存有它的孩子的数目degree节点x中存在一个域mark，用于表示自从x上一次称为另一个节点">
-<meta name="keywords" content="Algorithm">
-<meta property="og:type" content="article">
-<meta property="og:title" content="斐波那契堆">
-<meta property="og:url" content="http://www.lex-zhao.xyz/2017/05/02/斐波那契堆/index.html">
-<meta property="og:site_name" content="Lex-Zhao">
-<meta property="og:description" content="#斐波那契堆一个斐波那契堆具有如下性质： 堆有一组有序树组成，但是堆中的树不一定是二项树斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）堆中每个节点的数据结构包含如下域：指向其父节点的指针域指向其任意一个孩子的指针域任意一个节点x的所有孩子被链接在一个双向链表环形链表中节点x中保存有它的孩子的数目degree节点x中存在一个域mark，用于表示自从x上一次称为另一个节点">
-<meta property="og:image" content="file:///G:/blog/source/uploads/829863-20160104171120950-2110922480.png">
-<meta property="og:image" content="file:///G:/blog/source/uploads/20131028210633593.gif">
-<meta property="og:updated_time" content="2017-05-02T06:59:43.154Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斐波那契堆">
-<meta name="twitter:description" content="#斐波那契堆一个斐波那契堆具有如下性质： 堆有一组有序树组成，但是堆中的树不一定是二项树斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）堆中每个节点的数据结构包含如下域：指向其父节点的指针域指向其任意一个孩子的指针域任意一个节点x的所有孩子被链接在一个双向链表环形链表中节点x中保存有它的孩子的数目degree节点x中存在一个域mark，用于表示自从x上一次称为另一个节点">
-<meta name="twitter:image" content="file:///G:/blog/source/uploads/829863-20160104171120950-2110922480.png">
-  
-  
-    <link rel="icon" href="/hexo.png">
-  
-  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
-  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
-  
-
-</head>
-
-<body>
-  <div id="container">
-    <header id="header">
-  <div id="header-outer" class="outer">
-    <div id="header-inner" class="inner">
-      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
-      <a id="logo" class="logo" href="/"></a>
-      <nav id="main-nav">
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/categories">Categories</a>
-        
-          <a class="main-nav-link" href="/tags">Tags</a>
-        
-          <a class="main-nav-link" href="/about">About</a>
-        
-          <a class="main-nav-link" href="/atom.xml">Rss</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        <div id="search-form-wrap">
-          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.lex-zhao.xyz"></form>
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
-    <section id="main" class="outer"><article id="post-斐波那契堆" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      斐波那契堆
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/05/02/斐波那契堆/" class="article-date">
-  <time datetime="2017-05-02T05:10:07.000Z" itemprop="datePublished">2017-05-02</time>
-</a>
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#斐波那契堆<br>一个斐波那契堆具有如下性质：</p>
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta name="author" content="Xudong Zhao"><link rel="icon" href="/hexo.ico"><title>Lex-Zhao</title><meta name="description" content="一直特立独行的猪"><link rel="alternate" type="application/rss+xml" title="Lex-Zhao" href="/atom.xml"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+</head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#main-navbar" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">Lex-Zhao</a></div><div id="main-navbar" class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right"><li><a href="/archives">Archive</a></li><li><a href="/tags">Tag</a></li><li><a href="/about">About</a></li></ul></div><div class="avatar-container"><div class="avatar-img-border"><a href="/"><img src="/hexo.png" class="avatar-img"></a></div></div></div></nav><header class="header-section"><div class="intro-header no-img"><div class="container"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class="post-heading"><h1>斐波那契堆</h1><p class="post-meta">Posted on 5月 2 2017 · <a href="/tags/Algorithm/" class="tag post-meta">Algorithm</a></p></div></div></div></div></div></header><div class="container"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role="main" class="blog-post"><p>#斐波那契堆<br>一个斐波那契堆具有如下性质：</p>
 <p>堆有一组有序树组成，但是堆中的树不一定是二项树<br>斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）<br>堆中每个节点的数据结构包含如下域：<br>指向其父节点的指针域<br>指向其任意一个孩子的指针域<br>任意一个节点x的所有孩子被链接在一个双向链表环形链表中<br>节点x中保存有它的孩子的数目degree<br>节点x中存在一个域mark，用于表示自从x上一次称为另一个节点的子女以来，它是否失掉了一个孩子，TRUE表示是失去了，FALSE表示未失去<br>斐波那契堆中的所有树的树根被保存在一个链表即根表中<br>对于一个斐波那契堆，min[H]保存了具有最小节点值的根节点<br>下图即为一个斐波那契堆的示例：<br><img src="file:///G:/blog/source/uploads/829863-20160104171120950-2110922480.png" alt=""><br>在计算机科学中，斐波那契堆是由树的集合所组成的堆数据结构。它比二项堆的平摊运行时间更好。斐波那契堆的名字来自于斐波那契数列，这些数列被用来做运行时间分析。</p>
 <p>求最小值(find-mininum), 插入(insert), 降低元素值(decrease-key)和合并(merge/union)可以在常数平摊时间内完成。删除(delete)和删除最小值(delete minimun)可以在O(log n)平摊时间内完成。</p>
 <p>在优先队列(priority queues)中使用斐波那契堆可以提升重要算法的渐进运行时间，例如Dijkstra算法，该算法用来计算一个图中两个结点的最短的距离。</p>
@@ -175,73 +91,15 @@ Fibonacci-Heap-Extract-Min(H)
  </key[y]></key[min[h]]></key[min[h]]></-></code></pre>
 
 <p>关于斐波那契堆的操作具体参见<br><a href="http://gdeepak.com/IADSA/L22binomialfibonacciheaps.pdf" target="_blank" rel="external">http://gdeepak.com/IADSA/L22binomialfibonacciheaps.pdf</a></p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/04/28/Latch/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          Latch
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
-</article>
-
-
-
-
-<div class="share_addthis">
-  <div class="sharing addthis_toolbox share">
-    <a class="addthis_button_facebook_like"></a>
-    <a class="addthis_button_tweet"></a>
-    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
-</div>
-
-
-
-
-
-</section>
-    <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 Xudong Zhao&nbsp;
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
-    </div>
-  </div>
-</footer>
-    
-
-<script src="/js/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-  </div>
-</body>
-</html>
+</article><ul class="pager blog-pager"><li class="previous"><a href="/2017/04/28/Latch/" data-toggle="tooltip" data-placement="top" title="Latch">上一篇</a></li></ul><div class="disqus-comments"><div class="comments"><div id="disqus_thread"></div></div></div><script>var url_parts = window.location.href.split("?");
+var disqus_url = url_parts[0];
+(function () {
+    console.log("enter disqus");
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = "//Zhaoxudong.disqus.com/embed.js";
+    (document.head || d.body ).appendChild(dsq);
+})();</script></div></div></div><footer><div class="container beautiful-jekyll-footer"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"><li><a href="https://github.com/Z1298174226" title="GitHub"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-github"></i></span></a></li><li><a href="/atom.xml" title="RSS"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-rss"></i></span></a></li><li><a href="http://www.cnblogs.com/lex-to-lex/" title="bokeyuan"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-twitter"></i></span></a></li><li><a href="1298174226@qq.com" title="Email me"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-envelope"></i></span></a></li><li><a title="LinkedIn"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-linkedin"></i></span></a></li><li><a href="https://www.zhihu.com/people/zhao-xu-dong-26-49/activities" title="zhihu"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-stack-overflow"></i></span></a></li></ul><p class="copyright text-muted">© Xudong Zhao • 2017 • <a href="mailto:undefined"></a>
+</p><p class="theme-by text-muted">Theme by
+<a href="https://github.com/twoyao/beautiful-hexo">beautiful-hexo</a></p></div></div></div></footer><script src="/js/jquery-1.11.2.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/main.js"></script><script src="/js/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

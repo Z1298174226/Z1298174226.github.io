@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-05-04T07:00:03.528Z</updated>
+  <updated>2017-05-04T07:33:59.169Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -20,12 +20,11 @@
     <link href="http://www.lex-zhao.xyz/2017/05/04/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     <id>http://www.lex-zhao.xyz/2017/05/04/容器技术与虚拟机/</id>
     <published>2017-05-04T06:14:48.000Z</published>
-    <updated>2017-05-04T07:00:03.528Z</updated>
+    <updated>2017-05-04T07:33:59.169Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;容器技术和虚拟机，都不得不从云&lt;/p&gt;
-
+      &lt;p&gt;容器技术和虚拟机，都不得不从云&lt;br&gt;&amp;lt;% dplayer “url=&lt;a href=&quot;http://devtest.qiniudn.com/若能绽放光芒.mp4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://devtest.qiniu
     
     </summary>
     

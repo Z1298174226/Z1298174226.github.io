@@ -38,20 +38,11 @@
     <link href="http://www.lex-zhao.xyz/2017/05/02/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/"/>
     <id>http://www.lex-zhao.xyz/2017/05/02/斐波那契堆/</id>
     <published>2017-05-02T05:10:07.000Z</published>
-    <updated>2017-05-04T05:51:32.102Z</updated>
+    <updated>2017-05-04T05:52:54.963Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/829863-20160104171120950-2110922480.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;一个斐波那契堆具有如下性质：&lt;/p&gt;
-&lt;p&gt;堆有一组有序树组成，但是堆中的树不一定是二项树&lt;/p&gt;
-&lt;p&gt;斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）&lt;/p&gt;
-&lt;p&gt;堆中每个节点的数据结构包含如下域：&lt;/p&gt;
-&lt;p&gt;指向其父节点的指针域&lt;/p&gt;
-&lt;p&gt;指向其任意一个孩子的指针域&lt;/p&gt;
-&lt;p&gt;任意一个节点x的所有孩子被链接在一个双向链表环形链表中&lt;/p&gt;
-&lt;p&gt;节点x中保存有它的孩子的数目degree&lt;/p&gt;
-&lt;p&gt;节点x中存在一个域mark，用于表示自从x上一次称为另一个节点的子女以来，它是否失掉了一个孩子，TRUE表示是失去了，FALSE表示未失去&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/829863-20160104171120950-2110922480.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

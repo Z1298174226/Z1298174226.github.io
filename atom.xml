@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-05-04T06:02:15.030Z</updated>
+  <updated>2017-05-04T07:00:03.528Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>容器技术与虚拟机</title>
+    <link href="http://www.lex-zhao.xyz/2017/05/04/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    <id>http://www.lex-zhao.xyz/2017/05/04/容器技术与虚拟机/</id>
+    <published>2017-05-04T06:14:48.000Z</published>
+    <updated>2017-05-04T07:00:03.528Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;容器技术和虚拟机，都不得不从云&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Docker" scheme="http://www.lex-zhao.xyz/tags/Docker/"/>
+    
+      <category term="虚拟机" scheme="http://www.lex-zhao.xyz/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>春华秋实</title>

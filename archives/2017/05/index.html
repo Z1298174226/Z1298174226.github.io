@@ -148,7 +148,7 @@
     
     <h2 class="title">
       <a href="/2017/05/10/JVM-垃圾回收机制/">
-        JVM 垃圾回收机制
+        JVM 垃圾回收机制(一)——新生代垃圾回收
       </a>
     </h2>
     
@@ -163,8 +163,13 @@
 
   </section>
   <section class="article typo">
-	  
+	  <p>本部分，我们将关注堆 (heap) 中一个主要区域，新生代 (young generation)。首先我们会讨论为什么调整新生代的参数会对应用的性能如此重要，接着我们将学习新生代相关的 JVM 参数。</p>
+<p>单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)<br></p>
 
+    
+	  <div class="readmore">
+      <a href="/2017/05/10/JVM-垃圾回收机制/">Read More</a>
+    </div>
     
     
     
@@ -172,7 +177,7 @@
       
         <a href="/tags/java/">java</a>
       
-        <a href="/tags/垃圾回收机制/">垃圾回收机制</a>
+        <a href="/tags/GC机制/">GC机制</a>
       
 	  </div>
     
@@ -365,7 +370,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 14px; color: #00f">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/垃圾回收机制/" style="font-size: 14px; color: #00f">垃圾回收机制</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 14px; color: #00f">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 14px; color: #00f">GC机制</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

@@ -146,6 +146,52 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">
+        JVM 垃圾回收机制(二)——方法区回收
+      </a>
+    </h2>
+    
+    <time>
+      5月 13, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：</p>
+<ul>
+<li>该类所有的实例都已经被回收，即java堆中不存在该类的任何实例。</li>
+<li>加载该类的ClassLoader已经被回收。</li>
+<li>该类对应的java.lang.Class对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
+</ul>
+<p>在大量使用反射、动态代理、CGLib等ByteCode框架、动态生成JSP记忆OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能，以保证永久代永远不会溢出。</p>
+<p>注：可以使用<strong>-verbose：class</strong>以及<strong>-XX:_TraceClassLoading、-XX:TraceClassUnLoading</strong>查看类加载和卸载信息</p>
+
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/java/">java</a>
+      
+        <a href="/tags/GC机制/">GC机制</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2017/05/10/JVM-垃圾回收机制/">
         （译）JVM 垃圾回收机制(一)——新生代垃圾回收
       </a>
@@ -232,7 +278,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>5</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>6</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -245,7 +291,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 14px; color: #00f">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 14px; color: #00f">GC机制</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 14px; color: #00f">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 18px; color: #000080">GC机制</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

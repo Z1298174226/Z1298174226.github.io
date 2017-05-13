@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="原作者：PATRICK PESCHLOW 本文对原文有改动 单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/1.png">
-<meta property="og:updated_time" content="2017-05-13T12:28:21.621Z">
+<meta property="og:updated_time" content="2017-05-13T12:34:11.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="（译）JVM 垃圾回收机制(一)——新生代垃圾回收">
 <meta name="twitter:description" content="原作者：PATRICK PESCHLOW 本文对原文有改动 单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)">
@@ -188,12 +188,12 @@
 <p>之后行表示，对于小于老年代阀值的每一个对象年龄，本年龄中对象所占字节 (如果当前年龄没有对象， 这一行会忽略)。 上例中， 一次 GC 后幸存对象大约 19 MB， 两次 GC 后幸存对象大约 79 KB，三次 GC 后幸存对象大约 3 MB 。 每行结尾，显示直到本年龄全部对象大小。 所以， 最后一行的 total 表示幸存区 To 总共被占用 22 MB 。 幸存区 To 总大小为 75 MB ， 当前老年代阀值为 15，可以断定在本次 GC 中，没有对象会移动到老年代。现在假设下一次 GC 输出为：</p>
 <p><pre><code><br>Desired survivor size 75497472 bytes， new threshold 2 (max 15)<br>age 1: 68407384 bytes， 68407384 total<br>age 2: 12494576 bytes， 80901960 total<br>age 3: 79376 bytes， 80981336 total<br>age 4: 2904256 bytes， 83885592 total<br></code></pre><br>对比前一次老年代分布。明显的， 年龄 2 和年龄 3 的对象还保持在幸存区中，因为我们看到年龄 3 和 4 的对象大小与前一次年龄 2 和 3 的相同。同时发现幸存区中， 有一部分对象已经被回收， 因为本次年龄 2 的对象大小为 12MB ，而前一次年龄 1 的对象大小为 19 MB。最后可以看到最近的 GC 中，有 68 MB 新对象，从伊甸园区移动到幸存区。</p>
 <p>注意， 本次 GC 幸存区占用总大小 84 MB - 大于 75 MB。 结果， JVM 把老年代阀值从 15 降低到 2，在下次 GC 时，一部分对象会强制离开幸存区，这些对象可能会被回收 (如果他们刚好死亡) 或移动到老年代。</p>
-<p>-XX:InitialTenuringThreshold， -XX:MaxTenuringThreshold and -XX:TargetSurvivorRatio</p>
+<p><strong>-XX:InitialTenuringThreshold， -XX:MaxTenuringThreshold and -XX:TargetSurvivorRatio</strong></p>
 <p>参数 -XX:+PrintTenuringDistribution 输出中的部分值可以通过其它参数控制。通过 -XX:InitialTenuringThreshold 和 -XX:MaxTenuringThreshold 可以设定老年代阀值的初始值和最大值。另外， 可以通过参数 -XX:TargetSurvivorRatio 设定幸存区的目标使用率。 例如， -XX:MaxTenuringThreshold=10 -XX:TargetSurvivorRatio=90 设定老年代阀值的上限为 10， 幸存区空间目标使用率为 90%。</p>
 <p>有多种方式， 设置新生代行为，没有通用准则。我们必须清楚以下 2 中情况：</p>
 <ul>
 <li>如果从年龄分布中发现，有很多对象的年龄持续增长，在到达老年代阀值之前。这表示 -XX:MaxTenuringThreshold 设置过大</li>
-<li>如果 -XX:MaxTenuringThreshold 的值大于 1，但是很多对象年龄从未大于 1。应该看下幸存区的目标使用率。如果幸存区使用率从未到达，这表示对象都被 GC 回收，这正是我们想要的。 如果幸存区使用率经常达到，有些年龄超过 1 的对象被移动到老年代中。这种情况，可以尝试调整幸存区大小或目标使用率。<br>-XX:+NeverTenure and -XX:+AlwaysTenure</li>
+<li>如果 -XX:MaxTenuringThreshold 的值大于 1，但是很多对象年龄从未大于 1。应该看下幸存区的目标使用率。如果幸存区使用率从未到达，这表示对象都被 GC 回收，这正是我们想要的。 如果幸存区使用率经常达到，有些年龄超过 1 的对象被移动到老年代中。这种情况，可以尝试调整幸存区大小或目标使用率。<br><strong>-XX:+NeverTenure and -XX:+AlwaysTenure</strong></li>
 </ul>
 <p>最后，我们介绍 2 个颇为少见的参数，对应 2 种极端的新生代 GC 情况。设置参数 -XX:+NeverTenure，对象永远不会晋升到老年代。当我们确定不需要老年代时，可以这样设置。这样设置风险很大， 并且会浪费至少一半的堆内存。相反设置参数 -XX:+AlwaysTenure，表示没有幸存区，所有对象在第一次 GC 时，会晋升到老年代。</p>
 <p>没有合理的场景使用这个参数。可以在测试环境中，看下这样设置会发生什么有趣的事。但是并不推荐使用这些参数。</p>
@@ -268,7 +268,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>5</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>6</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -281,7 +281,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 14px; color: #00f">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 14px; color: #00f">GC机制</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 14px; color: #00f">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 18px; color: #000080">GC机制</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

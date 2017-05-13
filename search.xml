@@ -3,6 +3,36 @@
   
     
     <entry>
+      <title><![CDATA[JVM 垃圾回收机制(二)——方法区回收]]></title>
+      <url>/2017/05/13/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6-%E4%B8%80-%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8C%BA%E5%9B%9E%E6%94%B6/</url>
+      <content type="html"><![CDATA[<p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：</p>
+<ul>
+<li>该类所有的实例都已经被回收，即java堆中不存在该类的任何实例。</li>
+<li>加载该类的ClassLoader已经被回收。</li>
+<li>该类对应的java.lang.Class对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
+</ul>
+<p>在大量使用反射、动态代理、CGLib等ByteCode框架、动态生成JSP记忆OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能，以保证永久代永远不会溢出。</p>
+<p>注：可以使用<strong>-verbose：class</strong>以及<strong>-XX:_TraceClassLoading、-XX:TraceClassUnLoading</strong>查看类加载和卸载信息</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> GC机制 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[（译）JVM 垃圾回收机制(一)——新生代垃圾回收]]></title>
       <url>/2017/05/10/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
       <content type="html"><![CDATA[<p><strong>原作者：PATRICK PESCHLOW</strong></p>
@@ -31,12 +61,12 @@
 <p>之后行表示，对于小于老年代阀值的每一个对象年龄，本年龄中对象所占字节 (如果当前年龄没有对象， 这一行会忽略)。 上例中， 一次 GC 后幸存对象大约 19 MB， 两次 GC 后幸存对象大约 79 KB，三次 GC 后幸存对象大约 3 MB 。 每行结尾，显示直到本年龄全部对象大小。 所以， 最后一行的 total 表示幸存区 To 总共被占用 22 MB 。 幸存区 To 总大小为 75 MB ， 当前老年代阀值为 15，可以断定在本次 GC 中，没有对象会移动到老年代。现在假设下一次 GC 输出为：</p>
 <p><pre><code><br>Desired survivor size 75497472 bytes， new threshold 2 (max 15)<br>age 1: 68407384 bytes， 68407384 total<br>age 2: 12494576 bytes， 80901960 total<br>age 3: 79376 bytes， 80981336 total<br>age 4: 2904256 bytes， 83885592 total<br></code></pre><br>对比前一次老年代分布。明显的， 年龄 2 和年龄 3 的对象还保持在幸存区中，因为我们看到年龄 3 和 4 的对象大小与前一次年龄 2 和 3 的相同。同时发现幸存区中， 有一部分对象已经被回收， 因为本次年龄 2 的对象大小为 12MB ，而前一次年龄 1 的对象大小为 19 MB。最后可以看到最近的 GC 中，有 68 MB 新对象，从伊甸园区移动到幸存区。</p>
 <p>注意， 本次 GC 幸存区占用总大小 84 MB - 大于 75 MB。 结果， JVM 把老年代阀值从 15 降低到 2，在下次 GC 时，一部分对象会强制离开幸存区，这些对象可能会被回收 (如果他们刚好死亡) 或移动到老年代。</p>
-<p>-XX:InitialTenuringThreshold， -XX:MaxTenuringThreshold and -XX:TargetSurvivorRatio</p>
+<p><strong>-XX:InitialTenuringThreshold， -XX:MaxTenuringThreshold and -XX:TargetSurvivorRatio</strong></p>
 <p>参数 -XX:+PrintTenuringDistribution 输出中的部分值可以通过其它参数控制。通过 -XX:InitialTenuringThreshold 和 -XX:MaxTenuringThreshold 可以设定老年代阀值的初始值和最大值。另外， 可以通过参数 -XX:TargetSurvivorRatio 设定幸存区的目标使用率。 例如， -XX:MaxTenuringThreshold=10 -XX:TargetSurvivorRatio=90 设定老年代阀值的上限为 10， 幸存区空间目标使用率为 90%。</p>
 <p>有多种方式， 设置新生代行为，没有通用准则。我们必须清楚以下 2 中情况：</p>
 <ul>
 <li>如果从年龄分布中发现，有很多对象的年龄持续增长，在到达老年代阀值之前。这表示 -XX:MaxTenuringThreshold 设置过大</li>
-<li>如果 -XX:MaxTenuringThreshold 的值大于 1，但是很多对象年龄从未大于 1。应该看下幸存区的目标使用率。如果幸存区使用率从未到达，这表示对象都被 GC 回收，这正是我们想要的。 如果幸存区使用率经常达到，有些年龄超过 1 的对象被移动到老年代中。这种情况，可以尝试调整幸存区大小或目标使用率。<br>-XX:+NeverTenure and -XX:+AlwaysTenure</li>
+<li>如果 -XX:MaxTenuringThreshold 的值大于 1，但是很多对象年龄从未大于 1。应该看下幸存区的目标使用率。如果幸存区使用率从未到达，这表示对象都被 GC 回收，这正是我们想要的。 如果幸存区使用率经常达到，有些年龄超过 1 的对象被移动到老年代中。这种情况，可以尝试调整幸存区大小或目标使用率。<br><strong>-XX:+NeverTenure and -XX:+AlwaysTenure</strong></li>
 </ul>
 <p>最后，我们介绍 2 个颇为少见的参数，对应 2 种极端的新生代 GC 情况。设置参数 -XX:+NeverTenure，对象永远不会晋升到老年代。当我们确定不需要老年代时，可以这样设置。这样设置风险很大， 并且会浪费至少一半的堆内存。相反设置参数 -XX:+AlwaysTenure，表示没有幸存区，所有对象在第一次 GC 时，会晋升到老年代。</p>
 <p>没有合理的场景使用这个参数。可以在测试环境中，看下这样设置会发生什么有趣的事。但是并不推荐使用这些参数。</p>

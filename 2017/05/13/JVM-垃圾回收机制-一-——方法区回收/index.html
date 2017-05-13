@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Category: 生活 | 倾听枫声</title>
+  <title>JVM 垃圾回收机制(二)——方法区回收 | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -12,15 +12,17 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生活的理想是为了理想的生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="倾听枫声">
-<meta property="og:url" content="http://www.lex-zhao.xyz/categories/生活/index.html">
+  <meta name="description" content="方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：  该类所有的实例都已经被回收，即java堆中不存在该类的任何实例。 加载该类的ClassLoader已经被回收。">
+<meta name="keywords" content="java,GC机制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM 垃圾回收机制(二)——方法区回收">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="生活的理想是为了理想的生活">
+<meta property="og:description" content="方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：  该类所有的实例都已经被回收，即java堆中不存在该类的任何实例。 加载该类的ClassLoader已经被回收。">
+<meta property="og:updated_time" content="2017-05-13T15:58:25.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="倾听枫声">
-<meta name="twitter:description" content="生活的理想是为了理想的生活">
+<meta name="twitter:title" content="JVM 垃圾回收机制(二)——方法区回收">
+<meta name="twitter:description" content="方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：  该类所有的实例都已经被回收，即java堆中不存在该类的任何实例。 加载该类的ClassLoader已经被回收。">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -134,99 +136,63 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        
-  <script>
-    window.subData= { title:'Category : 生活'}
-  </script>
-
-<section class="post-list">
+        <article id="post-JVM-垃圾回收机制-一-——方法区回收"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">
+    	JVM 垃圾回收机制(二)——方法区回收
+    </a>
+  </h2>
+	<time>
+	  5月 13, 2017
+	</time>
 	
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/03/南京/">
-        春华秋实
-      </a>
-    </h2>
-    
-    <time>
-      5月 3, 2017
-    </time>
-		
     
     <div class='cats'>
-        <a href="/categories/生活/">生活</a>
+        <a href="/categories/技术/">技术</a>
     </div>
 
-  </section>
-  <section class="article typo">
-	  <p><img src="http://opeygftv2.bkt.clouddn.com/_DSC1096_%E5%89%AF%E6%9C%AC.jpg" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/03/南京/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/travelog/">travelog</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/04/28/五月任务计划/">
-        五月任务计划
-      </a>
-    </h2>
-    
-    <time>
-      4月 28, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/生活/">生活</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>###技术目标</p>
+	</section>
+	
+		<section class="toc-wrapper"></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：</p>
 <ul>
-<li>深入研究<strong>OSGi</strong>，理解java模块化编程，以及OSGi如何打破类加载机制的双亲委派模型<br> 预期目标：开发一个<strong>Opendaylight</strong>可用的Bundle，具体功能为获取网络拓普信息并建路</li>
-<li>结合Spring技术内幕一书，研究<strong>Spring</strong>源码，并以此进一步锤炼java</li>
-<li>尝试编译OpenJDK</li></ul>
+<li>该类所有的实例都已经被回收，即java堆中不存在该类的任何实例。</li>
+<li>加载该类的ClassLoader已经被回收。</li>
+<li>该类对应的java.lang.Class对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
+</ul>
+<p>在大量使用反射、动态代理、CGLib等ByteCode框架、动态生成JSP记忆OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能，以保证永久代永远不会溢出。</p>
+<p>注：可以使用<strong>-verbose：class</strong>以及<strong>-XX:_TraceClassLoading、-XX:TraceClassUnLoading</strong>查看类加载和卸载信息</p>
 
-    
-	  <div class="readmore">
-      <a href="/2017/04/28/五月任务计划/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
+  	</div>
+	  
+	  <div class="article-tags tags">
       
-        <a href="/tags/planning/">planning</a>
+        <a href="/tags/java/">java</a>
+      
+        <a href="/tags/GC机制/">GC机制</a>
       
 	  </div>
     
-  </section>
+	</section>
+	
+		<section class="youyan" id="comments"> 
+			<div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
+		</section>
+	
 </article>
-    </div>
-  
-</section>
-
+<script>
+	window.subData = {
+		title: 'JVM 垃圾回收机制(二)——方法区回收',
+		tools: true
+	}
+</script>
 
       </div>
       <aside class='l_side'>
@@ -328,11 +294,13 @@
 <script>
   var disqus_shortname = 'kevinhome';
   
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

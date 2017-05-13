@@ -21,7 +21,7 @@
 <meta property="og:description" content="云计算的本质是集中资源再分配，再分配的过程就是资源的逻辑划分，提供资源抽象的实现方式。其中主要涉及两个方面，资源控制和资源隔离。 居然一直都无法准确表述镜像的概念，所谓镜像，包括各种打包的Apps、系统使用进程、应用软件、shell以及公用函数库。 虚拟机">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/blog_%E5%9B%BE%E7%89%871.png">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/blog_%E5%9B%BE%E7%89%872.png">
-<meta property="og:updated_time" content="2017-05-13T09:18:18.241Z">
+<meta property="og:updated_time" content="2017-05-13T09:29:38.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="容器技术与虚拟机">
 <meta name="twitter:description" content="云计算的本质是集中资源再分配，再分配的过程就是资源的逻辑划分，提供资源抽象的实现方式。其中主要涉及两个方面，资源控制和资源隔离。 居然一直都无法准确表述镜像的概念，所谓镜像，包括各种打包的Apps、系统使用进程、应用软件、shell以及公用函数库。 虚拟机">
@@ -165,7 +165,9 @@
   	<div class="article-entry" itemprop="articleBody">
     	<p>云计算的本质是集中资源再分配，再分配的过程就是资源的逻辑划分，提供资源抽象的实现方式。其中主要涉及两个方面，资源控制和资源隔离。</p>
 <p>居然一直都无法准确表述镜像的概念，所谓镜像，包括各种打包的Apps、系统使用进程、应用软件、shell以及公用函数库。</p>
-<h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><p><img src="http://opeygftv2.bkt.clouddn.com/blog_%E5%9B%BE%E7%89%871.png" alt=""><br><a id="more"></a><br>虚拟机的Guest OS即为虚拟机安装的操作系统，它是一个完整操作系统内核；虚拟机的Hypervisor层可以简单理解为一个硬件虚拟化平台(VMW、VirtualBox)，它在Host OS是以内核态的驱动存在的。<br>虚拟机实现<strong>资源隔离</strong>的方法是利用独立的OS，并利用Hypervisor虚拟化CPU、内存、IO设备等实现的。</p>
+<h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><a id="more"></a>
+<p><img src="http://opeygftv2.bkt.clouddn.com/blog_%E5%9B%BE%E7%89%871.png" alt=""></p>
+<p>虚拟机的Guest OS即为虚拟机安装的操作系统，它是一个完整操作系统内核；虚拟机的Hypervisor层可以简单理解为一个硬件虚拟化平台(VMW、VirtualBox)，它在Host OS是以内核态的驱动存在的。<br>虚拟机实现<strong>资源隔离</strong>的方法是利用独立的OS，并利用Hypervisor虚拟化CPU、内存、IO设备等实现的。</p>
 <ul>
 <li><p>为了虚拟CPU，Hypervisor会为每个虚拟的CPU创建一个<strong>数据结构</strong>，模拟CPU的全部寄存器的值，在适当的时候跟踪并修改这些值。需要指出的是在大多数情况下，虚拟机软件代码是直接跑在硬件上的，而不需要Hypervisor介入。只有在一些权限高的请求下，Guest OS需要运行内核态修改CPU的寄存器数据，Hypervisor会介入，修改并维护虚拟的CPU状态。 </p>
 </li>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>倾听枫声</title>
+  <title>JVM 垃圾回收机制 | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -13,13 +13,15 @@
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="生活的理想是为了理想的生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="倾听枫声">
-<meta property="og:url" content="http://www.lex-zhao.xyz/index.html">
+<meta name="keywords" content="java、垃圾回收机制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM 垃圾回收机制">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/05/10/JVM-垃圾回收机制/index.html">
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="生活的理想是为了理想的生活">
+<meta property="og:updated_time" content="2017-05-13T09:20:50.672Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="倾听枫声">
+<meta name="twitter:title" content="JVM 垃圾回收机制">
 <meta name="twitter:description" content="生活的理想是为了理想的生活">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
@@ -134,223 +136,53 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        
-<section class="post-list">
+        <article id="post-JVM-垃圾回收机制"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/05/10/JVM-垃圾回收机制/">
+    	JVM 垃圾回收机制
+    </a>
+  </h2>
+	<time>
+	  5月 10, 2017
+	</time>
 	
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/10/JVM-垃圾回收机制/">
-        JVM 垃圾回收机制
-      </a>
-    </h2>
-    
-    <time>
-      5月 10, 2017
-    </time>
-		
     
     <div class='cats'>
         <a href="/categories/技术/">技术</a>
     </div>
 
-  </section>
-  <section class="article typo">
+	</section>
+	
+		<section class="toc-wrapper"></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	
+  	</div>
 	  
-
-    
-    
-    
-	  <div class="full-width auto-padding tags">
+	  <div class="article-tags tags">
       
         <a href="/tags/java、垃圾回收机制/">java、垃圾回收机制</a>
       
 	  </div>
     
-  </section>
+	</section>
+	
+		<section class="youyan" id="comments"> 
+			<div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
+		</section>
+	
 </article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/04/容器技术与虚拟机/">
-        容器技术与虚拟机
-      </a>
-    </h2>
-    
-    <time>
-      5月 4, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>云计算的本质是集中资源再分配，再分配的过程就是资源的逻辑划分，提供资源抽象的实现方式。其中主要涉及两个方面，资源控制和资源隔离。</p>
-<p>居然一直都无法准确表述镜像的概念，所谓镜像，包括各种打包的Apps、系统使用进程、应用软件、shell以及公用函数库。</p>
-<h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><p><img src="http://opeygftv2.bkt.clouddn.com/blog_%E5%9B%BE%E7%89%871.png" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/04/容器技术与虚拟机/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Docker/">Docker</a>
-      
-        <a href="/tags/虚拟机/">虚拟机</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/03/南京/">
-        春华秋实
-      </a>
-    </h2>
-    
-    <time>
-      5月 3, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/生活/">生活</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p><img src="http://opeygftv2.bkt.clouddn.com/_DSC1096_%E5%89%AF%E6%9C%AC.jpg" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/03/南京/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/travelog/">travelog</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/02/斐波那契堆/">
-        斐波那契堆
-      </a>
-    </h2>
-    
-    <time>
-      5月 2, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p><img src="http://opeygftv2.bkt.clouddn.com/829863-20160104171120950-2110922480.png" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/02/斐波那契堆/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Algorithm/">Algorithm</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/04/28/Latch/">
-        Latch
-      </a>
-    </h2>
-    
-    <time>
-      4月 28, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>#Latch</p>
-<p><strong>同步工具</strong>类除了最熟悉的阻塞队列之外，还包括<strong>Semaphore、Barrier</strong>以及<strong>Latch</strong>。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/04/28/Latch/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-</section>
-
-
-  <nav id="page-nav">
-    
-    
-    <a class="next" rel="next" href="/page/2/">
-      <span class="text">Next</span>
-      <span class="icon icon-chevron-right"></span>
-    </a>
-    
-  </nav>
-  
+<script>
+	window.subData = {
+		title: 'JVM 垃圾回收机制',
+		tools: true
+	}
+</script>
 
       </div>
       <aside class='l_side'>
@@ -452,11 +284,13 @@
 <script>
   var disqus_shortname = 'kevinhome';
   
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/05/10/JVM-垃圾回收机制/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-05-13T12:15:58.763Z</updated>
+  <updated>2017-05-13T12:28:21.621Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -16,15 +16,16 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JVM 垃圾回收机制(一)——新生代垃圾回收</title>
+    <title>（译）JVM 垃圾回收机制(一)——新生代垃圾回收</title>
     <link href="http://www.lex-zhao.xyz/2017/05/10/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/"/>
     <id>http://www.lex-zhao.xyz/2017/05/10/JVM-垃圾回收机制/</id>
     <published>2017-05-10T14:52:51.000Z</published>
-    <updated>2017-05-13T12:15:58.763Z</updated>
+    <updated>2017-05-13T12:28:21.621Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;本部分，我们将关注堆 (heap) 中一个主要区域，新生代 (young generation)。首先我们会讨论为什么调整新生代的参数会对应用的性能如此重要，接着我们将学习新生代相关的 JVM 参数。&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;原作者：PATRICK PESCHLOW&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本文对原文有改动&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)&lt;br&gt;&lt;/p&gt;
     
     </summary>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-05-13T15:58:25.060Z</updated>
+  <updated>2017-05-13T16:00:46.228Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://www.lex-zhao.xyz/2017/05/13/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6-%E4%B8%80-%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8C%BA%E5%9B%9E%E6%94%B6/"/>
     <id>http://www.lex-zhao.xyz/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/</id>
     <published>2017-05-13T15:46:01.000Z</published>
-    <updated>2017-05-13T15:58:25.060Z</updated>
+    <updated>2017-05-13T16:00:46.228Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。&lt;br&gt;永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件
+      &lt;p&gt;方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。&lt;br&gt;永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

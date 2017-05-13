@@ -163,16 +163,12 @@
 
   </section>
   <section class="article typo">
-	  <p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：</p>
-<ul>
-<li>该类所有的实例都已经被回收，即java堆中不存在该类的任何实例。</li>
-<li>加载该类的ClassLoader已经被回收。</li>
-<li>该类对应的java.lang.Class对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
-</ul>
-<p>在大量使用反射、动态代理、CGLib等ByteCode框架、动态生成JSP记忆OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能，以保证永久代永远不会溢出。</p>
-<p>注：可以使用<strong>-verbose：class</strong>以及<strong>-XX:_TraceClassLoading、-XX:TraceClassUnLoading</strong>查看类加载和卸载信息</p>
+	  <p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：<br></p>
 
-
+    
+	  <div class="readmore">
+      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">Read More</a>
+    </div>
     
     
     

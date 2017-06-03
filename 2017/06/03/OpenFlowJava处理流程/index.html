@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Archives: 2017/5 | 倾听枫声</title>
+  <title>ODL对packet_in消息的处理流程 | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -12,15 +12,17 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生活的理想是为了理想的生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="倾听枫声">
-<meta property="og:url" content="http://www.lex-zhao.xyz/archives/2017/05/index.html">
+  <meta name="description" content="_OpenFlowJava对Pakcetin消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。 (2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin (3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用 (4)">
+<meta name="keywords" content="SDN,ODL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ODL对packet_in消息的处理流程">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/06/03/OpenFlowJava处理流程/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="生活的理想是为了理想的生活">
+<meta property="og:description" content="_OpenFlowJava对Pakcetin消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。 (2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin (3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用 (4)">
+<meta property="og:updated_time" content="2017-06-03T13:50:50.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="倾听枫声">
-<meta name="twitter:description" content="生活的理想是为了理想的生活">
+<meta name="twitter:title" content="ODL对packet_in消息的处理流程">
+<meta name="twitter:description" content="_OpenFlowJava对Pakcetin消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。 (2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin (3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用 (4)">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -134,227 +136,69 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        
+        <article id="post-OpenFlowJava处理流程"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/06/03/OpenFlowJava处理流程/">
+    	ODL对packet_in消息的处理流程
+    </a>
+  </h2>
+	<time>
+	  6月 3, 2017
+	</time>
 	
-  <script>
-    window.subData= { title:'Year : 2017.5'}
-  </script>
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
 
-<section class="post-list">
+	</section>
 	
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">
-        JVM 垃圾回收机制(二)——方法区回收
-      </a>
-    </h2>
-    
-    <time>
-      5月 13, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
+		<section class="toc-wrapper"></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>_OpenFlowJava对Pakcet<em>in消息的处理流程</em></p>
+<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。</p>
+<p>(2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin</p>
+<p>(3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用</p>
+<p>(4)网络应用根据收到的packet_in消息判断，如果需要将报文广播发送出去，则发送Packet_out消息给控制器</p>
+<p>(5)控制器到OpenFlowPlugin</p>
+<p>(6)OpenFlowPlugin到OpenFlowJava</p>
+<p>(7)OpenFlowJava将消息序列化之后，通过与交换机的网络连接，将消息发送出去</p>
+<p>(8)通过不断的packet_in消息的传送，网络应用学习到网络的拓扑关系，根据拓扑关系组织流表项，并将流表项写入DataStore</p>
+<p>(9)流规则管理器读取到DataStore的流规则变化之后，读取新加的流表项</p>
+<p>(10)流规则管理项读取到的流表项通过RPC调用发送给控制器</p>
+<p>(11)控制器根据RPC对应的服务名称找到对应的OpenFlowPlugin，并将流表项发送给OpenFlowPlugin</p>
+<p>(12)OpenFlowPlugin将消息封装为FlowMod消息，传送给OpenFlowJava</p>
+<p>(13)OpenFlowJava将消息序列化之后，通过与交换机的网络连接，将消息发送出去</p>
 
-  </section>
-  <section class="article typo">
-	  <p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
+  	</div>
+	  
+	  <div class="article-tags tags">
       
-        <a href="/tags/java/">java</a>
+        <a href="/tags/SDN/">SDN</a>
       
-        <a href="/tags/GC机制/">GC机制</a>
+        <a href="/tags/ODL/">ODL</a>
       
 	  </div>
     
-  </section>
+	</section>
+	
+		<section class="youyan" id="comments"> 
+			<div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
+		</section>
+	
 </article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/10/JVM-垃圾回收机制/">
-        （译）JVM 垃圾回收机制(一)——新生代垃圾回收
-      </a>
-    </h2>
-    
-    <time>
-      5月 10, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p><strong>原作者：PATRICK PESCHLOW</strong></p>
-<p><strong>本文对原文有改动</strong></p>
-<p>单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/10/JVM-垃圾回收机制/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-        <a href="/tags/GC机制/">GC机制</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/04/容器技术与虚拟机/">
-        容器技术与虚拟机
-      </a>
-    </h2>
-    
-    <time>
-      5月 4, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>云计算的本质是集中资源再分配，再分配的过程就是资源的逻辑划分，提供资源抽象的实现方式。其中主要涉及两个方面，资源控制和资源隔离。</p>
-<p>居然一直都无法准确表述镜像的概念，所谓镜像，包括各种打包的Apps、系统使用进程、应用软件、shell以及公用函数库。</p>
-<h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/04/容器技术与虚拟机/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Docker/">Docker</a>
-      
-        <a href="/tags/虚拟机/">虚拟机</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/03/南京/">
-        春华秋实
-      </a>
-    </h2>
-    
-    <time>
-      5月 3, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/生活/">生活</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p><img src="http://opeygftv2.bkt.clouddn.com/_DSC1096_%E5%89%AF%E6%9C%AC.jpg" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/03/南京/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/travelog/">travelog</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/02/斐波那契堆/">
-        斐波那契堆
-      </a>
-    </h2>
-    
-    <time>
-      5月 2, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p><img src="http://opeygftv2.bkt.clouddn.com/829863-20160104171120950-2110922480.png" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/02/斐波那契堆/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Algorithm/">Algorithm</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-</section>
-
-
+<script>
+	window.subData = {
+		title: 'ODL对packet_in消息的处理流程',
+		tools: true
+	}
+</script>
 
       </div>
       <aside class='l_side'>
@@ -456,11 +300,13 @@
 <script>
   var disqus_shortname = 'kevinhome';
   
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/06/03/OpenFlowJava处理流程/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

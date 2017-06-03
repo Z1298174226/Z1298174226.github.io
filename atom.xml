@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-05-13T16:00:46.228Z</updated>
+  <updated>2017-06-03T13:50:50.110Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ODL对packet_in消息的处理流程</title>
+    <link href="http://www.lex-zhao.xyz/2017/06/03/OpenFlowJava%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/"/>
+    <id>http://www.lex-zhao.xyz/2017/06/03/OpenFlowJava处理流程/</id>
+    <published>2017-06-03T13:31:04.000Z</published>
+    <updated>2017-06-03T13:50:50.110Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;_OpenFlowJava对Pakcet&lt;em&gt;in消息的处理流程&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。&lt;/p&gt;
+&lt;p&gt;(2)OpenFlowJava库对这个
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
+    
+      <category term="ODL" scheme="http://www.lex-zhao.xyz/tags/ODL/"/>
+    
+  </entry>
   
   <entry>
     <title>JVM 垃圾回收机制(二)——方法区回收</title>

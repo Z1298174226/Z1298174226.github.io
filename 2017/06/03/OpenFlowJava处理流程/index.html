@@ -12,17 +12,17 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="_OpenFlowJava对Pakcetin消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。 (2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin (3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用 (4)">
+  <meta name="description" content="OpenFlowJava对PakcetIn消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。">
 <meta name="keywords" content="SDN,ODL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ODL对packet_in消息的处理流程">
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/06/03/OpenFlowJava处理流程/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="_OpenFlowJava对Pakcetin消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。 (2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin (3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用 (4)">
-<meta property="og:updated_time" content="2017-06-03T13:50:50.110Z">
+<meta property="og:description" content="OpenFlowJava对PakcetIn消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。">
+<meta property="og:updated_time" content="2017-06-03T13:52:51.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ODL对packet_in消息的处理流程">
-<meta name="twitter:description" content="_OpenFlowJava对Pakcetin消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。 (2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin (3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用 (4)">
+<meta name="twitter:description" content="OpenFlowJava对PakcetIn消息的处理流程 (1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -160,9 +160,8 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>_OpenFlowJava对Pakcet<em>in消息的处理流程</em></p>
-<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。</p>
-<p>(2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin</p>
+    	<p><em>OpenFlowJava对PakcetIn消息的处理流程</em></p>
+<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。<br><a id="more"></a><br>(2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin</p>
 <p>(3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用</p>
 <p>(4)网络应用根据收到的packet_in消息判断，如果需要将报文广播发送出去，则发送Packet_out消息给控制器</p>
 <p>(5)控制器到OpenFlowPlugin</p>

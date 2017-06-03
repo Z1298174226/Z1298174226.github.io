@@ -163,22 +163,13 @@
 
   </section>
   <section class="article typo">
-	  <p>_OpenFlowJava对Pakcet<em>in消息的处理流程</em></p>
-<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。</p>
-<p>(2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin</p>
-<p>(3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用</p>
-<p>(4)网络应用根据收到的packet_in消息判断，如果需要将报文广播发送出去，则发送Packet_out消息给控制器</p>
-<p>(5)控制器到OpenFlowPlugin</p>
-<p>(6)OpenFlowPlugin到OpenFlowJava</p>
-<p>(7)OpenFlowJava将消息序列化之后，通过与交换机的网络连接，将消息发送出去</p>
-<p>(8)通过不断的packet_in消息的传送，网络应用学习到网络的拓扑关系，根据拓扑关系组织流表项，并将流表项写入DataStore</p>
-<p>(9)流规则管理器读取到DataStore的流规则变化之后，读取新加的流表项</p>
-<p>(10)流规则管理项读取到的流表项通过RPC调用发送给控制器</p>
-<p>(11)控制器根据RPC对应的服务名称找到对应的OpenFlowPlugin，并将流表项发送给OpenFlowPlugin</p>
-<p>(12)OpenFlowPlugin将消息封装为FlowMod消息，传送给OpenFlowJava</p>
-<p>(13)OpenFlowJava将消息序列化之后，通过与交换机的网络连接，将消息发送出去</p>
+	  <p><em>OpenFlowJava对PakcetIn消息的处理流程</em></p>
+<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。<br></p>
 
-
+    
+	  <div class="readmore">
+      <a href="/2017/06/03/OpenFlowJava处理流程/">Read More</a>
+    </div>
     
     
     

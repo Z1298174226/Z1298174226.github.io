@@ -5,9 +5,8 @@
     <entry>
       <title><![CDATA[ODL对packet_in消息的处理流程]]></title>
       <url>/2017/06/03/OpenFlowJava%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/</url>
-      <content type="html"><![CDATA[<p>_OpenFlowJava对Pakcet<em>in消息的处理流程</em></p>
-<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。</p>
-<p>(2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin</p>
+      <content type="html"><![CDATA[<p><em>OpenFlowJava对PakcetIn消息的处理流程</em></p>
+<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。<br><a id="more"></a><br>(2)OpenFlowJava库对这个数据包进行解析，将解析结果发送给OpenFlowPlugin</p>
 <p>(3)OpenFlowPlugin将数据包发送给控制器平台，控制器将数据包转发给监听此类数据的网络应用</p>
 <p>(4)网络应用根据收到的packet_in消息判断，如果需要将报文广播发送出去，则发送Packet_out消息给控制器</p>
 <p>(5)控制器到OpenFlowPlugin</p>

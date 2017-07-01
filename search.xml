@@ -3,35 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[ODL南向]]></title>
-      <url>/2017/07/01/ODL%E5%8D%97%E5%90%91/</url>
-      <content type="html"></content>
-      
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[太白山]]></title>
-      <url>/2017/06/12/%E5%A4%AA%E7%99%BD%E5%B1%B1/</url>
-      <content type="html"><![CDATA[<p><a href="http://opeygftv2.bkt.clouddn.com/_DSC2706.jpg" target="_blank" rel="external">http://opeygftv2.bkt.clouddn.com/_DSC2706.jpg</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> 生活 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> travelog </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[ODL对packet_in消息的处理流程]]></title>
       <url>/2017/06/03/OpenFlowJava%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/</url>
       <content type="html"><![CDATA[<p><em>OpenFlowJava对PakcetIn消息的处理流程</em></p>

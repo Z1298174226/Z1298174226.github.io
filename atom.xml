@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-01T02:17:27.494Z</updated>
+  <updated>2017-06-03T13:52:51.695Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,40 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>ODL南向</title>
-    <link href="http://www.lex-zhao.xyz/2017/07/01/ODL%E5%8D%97%E5%90%91/"/>
-    <id>http://www.lex-zhao.xyz/2017/07/01/ODL南向/</id>
-    <published>2017-07-01T02:17:27.000Z</published>
-    <updated>2017-07-01T02:17:27.494Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>太白山</title>
-    <link href="http://www.lex-zhao.xyz/2017/06/12/%E5%A4%AA%E7%99%BD%E5%B1%B1/"/>
-    <id>http://www.lex-zhao.xyz/2017/06/12/太白山/</id>
-    <published>2017-06-12T09:07:34.000Z</published>
-    <updated>2017-06-12T11:55:03.687Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;http://opeygftv2.bkt.clouddn.com/_DSC2706.jpg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://opeygftv2.bkt.clouddn.com/_DSC2706.jpg&lt;/a&gt;&lt;
-    
-    </summary>
-    
-      <category term="生活" scheme="http://www.lex-zhao.xyz/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="travelog" scheme="http://www.lex-zhao.xyz/tags/travelog/"/>
-    
-  </entry>
   
   <entry>
     <title>ODL对packet_in消息的处理流程</title>

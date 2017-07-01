@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Archives | 倾听枫声</title>
+  <title>倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -15,7 +15,7 @@
   <meta name="description" content="生活的理想是为了理想的生活">
 <meta property="og:type" content="website">
 <meta property="og:title" content="倾听枫声">
-<meta property="og:url" content="http://www.lex-zhao.xyz/archives/page/2/index.html">
+<meta property="og:url" content="http://www.lex-zhao.xyz/page/3/index.html">
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="生活的理想是为了理想的生活">
 <meta name="twitter:card" content="summary">
@@ -135,119 +135,62 @@
     <div class='container clearfix'>
       <div class='l_main'>
         
-  <article id="archive-page" class="post article white-box">
-    <section class='meta'>
-      <h2 class="title">
-        <a href="javascript:void(0)">
-          Archives
-        </a>
-      </h2>
-    </section>
-    <section class="archive">
-      
-            <div class="archive-item archive-year mark">
-              <a id="archive-year-2017" href='/archives/2017/' >
-                2017
-              </a>
-            </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/07/01/ODL南向/">
-              <time>07-01</time>
-              <span class="title"><span>ODL南向</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/06/12/太白山/">
-              <time>06-12</time>
-              <span class="title"><span>太白山</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/06/03/OpenFlowJava处理流程/">
-              <time>06-03</time>
-              <span class="title"><span>ODL对packet_in消息的处理流程</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">
-              <time>05-13</time>
-              <span class="title"><span>JVM 垃圾回收机制(二)——方法区回收</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/05/10/JVM-垃圾回收机制/">
-              <time>05-10</time>
-              <span class="title"><span>（译）JVM 垃圾回收机制(一)——新生代垃圾回收</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/05/04/容器技术与虚拟机/">
-              <time>05-04</time>
-              <span class="title"><span>容器技术与虚拟机</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/05/03/南京/">
-              <time>05-03</time>
-              <span class="title"><span>春华秋实</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/05/02/斐波那契堆/">
-              <time>05-02</time>
-              <span class="title"><span>斐波那契堆</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/04/28/Latch/">
-              <time>04-28</time>
-              <span class="title"><span>Latch</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/04/28/五月任务计划/">
-              <time>04-28</time>
-              <span class="title"><span>五月任务计划</span></span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/2017/04/28/synchronized关键字/">
-              <time>04-28</time>
-              <span class="title"><span>synchronized关键字</span></span>
-            </a>
-          </div>
-      
-    </section>
-  </article>
-  <!--
-  
-    <nav id="page-nav">
-      
-      <a class="prev" rel="prev" href="/archives/">
-        <span class="icon icon-chevron-left"></span>
-        <span class="text">Previous</span>
+<section class="post-list">
+	
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2017/04/28/synchronized关键字/">
+        synchronized关键字
       </a>
+    </h2>
+    
+    <time>
+      4月 28, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>在<strong>并发编程</strong>中，多线程同时并发访问的资源叫做<strong>临界资源</strong>，当多个线程同时访问对象并要求操作相同资源时，分割了原子操作就有可能出现数据的不一致或数据不完整的情况，为避免这种情况的发生，我们会采取同步机制，以确保在某一时刻，方法内只允许有一个线程。</p>
+<p>采用 synchronized 修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个 monitor (锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2017/04/28/synchronized关键字/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
       
+        <a href="/tags/java/">java</a>
       
-      <a class="next" rel="next" href="/archives/page/3/">
-        <span class="text">Next</span>
-        <span class="icon icon-chevron-right"></span>
-      </a>
-      
-    </nav>
+	  </div>
+    
+  </section>
+</article>
+    </div>
   
-    -->
+</section>
+
+
+  <nav id="page-nav">
+    
+    <a class="prev" rel="prev" href="/page/2/">
+      <span class="icon icon-chevron-left"></span>
+      <span class="text">Previous</span>
+    </a>
+    
+    
+  </nav>
+  
 
       </div>
       <aside class='l_side'>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-02T11:04:43.542Z</updated>
+  <updated>2017-07-02T11:18:48.774Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>类加载器</title>
+    <link href="http://www.lex-zhao.xyz/2017/07/02/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/"/>
+    <id>http://www.lex-zhao.xyz/2017/07/02/类加载器/</id>
+    <published>2017-07-02T11:13:19.000Z</published>
+    <updated>2017-07-02T11:18:48.774Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;站在 Java 开发人员的角度来看，类加载器可以大致划分为以下三类：&lt;/p&gt;
+&lt;p&gt;启动类加载器：Bootstrap ClassLoader，跟上面相同。它负责加载存放在JDK\jre\li(JDK 代表 JDK 的安装目录，下同)下，或被-Xbootclasspath参数
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>弗洛伊德算法及证明</title>

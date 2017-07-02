@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>弗洛伊德算法及证明 | 倾听枫声</title>
+  <title>倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -12,21 +12,15 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。在此鸣谢http://www.cnblogs.com/skywang12345所提供">
-<meta name="keywords" content="Algorithm">
-<meta property="og:type" content="article">
-<meta property="og:title" content="弗洛伊德算法及证明">
-<meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/02/弗洛伊德算法及证明/index.html">
+  <meta name="description" content="生活的理想是为了理想的生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="倾听枫声">
+<meta property="og:url" content="http://www.lex-zhao.xyz/page/3/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。在此鸣谢http://www.cnblogs.com/skywang12345所提供">
-<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/01.jpg">
-<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/02.jpg">
-<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E6%8D%95%E8%8E%B7.JPG">
-<meta property="og:updated_time" content="2017-07-02T11:04:43.542Z">
+<meta property="og:description" content="生活的理想是为了理想的生活">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="弗洛伊德算法及证明">
-<meta name="twitter:description" content="弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。在此鸣谢http://www.cnblogs.com/skywang12345所提供">
-<meta name="twitter:image" content="http://opeygftv2.bkt.clouddn.com/01.jpg">
+<meta name="twitter:title" content="倾听枫声">
+<meta name="twitter:description" content="生活的理想是为了理想的生活">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -140,82 +134,63 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <article id="post-弗洛伊德算法及证明"
-  class="post white-box article-type-post"
-  itemscope itemprop="blogPost">
-	<section class='meta'>
-	<h2 class="title">
-  	<a href="/2017/07/02/弗洛伊德算法及证明/">
-    	弗洛伊德算法及证明
-    </a>
-  </h2>
-	<time>
-	  7月 2, 2017
-	</time>
+        
+<section class="post-list">
 	
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2017/04/28/synchronized关键字/">
+        synchronized关键字
+      </a>
+    </h2>
+    
+    <time>
+      4月 28, 2017
+    </time>
+		
     
     <div class='cats'>
         <a href="/categories/技术/">技术</a>
     </div>
 
-	</section>
-	
-		<section class="toc-wrapper"></section>
-	
-	<section class="article typo">
-  	<div class="article-entry" itemprop="articleBody">
-    	<p>弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。<br>首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。<br>在此鸣谢<a href="http://www.cnblogs.com/skywang12345所提供的图片" target="_blank" rel="external">http://www.cnblogs.com/skywang12345所提供的图片</a><br><img src="http://opeygftv2.bkt.clouddn.com/01.jpg" alt=""><br><a id="more"></a><br>依次一各个节点为中介节点，对矩阵S进行更新，规则为若dist[i][j] &gt; dist[i][k]+dist[k][j],则dist[i][j] = dist[i][k] + dist[k][j],path[i][j] = k ,如图所示<br><img src="http://opeygftv2.bkt.clouddn.com/02.jpg" alt=""></p>
-<p>根据上述讨论，代码如下</p>
-<p><pre><code><br>public class FloydDemo {<br>    private static int[] matrix;<br>    private static int[][] initMatrix;<br>    public FloydDemo(int Num,In in){<br>        matrix = new int[Num];<br>        initMatrix = new int[Num][Num];<br>        for(int i = 0; i &lt; matrix.length; i++){<br>            for(int j = 0; j &lt; matrix.length; j++){<br>                initMatrix[i][j] = in.readInt();<br>            }<br>        }<br>    }<br>    public void floyd(int[][] path,int[][] dist){<br>        for(int i = 0; i &lt; matrix.length; i++){<br>            for(int j = 0; j &lt; matrix.length; j++){<br>                dist[i][j] = initMatrix[i][j];<br>                path[i][j] = j;<br>            }<br>        }</code></pre></p>
-<pre><code>    for(int k = 0; k &lt; matrix.length; k++){
-        for(int i = 0; i &lt; matrix.length; i++){
-            for(int j = 0; j &lt; matrix.length; j++){
-                if(dist[i][j] &gt; dist[i][k] + dist[k][j]){
-                    dist[i][j] = dist[i][k] + dist[k][j];
-                    path[i][j] = k;
-                }
+  </section>
+  <section class="article typo">
+	  <p>在<strong>并发编程</strong>中，多线程同时并发访问的资源叫做<strong>临界资源</strong>，当多个线程同时访问对象并要求操作相同资源时，分割了原子操作就有可能出现数据的不一致或数据不完整的情况，为避免这种情况的发生，我们会采取同步机制，以确保在某一时刻，方法内只允许有一个线程。</p>
+<p>采用 synchronized 修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个 monitor (锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。<br></p>
 
-            }
-        }
-    }        
-     System.out.println(&quot;floyd: \n&quot;);
-        for (int i = 0; i &lt; matrix.length; i++) {
-            for (int j = 0; j &lt; matrix.length; j++)
-                System.out.printf(&quot;%2d  &quot;, dist[i][j]);
-            System.out.printf(&quot;\n&quot;);
-        }
-            }
-public static void main(String[] args){
-    In in = new In(args[0]);
-    int Num = in.readInt();
-    int[][] path = new int[Num][Num];
-    int[][] dist = new int[Num][Num];
-    new FloydDemo(Num,in).floyd(path,dist);
-}
-</code></pre><p>}<br><br>最终得到多源最短路径矩阵<br><img src="http://opeygftv2.bkt.clouddn.com/%E6%8D%95%E8%8E%B7.JPG" alt=""></p>
-
-  	</div>
-	  
-	  <div class="article-tags tags">
+    
+	  <div class="readmore">
+      <a href="/2017/04/28/synchronized关键字/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/Algorithm/">Algorithm</a>
+        <a href="/tags/java/">java</a>
       
 	  </div>
     
-	</section>
-	
-		<section class="youyan" id="comments"> 
-			<div id="uyan_frame"></div>
-            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
-		</section>
-	
+  </section>
 </article>
-<script>
-	window.subData = {
-		title: '弗洛伊德算法及证明',
-		tools: true
-	}
-</script>
+    </div>
+  
+</section>
+
+
+  <nav id="page-nav">
+    
+    <a class="prev" rel="prev" href="/page/2/">
+      <span class="icon icon-chevron-left"></span>
+      <span class="text">Previous</span>
+    </a>
+    
+    
+  </nav>
+  
 
       </div>
       <aside class='l_side'>
@@ -317,13 +292,11 @@ public static void main(String[] args){
 <script>
   var disqus_shortname = 'kevinhome';
   
-  var disqus_url = 'http://www.lex-zhao.xyz/2017/07/02/弗洛伊德算法及证明/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

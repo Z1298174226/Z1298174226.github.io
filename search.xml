@@ -3,6 +3,55 @@
   
     
     <entry>
+      <title><![CDATA[弗洛伊德算法及证明]]></title>
+      <url>/2017/07/02/%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%81%E6%98%8E/</url>
+      <content type="html"><![CDATA[<p>弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。<br>首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。<br>在此鸣谢<a href="http://www.cnblogs.com/skywang12345所提供的图片" target="_blank" rel="external">http://www.cnblogs.com/skywang12345所提供的图片</a><br><img src="http://opeygftv2.bkt.clouddn.com/01.jpg" alt=""><br><a id="more"></a><br>依次一各个节点为中介节点，对矩阵S进行更新，规则为若dist[i][j] &gt; dist[i][k]+dist[k][j],则dist[i][j] = dist[i][k] + dist[k][j],path[i][j] = k ,如图所示<br><img src="http://opeygftv2.bkt.clouddn.com/02.jpg" alt=""></p>
+<p>根据上述讨论，代码如下</p>
+<p><pre><code><br>public class FloydDemo {<br>    private static int[] matrix;<br>    private static int[][] initMatrix;<br>    public FloydDemo(int Num,In in){<br>        matrix = new int[Num];<br>        initMatrix = new int[Num][Num];<br>        for(int i = 0; i &lt; matrix.length; i++){<br>            for(int j = 0; j &lt; matrix.length; j++){<br>                initMatrix[i][j] = in.readInt();<br>            }<br>        }<br>    }<br>    public void floyd(int[][] path,int[][] dist){<br>        for(int i = 0; i &lt; matrix.length; i++){<br>            for(int j = 0; j &lt; matrix.length; j++){<br>                dist[i][j] = initMatrix[i][j];<br>                path[i][j] = j;<br>            }<br>        }</code></pre></p>
+<pre><code>    for(int k = 0; k &lt; matrix.length; k++){
+        for(int i = 0; i &lt; matrix.length; i++){
+            for(int j = 0; j &lt; matrix.length; j++){
+                if(dist[i][j] &gt; dist[i][k] + dist[k][j]){
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                    path[i][j] = k;
+                }
+
+            }
+        }
+    }        
+     System.out.println(&quot;floyd: \n&quot;);
+        for (int i = 0; i &lt; matrix.length; i++) {
+            for (int j = 0; j &lt; matrix.length; j++)
+                System.out.printf(&quot;%2d  &quot;, dist[i][j]);
+            System.out.printf(&quot;\n&quot;);
+        }
+            }
+public static void main(String[] args){
+    In in = new In(args[0]);
+    int Num = in.readInt();
+    int[][] path = new int[Num][Num];
+    int[][] dist = new int[Num][Num];
+    new FloydDemo(Num,in).floyd(path,dist);
+}
+</code></pre><p>}<br><br>最终得到多源最短路径矩阵<br><img src="http://opeygftv2.bkt.clouddn.com/%E6%8D%95%E8%8E%B7.JPG" alt=""></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ODL对packet_in消息的处理流程]]></title>
       <url>/2017/06/03/OpenFlowJava%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/</url>
       <content type="html"><![CDATA[<p><em>OpenFlowJava对PakcetIn消息的处理流程</em></p>

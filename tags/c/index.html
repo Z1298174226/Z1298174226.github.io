@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>斐波那契堆 | 倾听枫声</title>
+  <title>Tag: c++ | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -12,17 +12,15 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Algorithm">
-<meta property="og:type" content="article">
-<meta property="og:title" content="斐波那契堆">
-<meta property="og:url" content="http://www.lex-zhao.xyz/2017/05/02/斐波那契堆/index.html">
+  <meta name="description" content="生活的理想是为了理想的生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="倾听枫声">
+<meta property="og:url" content="http://www.lex-zhao.xyz/tags/c/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/829863-20160104171120950-2110922480.png">
-<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/20131028210633593.gif">
-<meta property="og:updated_time" content="2017-05-04T05:52:54.963Z">
+<meta property="og:description" content="生活的理想是为了理想的生活">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斐波那契堆">
-<meta name="twitter:image" content="http://opeygftv2.bkt.clouddn.com/829863-20160104171120950-2110922480.png">
+<meta name="twitter:title" content="倾听枫声">
+<meta name="twitter:description" content="生活的理想是为了理想的生活">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -136,151 +134,46 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <article id="post-斐波那契堆"
-  class="post white-box article-type-post"
-  itemscope itemprop="blogPost">
-	<section class='meta'>
-	<h2 class="title">
-  	<a href="/2017/05/02/斐波那契堆/">
-    	斐波那契堆
-    </a>
-  </h2>
-	<time>
-	  5月 2, 2017
-	</time>
+        
+  <script>
+    window.subData= { title:'Tag : c++'}
+  </script>
+
+<section class="post-list">
 	
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
     
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-	</section>
-	
-		<section class="toc-wrapper"></section>
-	
-	<section class="article typo">
-  	<div class="article-entry" itemprop="articleBody">
-    	<p><img src="http://opeygftv2.bkt.clouddn.com/829863-20160104171120950-2110922480.png" alt=""><br><a id="more"></a><br>一个斐波那契堆具有如下性质：</p>
-<p>堆有一组有序树组成，但是堆中的树不一定是二项树</p>
-<p>斐波那契堆中的树之间是无序的（二项堆中的树是按照其包含的二项树的度数排序的）</p>
-<p>堆中每个节点的数据结构包含如下域：</p>
-<p>指向其父节点的指针域</p>
-<p>指向其任意一个孩子的指针域</p>
-<p>任意一个节点x的所有孩子被链接在一个双向链表环形链表中</p>
-<p>节点x中保存有它的孩子的数目degree</p>
-<p>节点x中存在一个域mark，用于表示自从x上一次称为另一个节点的子女以来，它是否失掉了一个孩子，TRUE表示是失去了，FALSE表示未失去<br>斐波那契堆中的所有树的树根被保存在一个链表即根表中<br>对于一个斐波那契堆，min[H]保存了具有最小节点值的根节点<br>在计算机科学中，斐波那契堆是由树的集合所组成的堆数据结构。它比二项堆的平摊运行时间更好。斐波那契堆的名字来自于斐波那契数列，这些数列被用来做运行时间分析。</p>
-<p>求最小值(find-mininum), 插入(insert), 降低元素值(decrease-key)和合并(merge/union)可以在常数平摊时间内完成。删除(delete)和删除最小值(delete minimun)可以在O(log n)平摊时间内完成。</p>
-<p>在优先队列(priority queues)中使用斐波那契堆可以提升重要算法的渐进运行时间，例如Dijkstra算法，该算法用来计算一个图中两个结点的最短的距离。</p>
-<p>斐波那契堆是由一些树的集合所组成，其中每一棵树都满足最小堆(minimum-heap)的属性，也就是说树中每个子结点的值都大于或者等于其父结点的值，而最小值则处在根结点上。</p>
-<p>与二项堆不同，斐波那契堆中的树更加灵活，没有规定的形状，在极端情况下，堆中每个元素都是一棵单独的树。这种灵活性使得一些操作可以以“偷懒”的方式来执行，而“剩下”的工作将推迟到后面的操作中来完成。比如堆的合并仅仅将由树所组成的链表链接起来，而降低元素值(decrease key)有时直接从父结点中剪断而形成一棵新树。</p>
-<p>下面给出斐波那契堆中关键的量值：</p>
-<p>degree[x]:degree[x]: 表示结点x的子结点个数</p>
-<p>mark[x]:mark[x]: 一个结点是否被marked了（当执行decrease key操作时会用到）</p>
-<p>t(H):t(H): 表示堆中树的个数</p>
-<p>m(H):m(H): 表示被marked的结点数量</p>
-<p>Φ(H)=t(H)+2m(H):Φ(H)=t(H)+2m(H): 表示势函数</p>
-<p>如下图所示：<br>从图中可以看出，一共有5棵树，即t(H)=5t(H)=5，最小值的指针指向元素值为3的根结点，在这棵包含最小值的树中，根结点有3个子结点，所以其degree等于3，整个斐波那契堆用 H 来表示。其中黑色表示被marked了，灰色表示没有被marked，所以m(H)=3m(H)=3，势函数 Φ(H)=t(H)+2m(H)=5+2∗3=11Φ(H)=t(H)+2m(H)=5+2∗3=11</p>
-<p><img src="http://opeygftv2.bkt.clouddn.com/20131028210633593.gif" alt=""></p>
-<pre><code>
-Make-Fibonacci-Heap()
-n[H] := 0
-min[H] := NIL 
-return H
-
-Fibonacci-Heap-Minimum(H)
-return min[H]
-
-Fibonacci-Heap-Link(H,y,x)
-remove y from the root list of H
-make y a child of x
-degree[x] := degree[x] + 1
-mark[y] := FALSE
-
-CONSOLIDATE(H)
-for i:=0 to D(n[H])
-     Do A[i] := NIL
-for each node w in the root list of H
-    do x:= w
-       d:= degree[x]
-       while A[d] <> NIL
-           do y:=A[d]
-              if key[x]>key[y]
-                then exchange x<->y
-              Fibonacci-Heap-Link(H, y, x)
-              A[d]:=NIL
-             d:=d+1
-       A[d]:=x
-min[H]:=NIL
-for i:=0 to D(n[H])
-    do if A[i]<> NIL
-          then add A[i] to the root list of H
-               if min[H] = NIL or key[A[i]]<key[min[h]] then="" min[h]:="A[i]" fibonacci-heap-union(h1,h2)="" h="" :="Make-Fibonacci-Heap()" min[h]="" concatenate="" the="" root="" list="" of="" h2="" with="" if="" (min[h1]="NIL)" or="" (min[h2]="" <=""> NIL and min[H2] < min[H1])
-   then min[H] := min[H2]
-n[H] := n[H1] + n[H2]
-free the objects H1 and H2
-return H
-
-
-Fibonacci-Heap-Insert(H,x)
-degree[x] := 0
-p[x] := NIL
-child[x] := NIL
-left[x] := x
-right[x] := x
-mark[x] := FALSE
-concatenate the root list containing x with root list H
-if min[H] = NIL or key[x]<key[min[h]] then="" min[h]="" :="x" n[h]:="n[H]+1" fibonacci-heap-extract-min(h)="" z:="min[H]" if="" x="" <=""> NIL
-        then for each child x of z
-             do add x to the root list of H
-                p[x]:= NIL
-             remove z from the root list of H
-             if z = right[z]
-                then min[H]:=NIL
-                else min[H]:=right[z]
-                     CONSOLIDATE(H)
-             n[H] := n[H]-1
-return z
-
-Fibonacci-Heap-Decrease-Key(H,x,k)
-if k > key[x]
-   then error "new key is greater than current key"
-key[x] := k
-y := p[x]
-if y <> NIL and key[x]<key[y] then="" cut(h,="" x,="" y)="" cascading-cut(h,y)="" if="" key[x]<key[min[h]]="" min[h]="" :="x" cut(h,x,y)="" remove="" x="" from="" the="" child="" list="" of="" y,="" decrementing="" degree[y]="" add="" to="" root="" h="" p[x]:="NIL" mark[x]:="FALSE" z:="p[y]" z="" <=""> NIL
-  then if mark[y] = FALSE
-       then mark[y]:= TRUE
-       else CUT(H, y, z)
-            CASCADING-CUT(H, z)
-
-Fibonacci-Heap-Delete(H,x)
-Fibonacci-Heap-Decrease-Key(H,x,-infinity)
-Fibonacci-Heap-Extract-Min(H)
- </key[y]></key[min[h]]></key[min[h]]></-></code></pre>
-
-<p>关于斐波那契堆的操作具体参见<br><a href="http://gdeepak.com/IADSA/L22binomialfibonacciheaps.pdf" target="_blank" rel="external">http://gdeepak.com/IADSA/L22binomialfibonacciheaps.pdf</a></p>
-
-  	</div>
+    <h2 class="title">
+      <a href="/2017/07/04/std-function/">
+        std::function
+      </a>
+    </h2>
+    
+    <time>
+      7月 4, 2017
+    </time>
+		
+  </section>
+  <section class="article typo">
 	  
-	  <div class="article-tags tags">
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/Algorithm/">Algorithm</a>
+        <a href="/tags/c/">c++</a>
       
 	  </div>
     
-	</section>
-	
-		<section class="youyan" id="comments"> 
-			<div id="uyan_frame"></div>
-            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
-		</section>
-	
+  </section>
 </article>
-<script>
-	window.subData = {
-		title: '斐波那契堆',
-		tools: true
-	}
-</script>
+    </div>
+  
+</section>
+
 
       </div>
       <aside class='l_side'>
@@ -382,13 +275,11 @@ Fibonacci-Heap-Extract-Min(H)
 <script>
   var disqus_shortname = 'kevinhome';
   
-  var disqus_url = 'http://www.lex-zhao.xyz/2017/05/02/斐波那契堆/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

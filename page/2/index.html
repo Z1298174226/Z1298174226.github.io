@@ -142,6 +142,92 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">
+        JVM 垃圾回收机制(二)——方法区回收
+      </a>
+    </h2>
+    
+    <time>
+      5月 13, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/java/">java</a>
+      
+        <a href="/tags/GC机制/">GC机制</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2017/05/10/JVM-垃圾回收机制/">
+        （译）JVM 垃圾回收机制(一)——新生代垃圾回收
+      </a>
+    </h2>
+    
+    <time>
+      5月 10, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p><strong>原作者：PATRICK PESCHLOW</strong></p>
+<p><strong>本文对原文有改动</strong></p>
+<p>单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2017/05/10/JVM-垃圾回收机制/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/java/">java</a>
+      
+        <a href="/tags/GC机制/">GC机制</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2017/05/04/容器技术与虚拟机/">
         容器技术与虚拟机
       </a>
@@ -261,91 +347,6 @@
 </article>
     </div>
   
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/04/28/Latch/">
-        Latch
-      </a>
-    </h2>
-    
-    <time>
-      4月 28, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>#Latch</p>
-<p><strong>同步工具</strong>类除了最熟悉的阻塞队列之外，还包括<strong>Semaphore、Barrier</strong>以及<strong>Latch</strong>。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/04/28/Latch/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/04/28/五月任务计划/">
-        五月任务计划
-      </a>
-    </h2>
-    
-    <time>
-      4月 28, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/生活/">生活</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>###技术目标</p>
-<ul>
-<li>深入研究<strong>OSGi</strong>，理解java模块化编程，以及OSGi如何打破类加载机制的双亲委派模型<br> 预期目标：开发一个<strong>Opendaylight</strong>可用的Bundle，具体功能为获取网络拓普信息并建路</li>
-<li>结合Spring技术内幕一书，研究<strong>Spring</strong>源码，并以此进一步锤炼java</li>
-<li>尝试编译OpenJDK</li></ul>
-
-    
-	  <div class="readmore">
-      <a href="/2017/04/28/五月任务计划/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/planning/">planning</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
 </section>
 
 
@@ -409,7 +410,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>9</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>10</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -422,7 +423,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 18px; color: #000080">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 18px; color: #000080">GC机制</a> <a href="/tags/ODL/" style="font-size: 14px; color: #00f">ODL</a> <a href="/tags/SDN/" style="font-size: 14px; color: #00f">SDN</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 19.33px; color: #005">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16.67px; color: #00a">GC机制</a> <a href="/tags/ODL/" style="font-size: 14px; color: #00f">ODL</a> <a href="/tags/SDN/" style="font-size: 14px; color: #00f">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

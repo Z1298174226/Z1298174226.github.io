@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-02T11:20:19.272Z</updated>
+  <updated>2017-07-05T10:15:51.594Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最大网络流(Ford-Fulkerson)</title>
+    <link href="http://www.lex-zhao.xyz/2017/07/05/%E6%9C%80%E5%A4%A7%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
+    <id>http://www.lex-zhao.xyz/2017/07/05/最大网络流/</id>
+    <published>2017-07-05T10:04:42.000Z</published>
+    <updated>2017-07-05T10:15:51.594Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。&lt;br&gt;网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>std::function</title>
+    <link href="http://www.lex-zhao.xyz/2017/07/04/std-function/"/>
+    <id>http://www.lex-zhao.xyz/2017/07/04/std-function/</id>
+    <published>2017-07-04T09:34:00.000Z</published>
+    <updated>2017-07-04T09:40:27.728Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://www.lex-zhao.xyz/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>类加载器</title>

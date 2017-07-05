@@ -12,17 +12,17 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。  pu">
+  <meta name="description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大网络流(Ford-Fulkerson)">
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/05/最大网络流/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。  pu">
-<meta property="og:updated_time" content="2017-07-05T10:15:51.594Z">
+<meta property="og:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。">
+<meta property="og:updated_time" content="2017-07-05T10:18:20.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最大网络流(Ford-Fulkerson)">
-<meta name="twitter:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。  pu">
+<meta name="twitter:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -160,7 +160,7 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。<br>网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。</p>
+    	<p>关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。<br>网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。<br><a id="more"></a></p>
 <pre><code>
 public class FordFulkersonDemo {
     private int[][] Graph;

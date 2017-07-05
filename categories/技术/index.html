@@ -162,109 +162,12 @@
 
   </section>
   <section class="article typo">
-	  <p>关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。<br>网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。</p>
-<pre><code>
-public class FordFulkersonDemo {
-    private int[][] Graph;
-    private int[][] f;
-    private int[][] r;
-    private int[] parent;
-    private int source;
-    private int terminal;
+	  <p>关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。<br>网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。<br></p>
 
-    public FordFulkersonDemo(int Num){
-        Graph = new int[Num][Num];
-        f = new int[Num][Num];
-        r = new int[Num][Num];
-        parent = new int[Num];
-    }
-    public FordFulkersonDemo(In in){
-        this(in.readInt());
-        for(int i = 0; i < parent.length; i++){
-            for(int j = 0; j < parent.length; j++){
-                Graph[i][j] = in.readInt();
-            }
-        }
-        source = in.readInt();
-        terminal = in.readInt();
-    }
-    private void initialization(){
-        for(int i = 0; i < parent.length; i++){
-            Arrays.fill(f[i], 0);
-        }
-    }
-
-    private int[][] residualNetwork(int[][] graph,int[][] f){
-        int[][] r = new int[parent.length][parent.length];
-        for(int i = 0; i < parent.length; i++){
-            for(int j = 0; j < parent.length; j++){
-                r[i][j] = graph[i][j] - f[i][j];
-            }
-        }
-        return r;
-    }
-
-    private int argumentPath(int[][] r,int s,int t){
-        Arrays.fill(parent, -1);
-        Queue<integer> q = new LinkedList<integer>();
-        int maxFlow = Integer.MAX_VALUE;
-        q.add(s);
-        parent[s] = s;
-        while(!q.isEmpty()){
-            int v = q.poll();
-            if(v == t){
-                while(v != s){
-                    if(maxFlow > r[parent[v]][v])
-                        maxFlow = r[parent[v]][v];
-                    v = parent[v];
-                }
-                break;
-            }
-                for(int i = 0 ; i < parent.length; i++){
-                    if(i != v && parent[i] == -1 && r[v][i] > 0){
-                        parent[i] = v;
-                        q.add(i);
-                    }
-                }
-            }
-
-        if(parent[t] == -1){
-            maxFlow = -1;
-        }
-        return maxFlow;
-    }
-
-    public int run(){
-        int sum = 0;
-        initialization();
-        r = residualNetwork(Graph,f);
-        int result = argumentPath(r,source,terminal);
-        //int cur = terminal;
-        while(result != -1){
-            int cur = terminal;
-            while(cur != source){
-                f[parent[cur]][cur] += result;
-                f[cur][parent[cur]] = -f[parent[cur]][cur];
-                r[parent[cur]][cur] -= result;
-                r[cur][parent[cur]] += result;
-                cur = parent[cur];
-            }
-                sum += result;
-            //    r = residualNetwork(Graph,f);
-                result = argumentPath(r,source,terminal);
-        }
-        return sum;
-    }
-
-    public static void main(String[] args){
-        In in = new In(args[0]);
-        FordFulkersonDemo ford = new FordFulkersonDemo(in);
-        System.out.println(ford.run());
-    }
-}
-
-</integer></integer></code></pre>
-
+    
+	  <div class="readmore">
+      <a href="/2017/07/05/最大网络流/">Read More</a>
+    </div>
     
     
     

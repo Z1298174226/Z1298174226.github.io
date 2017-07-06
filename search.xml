@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title><![CDATA[匈牙利算法]]></title>
+      <url>/2017/07/06/%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>二分图的最大匹配和完美匹配本质上还是最大网络流问题。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[最大网络流(Ford-Fulkerson)]]></title>
       <url>/2017/07/05/%E6%9C%80%E5%A4%A7%E7%BD%91%E7%BB%9C%E6%B5%81/</url>
       <content type="html"><![CDATA[<p>关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。<br>网络流算法与背包问题很相似，本质属于线性规划问题。首先需要明确的是容量和流量的两个概念，算法核心思想是从残余图中寻找增广路径直至增广路径不存在（增广路径：一条从源点到宿点的路径，所有的路路径流量为当前最小剩余流量）。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。<br>这张图来自谢老师数据挖掘讲义，在此表示感谢。<br><a id="more"></a><br><img src="http://opeygftv2.bkt.clouddn.com/Max_flow.JPG" alt=""><br>Java实现</p>
@@ -119,8 +140,85 @@ public static void main(String[] args){
     <entry>
       <title><![CDATA[std::function]]></title>
       <url>/2017/07/04/std-function/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p>类模版<strong>std::function</strong>是一种通用、多态的函数封装。<strong>std::function</strong>的实例可以对任何可以调用的目标实体进行存储、复制、和调用操作，这些目标实体包括<strong>普通函数</strong>、<strong>Lambda表达式</strong>、<strong>函数指针</strong>、以及其它函数对象等。<strong>std::function</strong>对象是对C++中现有的可调用实体的一种类型安全的包裹（我们知道像函数指针这类可调用实体，是类型不安全的）。</p>
+<p>通常<strong>std::function</strong>是一个函数对象类，它包装其它任意的函数对象，被包装的函数对象具有类型为T1, …,TN的N个参数，并且返回一个可转换到R类型的值。std::function使用 模板转换构造函数接收被包装的函数对象；特别是，闭包类型可以隐式地转换为std::function。<br><a id="more"></a><br>最简单的理解就是：</p>
+<p><strong>通过std::function对C++中各种可调用实体（普通函数、Lambda表达式、函数指针、以及其它函数对象等）的封装，形成一个新的可调用的std::function对象；让我们不再纠结那么多的可调用实体。一切变的简单粗暴</strong>。</p>
+<pre>
+<code>
+#include <functional>
+#include <iostream>
+using namespace std;
+
+std::function< int(int)> Functional;
+
+// 普通函数
+int TestFunc(int a)
+{
+    return a;
+}
+
+// Lambda表达式
+auto lambda = [](int a)->int { return a; };
+
+// 仿函数(functor)
+class Functor
+{
+public:
+    int operator()(int a)
+    {
+        return a;
+    }
+};
+
+// 1.类成员函数
+// 2.类静态函数
+class TestClass
+{
+public:
+    int ClassMember(int a) { return a; }
+    static int StaticMember(int a) { return a; }
+};
+
+int main()
+{
+    // 普通函数
+    Functional = TestFunc;
+    int result = Functional(10);
+    cout << "普通函数：" << result << endl;
+
+    // Lambda表达式
+    Functional = lambda;
+    result = Functional(20);
+    cout << "Lambda表达式：" << result << endl;
+
+    // 仿函数
+    Functor testFunctor;
+    Functional = testFunctor;
+    result = Functional(30);
+    cout << "仿函数：" << result << endl;
+
+    // 类成员函数
+    TestClass testObj;
+    Functional = std::bind(&TestClass::ClassMember, testObj, std::placeholders::_1);
+    result = Functional(40);
+    cout << "类成员函数：" << result << endl;
+
+    // 类静态函数
+    Functional = TestClass::StaticMember;
+    result = Functional(50);
+    cout << "类静态函数：" << result << endl;
+    system("pause");
+    return 0;
+}
+</iostream></functional></code></pre>
+]]></content>
       
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
         
         <tags>
             

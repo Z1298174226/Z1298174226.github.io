@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-06T01:38:21.684Z</updated>
+  <updated>2017-07-06T09:59:54.316Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>匈牙利算法</title>
+    <link href="http://www.lex-zhao.xyz/2017/07/06/%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95/"/>
+    <id>http://www.lex-zhao.xyz/2017/07/06/匈牙利算法/</id>
+    <published>2017-07-06T02:41:37.000Z</published>
+    <updated>2017-07-06T09:59:54.316Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;二分图的最大匹配和完美匹配本质上还是最大网络流问题。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>最大网络流(Ford-Fulkerson)</title>
@@ -40,11 +61,16 @@
     <link href="http://www.lex-zhao.xyz/2017/07/04/std-function/"/>
     <id>http://www.lex-zhao.xyz/2017/07/04/std-function/</id>
     <published>2017-07-04T09:34:00.000Z</published>
-    <updated>2017-07-04T09:40:27.728Z</updated>
+    <updated>2017-07-06T15:18:35.077Z</updated>
     
     <summary type="html">
     
+      &lt;p&gt;类模版&lt;strong&gt;std::function&lt;/strong&gt;是一种通用、多态的函数封装。&lt;strong&gt;std::function&lt;/strong&gt;的实例可以对任何可以调用的目标实体进行存储、复制、和调用操作，这些目标实体包括&lt;strong&gt;普通函数&lt;/strong&gt;、&lt;strong&gt;Lambda表达式&lt;/strong&gt;、&lt;strong&gt;函数指针&lt;/strong&gt;、以及其它函数对象等。&lt;strong&gt;std::function&lt;/strong&gt;对象是对C++中现有的可调用实体的一种类型安全的包裹（我们知道像函数指针这类可调用实体，是类型不安全的）。&lt;/p&gt;
+&lt;p&gt;通常&lt;strong&gt;std::function&lt;/strong&gt;是一个函数对象类，它包装其它任意的函数对象，被包装的函数对象具有类型为T1, …,TN的N个参数，并且返回一个可转换到R类型的值。std::function使用 模板转换构造函数接收被包装的函数对象；特别是，闭包类型可以隐式地转换为std::function。&lt;br&gt;&lt;/p&gt;
+    
     </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
       <category term="c++" scheme="http://www.lex-zhao.xyz/tags/c/"/>

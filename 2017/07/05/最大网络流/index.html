@@ -12,17 +12,22 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。">
+  <meta name="description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。首先需要明确的是容量和流量的两个概念，算法核心思想是从残余图中寻找增广路径直至增广路径不存在（增广路径：一条从源点到宿点的路径，所有的路路径流量为当前最小剩余流量）。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulk">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大网络流(Ford-Fulkerson)">
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/05/最大网络流/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。">
-<meta property="og:updated_time" content="2017-07-05T10:18:20.568Z">
+<meta property="og:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。首先需要明确的是容量和流量的两个概念，算法核心思想是从残余图中寻找增广路径直至增广路径不存在（增广路径：一条从源点到宿点的路径，所有的路路径流量为当前最小剩余流量）。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulk">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/Max_flow.JPG">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/MaxFlowDemo1.JPG">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/result.JPG">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/MaxFlowDemo2.JPG">
+<meta property="og:updated_time" content="2017-07-06T01:38:21.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最大网络流(Ford-Fulkerson)">
-<meta name="twitter:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。">
+<meta name="twitter:description" content="关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。网络流算法与背包问题很相似，本质属于线性规划问题。首先需要明确的是容量和流量的两个概念，算法核心思想是从残余图中寻找增广路径直至增广路径不存在（增广路径：一条从源点到宿点的路径，所有的路路径流量为当前最小剩余流量）。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulk">
+<meta name="twitter:image" content="http://opeygftv2.bkt.clouddn.com/Max_flow.JPG">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -160,108 +165,101 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。<br>网络流算法与背包问题很相似，本质属于线性规划问题。关于容量和流量两个概念在此不提，算法核心思想是从残余图中寻找增广路径直至增广路径不存在。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。<br><a id="more"></a></p>
-<pre><code>
-public class FordFulkersonDemo {
-    private int[][] Graph;
-    private int[][] f;
-    private int[][] r;
-    private int[] parent;
-    private int source;
-    private int terminal;
-
-    public FordFulkersonDemo(int Num){
-        Graph = new int[Num][Num];
-        f = new int[Num][Num];
-        r = new int[Num][Num];
-        parent = new int[Num];
-    }
-    public FordFulkersonDemo(In in){
-        this(in.readInt());
-        for(int i = 0; i < parent.length; i++){
-            for(int j = 0; j < parent.length; j++){
-                Graph[i][j] = in.readInt();
-            }
-        }
-        source = in.readInt();
-        terminal = in.readInt();
-    }
-    private void initialization(){
-        for(int i = 0; i < parent.length; i++){
-            Arrays.fill(f[i], 0);
+    	<p>关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。<br>网络流算法与背包问题很相似，本质属于线性规划问题。首先需要明确的是容量和流量的两个概念，算法核心思想是从残余图中寻找增广路径直至增广路径不存在（增广路径：一条从源点到宿点的路径，所有的路路径流量为当前最小剩余流量）。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。<br>这张图来自谢老师数据挖掘讲义，在此表示感谢。<br><a id="more"></a><br><img src="http://opeygftv2.bkt.clouddn.com/Max_flow.JPG" alt=""><br>Java实现</p>
+<p><pre><code><br>public class FordFulkersonDemo {<br>    private int[][] Graph;<br>    private int[][] f;<br>    private int[][] r;<br>    private int[] parent;<br>    private int source;<br>    private int terminal;</code></pre></p>
+<pre><code>public FordFulkersonDemo(int Num){
+    Graph = new int[Num][Num];
+    f = new int[Num][Num];
+    r = new int[Num][Num];
+    parent = new int[Num];
+}
+public FordFulkersonDemo(In in){
+    this(in.readInt());
+    for(int i = 0; i &lt; parent.length; i++){
+        for(int j = 0; j &lt; parent.length; j++){
+            Graph[i][j] = in.readInt();
         }
     }
-
-    private int[][] residualNetwork(int[][] graph,int[][] f){
-        int[][] r = new int[parent.length][parent.length];
-        for(int i = 0; i < parent.length; i++){
-            for(int j = 0; j < parent.length; j++){
-                r[i][j] = graph[i][j] - f[i][j];
-            }
-        }
-        return r;
-    }
-
-    private int argumentPath(int[][] r,int s,int t){
-        Arrays.fill(parent, -1);
-        Queue<integer> q = new LinkedList<integer>();
-        int maxFlow = Integer.MAX_VALUE;
-        q.add(s);
-        parent[s] = s;
-        while(!q.isEmpty()){
-            int v = q.poll();
-            if(v == t){
-                while(v != s){
-                    if(maxFlow > r[parent[v]][v])
-                        maxFlow = r[parent[v]][v];
-                    v = parent[v];
-                }
-                break;
-            }
-                for(int i = 0 ; i < parent.length; i++){
-                    if(i != v && parent[i] == -1 && r[v][i] > 0){
-                        parent[i] = v;
-                        q.add(i);
-                    }
-                }
-            }
-
-        if(parent[t] == -1){
-            maxFlow = -1;
-        }
-        return maxFlow;
-    }
-
-    public int run(){
-        int sum = 0;
-        initialization();
-        r = residualNetwork(Graph,f);
-        int result = argumentPath(r,source,terminal);
-        //int cur = terminal;
-        while(result != -1){
-            int cur = terminal;
-            while(cur != source){
-                f[parent[cur]][cur] += result;
-                f[cur][parent[cur]] = -f[parent[cur]][cur];
-                r[parent[cur]][cur] -= result;
-                r[cur][parent[cur]] += result;
-                cur = parent[cur];
-            }
-                sum += result;
-            //    r = residualNetwork(Graph,f);
-                result = argumentPath(r,source,terminal);
-        }
-        return sum;
-    }
-
-    public static void main(String[] args){
-        In in = new In(args[0]);
-        FordFulkersonDemo ford = new FordFulkersonDemo(in);
-        System.out.println(ford.run());
+    source = in.readInt();
+    terminal = in.readInt();
+}
+private void initialization(){
+    for(int i = 0; i &lt; parent.length; i++){
+        Arrays.fill(f[i], 0);
     }
 }
 
-</integer></integer></code></pre>
+private int[][] residualNetwork(int[][] graph,int[][] f){
+    int[][] r = new int[parent.length][parent.length];
+    for(int i = 0; i &lt; parent.length; i++){
+        for(int j = 0; j &lt; parent.length; j++){
+            r[i][j] = graph[i][j] - f[i][j];
+        }
+    }
+    return r;
+}
+
+private int argumentPath(int[][] r,int s,int t){
+    Arrays.fill(parent, -1);
+    Queue&lt;Integer&gt; q = new LinkedList&lt;Integer&gt;();
+    int maxFlow = Integer.MAX_VALUE;
+    q.add(s);
+    parent[s] = s;
+    while(!q.isEmpty()){
+        int v = q.poll();
+        if(v == t){
+            while(v != s){
+                if(maxFlow &gt; r[parent[v]][v])
+                    maxFlow = r[parent[v]][v];
+                v = parent[v];
+            }
+            break;
+        }
+            for(int i = 0 ; i &lt; parent.length; i++){
+                if(i != v &amp;&amp; parent[i] == -1 &amp;&amp; r[v][i] &gt; 0){
+                    parent[i] = v;
+                    q.add(i);
+                }
+            }
+        }
+
+    if(parent[t] == -1){
+        maxFlow = -1;
+    }
+    return maxFlow;
+}
+
+public int run(){
+    int sum = 0;
+    initialization();
+    r = residualNetwork(Graph,f);
+    int result = argumentPath(r,source,terminal);
+    //int cur = terminal;
+    while(result != -1){
+        int cur = terminal;
+        while(cur != source){
+            f[parent[cur]][cur] += result;
+            f[cur][parent[cur]] = -f[parent[cur]][cur];
+            r[parent[cur]][cur] -= result;
+            r[cur][parent[cur]] += result;
+            cur = parent[cur];
+        }
+            sum += result;
+        //    r = residualNetwork(Graph,f);
+            result = argumentPath(r,source,terminal);
+    }
+    return sum;
+}
+
+public static void main(String[] args){
+    In in = new In(args[0]);
+    FordFulkersonDemo ford = new FordFulkersonDemo(in);
+    System.out.println(ford.run());
+}
+</code></pre><p>}</p>
+<p><br>在此验证一下程序的效果：<br><img src="http://opeygftv2.bkt.clouddn.com/MaxFlowDemo1.JPG" alt=""><br>程序运行后结果</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/result.JPG" alt=""><br><img src="http://opeygftv2.bkt.clouddn.com/MaxFlowDemo2.JPG" alt=""></p>
+
   	</div>
 	  
 	  <div class="article-tags tags">

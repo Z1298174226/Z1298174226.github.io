@@ -163,9 +163,13 @@
 
   </section>
   <section class="article typo">
-	  <p>二分图的最大匹配和完美匹配本质上还是最大网络流问题。</p>
+	  <p>二分图的最大匹配和完美匹配本质上还是最大网络流问题。<br>基于深度优先遍历实现</p>
+<p><pre><code><br>public class Edmonds {<br>   private boolean[] used;<br>   private int[] girl;<br>   private int[][] path;<br>   private boolean[][] another;<br>  // private Queue<Integer>[] queue ;<br>   @SuppressWarnings(“unchecked”)<br>public Edmonds(int Num){<br>    //   queue = (Queue<Integer>[]) new Queue[Num];<br>       another = new boolean[Num][Num];<br>       used = new boolean[Num];<br>       Arrays.fill(used, false);<br>       girl = new int[Num];<br>       Arrays.fill(girl, -1);<br>       path = new int[Num][Num];<br>       for(int i = 0;i &lt; Num;i++){<br>           Arrays.fill(path[i], 0);<br>           Arrays.fill(another[i], false);<br>       }<br>   }<br></Integer></Integer></code></pre></p>
 
-
+    
+	  <div class="readmore">
+      <a href="/2017/07/06/匈牙利算法/">Read More</a>
+    </div>
     
     
     

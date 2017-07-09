@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-06T09:59:54.316Z</updated>
+  <updated>2017-07-09T04:46:38.557Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://www.lex-zhao.xyz/2017/07/06/%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95/"/>
     <id>http://www.lex-zhao.xyz/2017/07/06/匈牙利算法/</id>
     <published>2017-07-06T02:41:37.000Z</published>
-    <updated>2017-07-06T09:59:54.316Z</updated>
+    <updated>2017-07-09T04:46:38.557Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;二分图的最大匹配和完美匹配本质上还是最大网络流问题。&lt;/p&gt;
-
+      &lt;p&gt;二分图的最大匹配和完美匹配本质上还是最大网络流问题。&lt;br&gt;基于深度优先遍历实现&lt;/p&gt;
+&lt;p&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;public class Edmonds {&lt;br&gt;   private boolean[] used;&lt;br&gt;   private int[] girl;&lt;br&gt;   private int[][] path;&lt;br&gt;   private boolean[][] another;&lt;br&gt;  // private Queue&lt;Integer&gt;[] queue ;&lt;br&gt;   @SuppressWarnings(“unchecked”)&lt;br&gt;public Edmonds(int Num){&lt;br&gt;    //   queue = (Queue&lt;Integer&gt;[]) new Queue[Num];&lt;br&gt;       another = new boolean[Num][Num];&lt;br&gt;       used = new boolean[Num];&lt;br&gt;       Arrays.fill(used, false);&lt;br&gt;       girl = new int[Num];&lt;br&gt;       Arrays.fill(girl, -1);&lt;br&gt;       path = new int[Num][Num];&lt;br&gt;       for(int i = 0;i &amp;lt; Num;i++){&lt;br&gt;           Arrays.fill(path[i], 0);&lt;br&gt;           Arrays.fill(another[i], false);&lt;br&gt;       }&lt;br&gt;   }&lt;br&gt;&lt;/Integer&gt;&lt;/Integer&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
     
     </summary>
     

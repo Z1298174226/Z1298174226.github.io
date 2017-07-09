@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Tag: java | 倾听枫声</title>
+  <title>Tag: Java | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -15,7 +15,7 @@
   <meta name="description" content="生活的理想是为了理想的生活">
 <meta property="og:type" content="website">
 <meta property="og:title" content="倾听枫声">
-<meta property="og:url" content="http://www.lex-zhao.xyz/tags/java/index.html">
+<meta property="og:url" content="http://www.lex-zhao.xyz/tags/Java/index.html">
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="生活的理想是为了理想的生活">
 <meta name="twitter:card" content="summary">
@@ -136,7 +136,7 @@
       <div class='l_main'>
         
   <script>
-    window.subData= { title:'Tag : java'}
+    window.subData= { title:'Tag : Java'}
   </script>
 
 <section class="post-list">
@@ -146,13 +146,13 @@
   <section class="meta">
     
     <h2 class="title">
-      <a href="/2017/07/02/类加载器/">
-        类加载器
+      <a href="/2017/07/09/并发锁与条件变量/">
+        并发锁与条件变量
       </a>
     </h2>
     
     <time>
-      7月 2, 2017
+      7月 9, 2017
     </time>
 		
     
@@ -162,187 +162,38 @@
 
   </section>
   <section class="article typo">
-	  <p>站在 Java 开发人员的角度来看，类加载器可以大致划分为以下三类：</p>
-<p>启动类加载器：Bootstrap ClassLoader，跟上面相同。它负责加载存放在JDK\jre\li(JDK 代表 JDK 的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的，并且能被虚拟机识别的类库（如 rt.jar，所有的java.<em>开头的类均被 Bootstrap ClassLoader 加载）。启动类加载器是无法被 Java 程序直接引用的。<br></em></p>
+	  <p>《Java 并发编程实践》一书给出了使用 ReentrantLock 的最佳时机：</p>
+<p>当你需要以下高级特性时，才应该使用：<strong>可定时的</strong>、<strong>可轮询的</strong>与<strong>可中断的</strong>锁获取操作，<strong>公平队列</strong>，或者<strong>非块结构</strong>的锁。否则，请使用 synchronized</p>
+<p><strong>互斥同步</strong>最主要的问题就是进行<strong>线程阻塞</strong>和<strong>唤醒</strong>所带来的性能问题，因而这种同步又称为阻塞同步，它属于一种悲观的并发策略，即线程获得的是独占锁。<strong>独占锁</strong>意味着其他线程只能依靠阻塞来等待线程释放锁。而在 CPU 转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起 CPU 频繁的上下文切换导致效率很低。synchronized 采用的便是这种并发策略。</p>
+<p>随着指令集的发展，我们有了另一种选择：基于冲突检测的乐观并发策略，通俗地讲就是先进性操作，如果没有其他线程争用共享数据，那操作就成功了，如果共享数据被争用，产生了冲突，那就再进行其他的补偿措施（最常见的补偿措施就是不断地重拾，直到试成功为止），这种乐观的并发策略的许多实现都不需要把线程挂起，因此这种同步被称为非阻塞同步。ReetrantLock 采用的便是这种并发策略。</p>
+<p>在乐观的并发策略中，需要操作和冲突检测这两个步骤具备原子性，它靠硬件指令来保证，这里用的是 CAS 操作（Compare and Swap）。JDK1.5 之后，Java 程序才可以使用CAS操作。我们可以进一步研究 ReentrantLock 的源代码，会发现其中比较重要的获得锁的一个方法是 compareAndSetState，这里其实就是调用的 CPU 提供的特殊指令。现代的 CPU 提供了指令，可以自动更新共享数据，而且能够检测到其他线程的干扰，而 compareAndSet() 就用这些代替了锁定。这个算法称作非阻塞算法，意思是一个线程的失败或者挂起不应该影响其他线程的失败或挂起。</p>
+<p>Java 5 中引入了注入 AutomicInteger、AutomicLong、AutomicReference 等特殊的原子性变量类，它们提供的如：compareAndSet()、incrementAndSet()和getAndIncrement()等方法都使用了 CAS 操作。因此，它们都是<strong>由硬件指令来保证的原子方法</strong>。</p>
+<ul>
+<li><strong>性能比较</strong></li>
+</ul>
+<p>基本语法上，ReentrantLock 与 synchronized 很相似，它们都具备一样的线程重入特性，只是代码写法上有点区别而已，一个表现为 API 层面的互斥锁（Lock），一个表现为原生语法层面的互斥锁（synchronized）。ReentrantLock 相对 synchronized 而言还是增加了一些高级功能，主要有以下三项：</p>
+<ul>
+<li><p>等待可中断：当持有锁的线程长期不释放锁时，正在等待的线程可以选择放弃等待，改为处理其他事情，它对处理执行时间非常上的同步块很有帮助。而在等待由 synchronized 产生的互斥锁时，会一直阻塞，是不能被中断的。</p>
+</li>
+<li><p>可实现公平锁：多个线程在等待同一个锁时，必须按照申请锁的时间顺序排队等待，而非公平锁则不保证这点，在锁释放时，任何一个等待锁的线程都有机会获得锁。synchronized 中的锁时非公平锁，ReentrantLock 默认情况下也是非公平锁，但可以通过构造方法 <strong>ReentrantLock（ture）</strong>来要求使用公平锁。</p>
+</li>
+<li><p>锁可以绑定多个条件：ReentrantLock 对象可以同时绑定多个 Condition 对象（名曰：条件变量或条件队列），而在 synchronized 中，锁对象的 wait()和 notify()或 notifyAll()方法可以实现一个隐含条件，但如果要和多于一个的条件关联的时候，就不得不额外地添加一个锁，而 ReentrantLock 则无需这么做，只需要多次调用 newCondition()方法即可。而且我们还可以通过绑定 Condition 对象来判断当前线程通知的是哪些线程（即与 Condition 对象绑定在一起的其他线程）。</p>
+</li>
+<li><p><strong>可中断锁</strong></p>
+</li>
+</ul>
+<p>ReetrantLock 有两种锁：忽略中断锁和响应中断锁。忽略中断锁与 synchronized 实现的互斥锁一样，不能响应中断，而响应中断锁可以响应中断。</p>
+<p>如果某一线程 A 正在执行锁中的代码，另一线程B正在等待获取该锁，可能由于等待时间过长，线程 B 不想等待了，想先处理其他事情，我们可以让它中断自己或者在别的线程中中断它，如果此时 ReetrantLock 提供的是忽略中断锁，则它不会去理会该中断，而是让线程B继续等待，而如果此时 ReetrantLock 提供的是响应中断锁，那么它便会处理中断，让线程 B 放弃等待，转而去处理其他事情。</p>
 
-    
-	  <div class="readmore">
-      <a href="/2017/07/02/类加载器/">Read More</a>
-    </div>
+
     
     
     
 	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/java/">java</a>
+        <a href="/tags/Java/">Java</a>
       
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">
-        JVM 垃圾回收机制(二)——方法区回收
-      </a>
-    </h2>
-    
-    <time>
-      5月 13, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。<br>永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-        <a href="/tags/GC机制/">GC机制</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/05/10/JVM-垃圾回收机制/">
-        （译）JVM 垃圾回收机制(一)——新生代垃圾回收
-      </a>
-    </h2>
-    
-    <time>
-      5月 10, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p><strong>原作者：PATRICK PESCHLOW</strong></p>
-<p><strong>本文对原文有改动</strong></p>
-<p>单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/05/10/JVM-垃圾回收机制/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-        <a href="/tags/GC机制/">GC机制</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/04/28/Latch/">
-        Latch
-      </a>
-    </h2>
-    
-    <time>
-      4月 28, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>#Latch</p>
-<p><strong>同步工具</strong>类除了最熟悉的阻塞队列之外，还包括<strong>Semaphore、Barrier</strong>以及<strong>Latch</strong>。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/04/28/Latch/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/04/28/synchronized关键字/">
-        synchronized关键字
-      </a>
-    </h2>
-    
-    <time>
-      4月 28, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>在<strong>并发编程</strong>中，多线程同时并发访问的资源叫做<strong>临界资源</strong>，当多个线程同时访问对象并要求操作相同资源时，分割了原子操作就有可能出现数据的不一致或数据不完整的情况，为避免这种情况的发生，我们会采取同步机制，以确保在某一时刻，方法内只允许有一个线程。</p>
-<p>采用 synchronized 修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个 monitor (锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/04/28/synchronized关键字/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
+        <a href="/tags/Concurrent/">Concurrent</a>
       
 	  </div>
     
@@ -397,7 +248,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>12</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>13</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -410,7 +261,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 19.33px; color: #005">Algorithm</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16.67px; color: #00a">GC机制</a> <a href="/tags/ODL/" style="font-size: 14px; color: #00f">ODL</a> <a href="/tags/SDN/" style="font-size: 14px; color: #00f">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 19.33px; color: #005">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16.67px; color: #00a">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/ODL/" style="font-size: 14px; color: #00f">ODL</a> <a href="/tags/SDN/" style="font-size: 14px; color: #00f">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 
@@ -464,6 +315,31 @@
 
 
 <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
+ery/2.1.4/jquery.min.js"></script>
 <script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
 <script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
 <script src="/js/jquery.fitvids.js"></script>

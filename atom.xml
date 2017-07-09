@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-09T04:46:38.557Z</updated>
+  <updated>2017-07-09T06:00:48.890Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>并发锁与条件变量</title>
+    <link href="http://www.lex-zhao.xyz/2017/07/09/%E5%B9%B6%E5%8F%91%E9%94%81%E4%B8%8E%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F/"/>
+    <id>http://www.lex-zhao.xyz/2017/07/09/并发锁与条件变量/</id>
+    <published>2017-07-09T05:44:44.000Z</published>
+    <updated>2017-07-09T06:00:48.890Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;《Java 并发编程实践》一书给出了使用 ReentrantLock 的最佳时机：&lt;/p&gt;
+&lt;p&gt;当你需要以下高级特性时，才应该使用：&lt;strong&gt;可定时的&lt;/strong&gt;、&lt;strong&gt;可轮询的&lt;/strong&gt;与&lt;strong&gt;可中断的&lt;/strong&gt;锁获取操作
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Java" scheme="http://www.lex-zhao.xyz/tags/Java/"/>
+    
+      <category term="Concurrent" scheme="http://www.lex-zhao.xyz/tags/Concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>匈牙利算法</title>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-09T06:00:48.890Z</updated>
+  <updated>2017-07-09T06:02:46.269Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -20,12 +20,13 @@
     <link href="http://www.lex-zhao.xyz/2017/07/09/%E5%B9%B6%E5%8F%91%E9%94%81%E4%B8%8E%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F/"/>
     <id>http://www.lex-zhao.xyz/2017/07/09/并发锁与条件变量/</id>
     <published>2017-07-09T05:44:44.000Z</published>
-    <updated>2017-07-09T06:00:48.890Z</updated>
+    <updated>2017-07-09T06:02:46.269Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;《Java 并发编程实践》一书给出了使用 ReentrantLock 的最佳时机：&lt;/p&gt;
-&lt;p&gt;当你需要以下高级特性时，才应该使用：&lt;strong&gt;可定时的&lt;/strong&gt;、&lt;strong&gt;可轮询的&lt;/strong&gt;与&lt;strong&gt;可中断的&lt;/strong&gt;锁获取操作
+&lt;p&gt;当你需要以下高级特性时，才应该使用：&lt;strong&gt;可定时的&lt;/strong&gt;、&lt;strong&gt;可轮询的&lt;/strong&gt;与&lt;strong&gt;可中断的&lt;/strong&gt;锁获取操作，&lt;strong&gt;公平队列&lt;/strong&gt;，或者&lt;strong&gt;非块结构&lt;/strong&gt;的锁。否则，请使用 synchronized&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;互斥同步&lt;/strong&gt;最主要的问题就是进行&lt;strong&gt;线程阻塞&lt;/strong&gt;和&lt;strong&gt;唤醒&lt;/strong&gt;所带来的性能问题，因而这种同步又称为阻塞同步，它属于一种悲观的并发策略，即线程获得的是独占锁。&lt;strong&gt;独占锁&lt;/strong&gt;意味着其他线程只能依靠阻塞来等待线程释放锁。而在 CPU 转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起 CPU 频繁的上下文切换导致效率很低。synchronized 采用的便是这种并发策略。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

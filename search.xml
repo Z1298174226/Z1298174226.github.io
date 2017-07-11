@@ -3,6 +3,36 @@
   
     
     <entry>
+      <title><![CDATA[小问题]]></title>
+      <url>/2017/07/11/%E5%B0%8F%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<p>今天吃饭的时候，问了自己一个问题，java反射到底是个啥，java反射可以实现啥？<br>自己稍微总结一下：</p>
+<p><strong>java反射是在程序运行时，拿到一个类可以得到类的全部属性和方法，拿到一个对象，可以调用对象的全部属性和方法。</strong></p>
+<p>java反射的作用：</p>
+<ul>
+<li>判断一个实例对象是否属于某个类</li>
+<li>构造类的实例化对象</li>
+<li>获取类的全部方法和属性</li>
+<li>调用对象的全部方法和属性</li>
+<li>动态代理 </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[并发锁与条件变量]]></title>
       <url>/2017/07/09/%E5%B9%B6%E5%8F%91%E9%94%81%E4%B8%8E%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<p>《Java 并发编程实践》一书给出了使用 ReentrantLock 的最佳时机：</p>

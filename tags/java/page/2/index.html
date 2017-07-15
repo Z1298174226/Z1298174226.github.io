@@ -146,6 +146,50 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2017/05/10/JVM-垃圾回收机制/">
+        （译）JVM 垃圾回收机制(一)——新生代垃圾回收
+      </a>
+    </h2>
+    
+    <time>
+      5月 10, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p><strong>原作者：PATRICK PESCHLOW</strong></p>
+<p><strong>本文对原文有改动</strong></p>
+<p>单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2017/05/10/JVM-垃圾回收机制/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/java/">java</a>
+      
+        <a href="/tags/GC机制/">GC机制</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2017/04/28/Latch/">
         Latch
       </a>
@@ -281,7 +325,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>14</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>15</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -294,7 +338,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 19.33px; color: #005">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16.67px; color: #00a">GC机制</a> <a href="/tags/ODL/" style="font-size: 14px; color: #00f">ODL</a> <a href="/tags/SDN/" style="font-size: 14px; color: #00f">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 19.33px; color: #005">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16.67px; color: #00a">GC机制</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 14px; color: #00f">ODL</a> <a href="/tags/SDN/" style="font-size: 14px; color: #00f">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

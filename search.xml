@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title><![CDATA[netty之ChannelPipeline和ChannelHandler]]></title>
+      <url>/2017/07/15/netty%E4%B9%8BChannelPipeline%E5%92%8CChannelHandler/</url>
+      <content type="html"><![CDATA[<p>Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。<br><a id="more"></a><br>众所周知，Servlet Filter是JAVA Web应用程序级的java代码组件，它能够以声明的方式插入到HTTP请求响应的处理过程中，用于拦截请求和响应，以便能够查看、提取或以某种方式操作正在客户端和服务器之间交换的数据。拦截器封装了业务定制逻辑，能够实现对Web应用程序的预处理和事后处理。</p>
+<p>过滤器提供了一种面向对象的模块化机制，用来将公共任务封装到可插入的组件中。这些组件通过Web部署配置文件(web.xml)进行声明，可以方便地添加或删除过滤器，无需改动任何应用程序代码或JSP页面，由Servlet进行动态调用。通过在请求、响应链中使用过滤器，可以对应用程序的Servlet或JSP页面提供的核心处理进行补充，而不破坏Servlet或JSP页面的功能。由于是纯Java实现，所以Servlet过滤器具有跨平台的可重用性，使得他们很容易被部署到任何符合Servlet规范的JEE环境中。</p>
+<p>同样的，Netty将数据管道封装为一个ChannelPipeline，消息在ChannelPipeline中流动和传递，ChannelPipeline维护一个IO事件拦截器ChannelHandler链表并可实现迭代，通过新增和删除ChannelHandler来实现不同的业务逻辑定制。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> Netty </tag>
+            
+            <tag> nio </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[小问题]]></title>
       <url>/2017/07/11/%E5%B0%8F%E9%97%AE%E9%A2%98/</url>
       <content type="html"><![CDATA[<p>今天吃饭的时候，问了自己一个问题，java反射到底是个啥，java反射可以实现啥？<br>自己稍微总结一下：</p>

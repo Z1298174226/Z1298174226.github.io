@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lex-zhao.xyz/2017/07/15/netty%E4%B9%8BChannelPipeline%E5%92%8CChannelHandler/</loc>
+    
+    <lastmod>2017-07-15T10:55:35.918Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lex-zhao.xyz/2017/07/11/%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2017-07-11T02:34:55.661Z</lastmod>

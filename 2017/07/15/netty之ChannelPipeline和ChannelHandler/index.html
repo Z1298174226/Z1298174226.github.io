@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Latch | 倾听枫声</title>
+  <title>netty之ChannelPipeline和ChannelHandler | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -12,17 +12,17 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#Latch 同步工具类除了最熟悉的阻塞队列之外，还包括Semaphore、Barrier以及Latch。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。">
-<meta name="keywords" content="java">
+  <meta name="description" content="Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。">
+<meta name="keywords" content="java,Netty,nio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Latch">
-<meta property="og:url" content="http://www.lex-zhao.xyz/2017/04/28/Latch/index.html">
+<meta property="og:title" content="netty之ChannelPipeline和ChannelHandler">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/15/netty之ChannelPipeline和ChannelHandler/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="#Latch 同步工具类除了最熟悉的阻塞队列之外，还包括Semaphore、Barrier以及Latch。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。">
-<meta property="og:updated_time" content="2017-05-03T09:50:34.498Z">
+<meta property="og:description" content="Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。">
+<meta property="og:updated_time" content="2017-07-15T10:55:35.918Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Latch">
-<meta name="twitter:description" content="#Latch 同步工具类除了最熟悉的阻塞队列之外，还包括Semaphore、Barrier以及Latch。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。">
+<meta name="twitter:title" content="netty之ChannelPipeline和ChannelHandler">
+<meta name="twitter:description" content="Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -136,17 +136,17 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <article id="post-Latch"
+        <article id="post-netty之ChannelPipeline和ChannelHandler"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
 	<h2 class="title">
-  	<a href="/2017/04/28/Latch/">
-    	Latch
+  	<a href="/2017/07/15/netty之ChannelPipeline和ChannelHandler/">
+    	netty之ChannelPipeline和ChannelHandler
     </a>
   </h2>
 	<time>
-	  4月 28, 2017
+	  7月 15, 2017
 	</time>
 	
     
@@ -160,56 +160,19 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>#Latch</p>
-<p><strong>同步工具</strong>类除了最熟悉的阻塞队列之外，还包括<strong>Semaphore、Barrier</strong>以及<strong>Latch</strong>。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。<br><a id="more"></a><br><strong>闭锁</strong>最形象的比喻是一扇Gate，在闭锁到达结束状态之前，这扇门始终处于关闭的状态，任何线程都无法通过。而当闭锁到达结束状态，这扇门将打开，进而允许所有的线程通过。一旦闭锁达到结束状态，这扇门将保持打开的状态，不会再关闭。换句话说，闭锁的作用是保持某些活动直到其他活动都完成才继续执行。<br>举个例子，我们都知道并发在某些情况下，可以极大地提升工作效率，缩短程序的运行时间，那么我们该如何去获取并发程序准确的运行时间，即在所有线程全部就绪的时刻启动时间，而在所有线程全部结束的时刻终止时间。Latch可以做到，看下面程序。</p>
-<pre><code><java>
-public class TestHarness {
-    public static String timeTask(int nThreads,final Runnable[] tasks) throws InterruptedException{
-        final CountDownLatch startGate=new CountDownLatch(1);
-        final CountDownLatch endGate=new CountDownLatch(nThreads);
-        for(Runnable task:tasks){
-            Thread t=new Thread(){
-                public void run(){
-                    try{
-                        startGate.await();
-                        try{
-                            task.run();
-                        }finally{
-                            //每个线程最终最后执行将endGate减1
-                            endGate.countDown();
-
-                        }
-                    }catch(InterruptedException e){
-
-                    }
-                }
-            };
-            t.start();
-        }
-        long startTime=System.nanoTime();
-        startGate.countDown();
-        endGate.await();
-        long endTime=System.nanoTime();
-        return "Time: "+(endTime-startTime)+"ns";
-    }
-</java></code></pre>
-
-<p>由于startGate被设置为等待</p>
-<p><code>startGate.await();</code></p>
-<p>因此每个线程首先要做的工作就是在启动门上等待，直到所有的线程全部就绪。并且，我们在为每个线程装载任务时</p>
-<p><code>finally{endGate.countDown();}</code></p>
-<p>保证没个线程最终都会执行使得endGate减1的任务</p>
-<p><code>startGate.countDown();</code></p>
-<p>注意startGate的初值为1，因此调用countDown方法后，门打开，此时线程开始执行</p>
-<p><code>endGate.await();</code></p>
-<p>endGate此时关闭，要做的工作就是等待且为零的时刻，然后打开</p>
-<p>如果没用使用Latch工具而去获取并行线程的运行时间，线程在被创建之后将立即执行，显然，先启动的线程势必会领先于后启动的线程，并且活跃线程的数量会随着时间的推移而慢慢减少或者增加，竞争程度也将发生变化。有了这个工具，我们今后在编写并发程序是，只需要调用timeTasks函数，并向其传递任务参数，就可以获取并发时间了。</p>
+    	<p>Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。<br><a id="more"></a><br>众所周知，Servlet Filter是JAVA Web应用程序级的java代码组件，它能够以声明的方式插入到HTTP请求响应的处理过程中，用于拦截请求和响应，以便能够查看、提取或以某种方式操作正在客户端和服务器之间交换的数据。拦截器封装了业务定制逻辑，能够实现对Web应用程序的预处理和事后处理。</p>
+<p>过滤器提供了一种面向对象的模块化机制，用来将公共任务封装到可插入的组件中。这些组件通过Web部署配置文件(web.xml)进行声明，可以方便地添加或删除过滤器，无需改动任何应用程序代码或JSP页面，由Servlet进行动态调用。通过在请求、响应链中使用过滤器，可以对应用程序的Servlet或JSP页面提供的核心处理进行补充，而不破坏Servlet或JSP页面的功能。由于是纯Java实现，所以Servlet过滤器具有跨平台的可重用性，使得他们很容易被部署到任何符合Servlet规范的JEE环境中。</p>
+<p>同样的，Netty将数据管道封装为一个ChannelPipeline，消息在ChannelPipeline中流动和传递，ChannelPipeline维护一个IO事件拦截器ChannelHandler链表并可实现迭代，通过新增和删除ChannelHandler来实现不同的业务逻辑定制。</p>
 
   	</div>
 	  
 	  <div class="article-tags tags">
       
         <a href="/tags/java/">java</a>
+      
+        <a href="/tags/Netty/">Netty</a>
+      
+        <a href="/tags/nio/">nio</a>
       
 	  </div>
     
@@ -223,7 +186,7 @@ public class TestHarness {
 </article>
 <script>
 	window.subData = {
-		title: 'Latch',
+		title: 'netty之ChannelPipeline和ChannelHandler',
 		tools: true
 	}
 </script>
@@ -328,7 +291,7 @@ public class TestHarness {
 <script>
   var disqus_shortname = 'kevinhome';
   
-  var disqus_url = 'http://www.lex-zhao.xyz/2017/04/28/Latch/';
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/07/15/netty之ChannelPipeline和ChannelHandler/';
   
   (function(){
     var dsq = document.createElement('script');

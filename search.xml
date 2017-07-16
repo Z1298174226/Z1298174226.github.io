@@ -3,6 +3,28 @@
   
     
     <entry>
+      <title><![CDATA[Apriori]]></title>
+      <url>/2017/07/16/Apriori/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> DataMining </tag>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[netty之ChannelPipeline和ChannelHandler]]></title>
       <url>/2017/07/15/netty%E4%B9%8BChannelPipeline%E5%92%8CChannelHandler/</url>
       <content type="html"><![CDATA[<p>Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。<br><a id="more"></a><br>众所周知，Servlet Filter是JAVA Web应用程序级的java代码组件，它能够以声明的方式插入到HTTP请求响应的处理过程中，用于拦截请求和响应，以便能够查看、提取或以某种方式操作正在客户端和服务器之间交换的数据。拦截器封装了业务定制逻辑，能够实现对Web应用程序的预处理和事后处理。</p>

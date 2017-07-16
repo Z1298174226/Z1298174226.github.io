@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-07-15T10:55:35.918Z</updated>
+  <updated>2017-07-16T08:19:31.085Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Apriori</title>
+    <link href="http://www.lex-zhao.xyz/2017/07/16/Apriori/"/>
+    <id>http://www.lex-zhao.xyz/2017/07/16/Apriori/</id>
+    <published>2017-07-16T08:18:55.000Z</published>
+    <updated>2017-07-16T08:19:31.085Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="DataMining" scheme="http://www.lex-zhao.xyz/tags/DataMining/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>netty之ChannelPipeline和ChannelHandler</title>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>倾听枫声</title>
+  <title>opendaylightplugin学习笔记（二）——TopologyManager | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -12,17 +12,17 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##opendaylightplugin学习笔记（二）——TopologyManager@(ODL)[openflowplugin,topology-manager, beryllium]topology-manager模块是作为openflowplugin的应用层程序（Applications），负责处理operational数据库下network-topology:network-topolo">
-<meta name="keywords">
+  <meta name="description" content="@(ODL)[openflowplugin,topology-manager, beryllium] topology-manager模块是作为openflowplugin的应用层程序（Applications），负责处理operational数据库下network-topology:network-topology数据节点（datastore数据库）的增删改查，例如ODL控制器发现添加一台主机h">
+<meta name="keywords" content="SDN,ODL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="倾听枫声">
+<meta property="og:title" content="opendaylightplugin学习笔记（二）——TopologyManager">
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/27/opendaylightplugin学习笔记（二）——TopologyManager/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="##opendaylightplugin学习笔记（二）——TopologyManager@(ODL)[openflowplugin,topology-manager, beryllium]topology-manager模块是作为openflowplugin的应用层程序（Applications），负责处理operational数据库下network-topology:network-topolo">
-<meta property="og:updated_time" content="2017-07-27T15:38:11.845Z">
+<meta property="og:description" content="@(ODL)[openflowplugin,topology-manager, beryllium] topology-manager模块是作为openflowplugin的应用层程序（Applications），负责处理operational数据库下network-topology:network-topology数据节点（datastore数据库）的增删改查，例如ODL控制器发现添加一台主机h">
+<meta property="og:updated_time" content="2017-07-27T15:52:56.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="倾听枫声">
-<meta name="twitter:description" content="##opendaylightplugin学习笔记（二）——TopologyManager@(ODL)[openflowplugin,topology-manager, beryllium]topology-manager模块是作为openflowplugin的应用层程序（Applications），负责处理operational数据库下network-topology:network-topolo">
+<meta name="twitter:title" content="opendaylightplugin学习笔记（二）——TopologyManager">
+<meta name="twitter:description" content="@(ODL)[openflowplugin,topology-manager, beryllium] topology-manager模块是作为openflowplugin的应用层程序（Applications），负责处理operational数据库下network-topology:network-topology数据节点（datastore数据库）的增删改查，例如ODL控制器发现添加一台主机h">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -142,23 +142,37 @@
 	<section class='meta'>
 	<h2 class="title">
   	<a href="/2017/07/27/opendaylightplugin学习笔记（二）——TopologyManager/">
-    	
+    	opendaylightplugin学习笔记（二）——TopologyManager
     </a>
   </h2>
 	<time>
 	  7月 27, 2017
 	</time>
 	
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
 	</section>
 	
 		<section class="toc-wrapper"></section>
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>##opendaylightplugin学习笔记（二）——TopologyManager<br>@(ODL)[openflowplugin,topology-manager, beryllium]<br><strong>topology-manager</strong>模块是作为<strong>openflowplugin</strong>的应用层程序（Applications），负责处理operational数据库下network-topology:network-topology数据节点（datastore数据库）的增删改查，例如ODL控制器发现添加一台主机host、新加主机与交换机的link链接等。显示拓扑的前端需要从该数据节点上获取主机或者交换机节点数据才能绘制网络拓扑图，构成拓扑图来源有两方面，一方面是通过LLDP发现的switch设备以及相关link连接，另一外面是通过L2switch的hosttracker模块发现的下挂在switch上的host主机以及相关连接。</p>
+    	<p>@(ODL)[openflowplugin,topology-manager, beryllium]</p>
+<p><strong>topology-manager</strong>模块是作为<strong>openflowplugin</strong>的应用层程序（Applications），负责处理operational数据库下network-topology:network-topology数据节点（datastore数据库）的增删改查，例如ODL控制器发现添加一台主机host、新加主机与交换机的link链接等。显示拓扑的前端需要从该数据节点上获取主机或者交换机节点数据才能绘制网络拓扑图，构成拓扑图来源有两方面，一方面是通过LLDP发现的switch设备以及相关link连接，另一外面是通过L2switch的hosttracker模块发现的下挂在switch上的host主机以及相关连接。<br><a id="more"></a></p>
 
   	</div>
 	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/SDN/">SDN</a>
+      
+        <a href="/tags/ODL/">ODL</a>
+      
+	  </div>
+    
 	</section>
 	
 		<section class="youyan" id="comments"> 
@@ -169,7 +183,7 @@
 </article>
 <script>
 	window.subData = {
-		title: '',
+		title: 'opendaylightplugin学习笔记（二）——TopologyManager',
 		tools: true
 	}
 </script>
@@ -218,7 +232,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>17</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>18</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -231,7 +245,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 19.33px; color: #005">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16.67px; color: #00a">GC机制</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 20px; color: #000040">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16px; color: #0000bf">GC机制</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 18px; color: #000080">ODL</a> <a href="/tags/SDN/" style="font-size: 18px; color: #000080">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

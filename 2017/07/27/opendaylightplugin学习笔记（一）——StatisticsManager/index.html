@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Tag: SDN | 倾听枫声</title>
+  <title>opendaylightplugin学习笔记（一）——StatisticsManager | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -12,15 +12,17 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生活的理想是为了理想的生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="倾听枫声">
-<meta property="og:url" content="http://www.lex-zhao.xyz/tags/SDN/index.html">
+  <meta name="description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] ####StatNodeRegistrationImpl  StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从">
+<meta name="keywords" content="SDN,ODL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opendaylightplugin学习笔记（一）——StatisticsManager">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/27/opendaylightplugin学习笔记（一）——StatisticsManager/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="生活的理想是为了理想的生活">
+<meta property="og:description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] ####StatNodeRegistrationImpl  StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从">
+<meta property="og:updated_time" content="2017-07-27T15:45:35.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="倾听枫声">
-<meta name="twitter:description" content="生活的理想是为了理想的生活">
+<meta name="twitter:title" content="opendaylightplugin学习笔记（一）——StatisticsManager">
+<meta name="twitter:description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] ####StatNodeRegistrationImpl  StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -134,35 +136,31 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        
-  <script>
-    window.subData= { title:'Tag : SDN'}
-  </script>
-
-<section class="post-list">
+        <article id="post-opendaylightplugin学习笔记（一）——StatisticsManager"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/07/27/opendaylightplugin学习笔记（一）——StatisticsManager/">
+    	opendaylightplugin学习笔记（一）——StatisticsManager
+    </a>
+  </h2>
+	<time>
+	  7月 27, 2017
+	</time>
 	
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/07/27/opendaylightplugin学习笔记（一）——StatisticsManager/">
-        opendaylightplugin学习笔记（一）——StatisticsManager
-      </a>
-    </h2>
-    
-    <time>
-      7月 27, 2017
-    </time>
-		
     
     <div class='cats'>
         <a href="/categories/技术/">技术</a>
     </div>
 
-  </section>
-  <section class="article typo">
-	  <p>@(Opendaylight)[openflowplugin|statistics-manager|beryllium]</p>
+	</section>
+	
+		<section class="toc-wrapper"></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>@(Opendaylight)[openflowplugin|statistics-manager|beryllium]</p>
 <p>####StatNodeRegistrationImpl</p>
 <blockquote>
 <p>StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inventory-mananger转移到了statistics-manager。有待于进一步证实。</p>
@@ -206,11 +204,9 @@
 <p>It represent a central point for whole module. Implementation <strong>DataStore的数据存储包含两种形式，分别为Config/DS和Operational/DS,config持有由应用所写的数据，oprational反映了设备实际的状态</strong><br>StatisticsManager registers all Operation/DS {@link StatNotifyCommiter} and Config/DS {@link StatListeningCommiter}, as well as {@link StatPermCollector} for statistic collecting and {@link StatRpcMsgManager} as Device RPCs provider. In next, StatisticsManager provides all DS contact Transaction services.<br><strong>即完成所有注册之后，提供所有的DataStore数据交互业务的服务</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 整个statistics-manager的入口函数</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> notifService</div><div class="line">    * <span class="doctag">@param</span> rpcRegistry</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">(<span class="keyword">final</span> NotificationProviderService notifService,</span></span></div><div class="line">           <span class="keyword">final</span> RpcConsumerRegistry rpcRegistry);</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method provides read/write DataStore functionality cross applyOperation</div><div class="line">    * defined in &#123;<span class="doctag">@link</span> StatDataStoreOperation&#125;</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> inventoryOper - operation for DataStore</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(<span class="keyword">final</span> StatDataStoreOperation inventoryOper)</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method wraps &#123;<span class="doctag">@link</span> StatisticsManager#isProvidedFlowNodeActive(InstanceIdentifier)&#125; method</div><div class="line">    * to provide parallel statCollection process for Set of Nodes. So it has to</div><div class="line">    * identify correct Node Set by NodeIdentifier</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> nodeIdent</div><div class="line">    */</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isProvidedFlowNodeActive</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.collectNextStatistics to provide</div><div class="line">     * parallel statCollection process for Set of Nodes. So it has to</div><div class="line">     * identify correct Node Set by NodeIdentifier.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">collectNextStatistics</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent, TransactionId xid)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.connectedNodeRegistration to provide</div><div class="line">     * parallel statCollection process for Set of Nodes. So it has to</div><div class="line">     * connect node to new or not full Node statCollector Set.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     * <span class="doctag">@param</span> statTypes</div><div class="line">     * <span class="doctag">@param</span> nrOfSwitchTables</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">connectedNodeRegistration</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent,</span></span></div><div class="line">            List&lt;StatCapabTypes&gt; statTypes, Short nrOfSwitchTables);</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.disconnectedNodeUnregistration to provide</div><div class="line">     * parallel statCollection process for Set of Nodes. So it has to identify</div><div class="line">     * correct collector for disconnect node.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">disconnectedNodeUnregistration</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.registerAdditionalNodeFeature to provide</div><div class="line">     * possibility to register additional Node Feature &#123;<span class="doctag">@link</span> StatCapabTypes&#125; for</div><div class="line">     * statistics collecting.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     * <span class="doctag">@param</span> statCapab</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">registerAdditionalNodeFeature</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent, StatCapabTypes statCapab)</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.unregisterNodeStats to provide</div><div class="line">    * possibility to unregister Node stats type &#123;<span class="doctag">@link</span> StatCapabTypes&#125; from</div><div class="line">    * statistics collecting.</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> nodeIdent</div><div class="line">    * <span class="doctag">@param</span> statCapab</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">unregisterNodeStats</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent, StatCapabTypes statCapab)</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method provides access to Device RPC methods by wrapped</div><div class="line">    * internal method. In next &#123;<span class="doctag">@link</span> StatRpcMsgManager&#125; is registered all</div><div class="line">    * Multipart device msg response and joining all to be able run all</div><div class="line">    * collected statistics in one time (easy identification Data for delete)</div><div class="line">    *</div><div class="line">    * <span class="doctag">@return</span> &#123;<span class="doctag">@link</span> StatRpcMsgManager&#125;</div><div class="line">    */</div><div class="line">   <span class="function">StatRpcMsgManager <span class="title">getRpcMsgManager</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : &#123;<span class="doctag">@link</span> org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.FlowCapableNode&#125;</div><div class="line">    * Operational/DS data change listener -&amp;gt; impl. target -&amp;gt; register FlowCapableNode to Statistic Collecting process</div><div class="line">    * <span class="doctag">@return</span> &#123;<span class="doctag">@link</span> StatNodeRegistration&#125;</div><div class="line">    */</div><div class="line">   <span class="function">StatNodeRegistration <span class="title">getNodeRegistrator</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Flow Config/DS data change listener -&amp;gt; impl. target -&amp;gt;</div><div class="line">    * -&amp;gt; make pair between Config/DS FlowId and Device Flow response Hash</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Flow, OpendaylightFlowStatisticsListener&gt; <span class="title">getFlowListenComit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Meter Config/DS data change listener and Operation/DS notify commit</div><div class="line">    * functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Meter, OpendaylightMeterStatisticsListener&gt; <span class="title">getMeterListenCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Group Config/DS data change listener and Operation/DS notify commit</div><div class="line">    * functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Group, OpendaylightGroupStatisticsListener&gt; <span class="title">getGroupListenCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Queue Config/DS change listener and Operation/DS notify commit functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Queue, OpendaylightQueueStatisticsListener&gt; <span class="title">getQueueNotifyCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Table Operation/DS notify commit functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatNotifyCommiter&lt;OpendaylightFlowTableStatisticsListener&gt; <span class="title">getTableNotifCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Port Operation/DS notify commit functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatNotifyCommiter&lt;OpendaylightPortStatisticsListener&gt; <span class="title">getPortNotifyCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="function">StatisticsManagerConfig <span class="title">getConfiguration</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * A unique UUID is generated with each node added by the statistics manager implementation in order to uniquely</div><div class="line">    * identify a session.</div><div class="line">    * <span class="doctag">@param</span> nodeInstanceIdentifier</div><div class="line">    */</div><div class="line">   <span class="function">UUID <span class="title">getGeneratedUUIDForNode</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeInstanceIdentifier)</span></span>;</div></pre></td></tr></table></figure></p>
 </blockquote>
 
-
-    
-    
-    
-	  <div class="full-width auto-padding tags">
+  	</div>
+	  
+	  <div class="article-tags tags">
       
         <a href="/tags/SDN/">SDN</a>
       
@@ -218,55 +214,20 @@
       
 	  </div>
     
-  </section>
+	</section>
+	
+		<section class="youyan" id="comments"> 
+			<div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
+		</section>
+	
 </article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/06/03/OpenFlowJava处理流程/">
-        ODL对packet_in消息的处理流程
-      </a>
-    </h2>
-    
-    <time>
-      6月 3, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p><em>OpenFlowJava对PakcetIn消息的处理流程</em></p>
-<p>(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/06/03/OpenFlowJava处理流程/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/SDN/">SDN</a>
-      
-        <a href="/tags/ODL/">ODL</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-</section>
-
+<script>
+	window.subData = {
+		title: 'opendaylightplugin学习笔记（一）——StatisticsManager',
+		tools: true
+	}
+</script>
 
       </div>
       <aside class='l_side'>
@@ -368,11 +329,13 @@
 <script>
   var disqus_shortname = 'kevinhome';
   
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/07/27/opendaylightplugin学习笔记（一）——StatisticsManager/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

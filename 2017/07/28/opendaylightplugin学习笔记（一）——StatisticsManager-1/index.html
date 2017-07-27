@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>opendaylightplugin学习笔记（一）——StatisticsManager | 倾听枫声</title>
+  <meta name="description" content="生活的理想是为了理想的生活" />
+  <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/hexo.ico">
+  <link rel="alternate" href="/atom.xml" title="倾听枫声">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] StatNodeRegistrationImpl StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inven">
+<meta name="keywords" content="SDN,ODL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opendaylightplugin学习笔记（一）——StatisticsManager">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/28/opendaylightplugin学习笔记（一）——StatisticsManager-1/index.html">
+<meta property="og:site_name" content="倾听枫声">
+<meta property="og:description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] StatNodeRegistrationImpl StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inven">
+<meta property="og:updated_time" content="2017-07-27T16:01:38.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="opendaylightplugin学习笔记（一）——StatisticsManager">
+<meta name="twitter:description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] StatNodeRegistrationImpl StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inven">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				倾听枫声
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-github' href='https://github.com/'>
+								Github
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="https://github.com/" class="nav-github nav">
+				Github
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+	<audio autoplay="autoplay">
+    <source = src="http://opeygftv2.bkt.clouddn.com/%E7%8E%96%E6%9C%88%E8%8A%B1%E5%84%BF%E4%B8%8E%E7%AD%9D%20-%20%E7%90%B5%E7%90%B6%E8%AF%AD%20%E5%8F%A4%E7%AD%9D%E7%89%88.mp3" type="audio/mp3">
+  </audio>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-opendaylightplugin学习笔记（一）——StatisticsManager-1"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/07/28/opendaylightplugin学习笔记（一）——StatisticsManager-1/">
+    	opendaylightplugin学习笔记（一）——StatisticsManager
+    </a>
+  </h2>
+	<time>
+	  7月 28, 2017
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#StatNodeRegistrationImpl"><span class="toc-number">1.</span> <span class="toc-text">StatNodeRegistrationImpl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpendaylightInventoryListener"><span class="toc-number">2.</span> <span class="toc-text">OpendaylightInventoryListener</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StatNotifyCommitPort（端口信息）"><span class="toc-number">3.</span> <span class="toc-text">StatNotifyCommitPort（端口信息）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StatNotifyCommitTable（流表信息）"><span class="toc-number">4.</span> <span class="toc-text">StatNotifyCommitTable（流表信息）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#StatAbstractNotifyCommit-lt-·N-extends-NotificationListener-gt"><span class="toc-number">4.1.</span> <span class="toc-text">StatAbstractNotifyCommit<·N extends NotificationListener></span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StatListenCommitMeter（Meter）"><span class="toc-number">5.</span> <span class="toc-text">StatListenCommitMeter（Meter）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StatListenCommitGroup（Group）"><span class="toc-number">6.</span> <span class="toc-text">StatListenCommitGroup（Group）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Statistics-Manger"><span class="toc-number">7.</span> <span class="toc-text">Statistics.Manger</span></a></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>@(Opendaylight)[openflowplugin|statistics-manager|beryllium]</p>
+<h4 id="StatNodeRegistrationImpl"><a href="#StatNodeRegistrationImpl" class="headerlink" title="StatNodeRegistrationImpl"></a>StatNodeRegistrationImpl</h4><blockquote>
+<p>StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inventory-mananger转移到了statistics-manager。有待于进一步证实。<br><a id="more"></a><br>所在包 org.opendaylight.openflowplugin.applications.statistics.manager<br>实现接口<br>org.opendaylight.openflowplugin.applications.statistics.manager.StatNodeRegistration<br>org.opendaylight.controller.md.sal.common.api.clustering.EntityOwnershipListenerRegistration<br>祖父接口<br><strong>org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.OpendaylightInventoryListener</strong><br>java.lang.AutoCloseable<br>org.opendaylight.yangtools.yang.binding.NotificationListener<br><strong>java.util.EventListener</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EventListener</span></span></div></pre></td></tr></table></figure>
+<p><strong>所有的事件侦听器必须拓展的标记接口</strong></p>
+<h4 id="OpendaylightInventoryListener"><a href="#OpendaylightInventoryListener" class="headerlink" title="OpendaylightInventoryListener"></a>OpendaylightInventoryListener</h4><p>注册OpendaylightInvenrtoyListener监听器，当ODL控制器与openflow交换机建立连接时，或者断开连接，openflow交换机端口发生Down事件、Up事件时，会分别触发以下函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onNodeConnectorRemoved</span><span class="params">(NodeConnectorRemoved notification)</span></span>;</div><div class="line"><span class="comment">/*</span></div><div class="line">交换机端口Down事件</div><div class="line">一个NodeConnector被移除则发起通知，但并不会更改节点树。所描述的是一个节点被移除但基于某种原因节点树并没有被修改</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onNodeRemoved</span><span class="params">(NodeRemoved notification)</span></span>;</div><div class="line"><span class="comment">/*</span></div><div class="line">交换机下线事件</div><div class="line">一个Node被移除则发起通知，但并不会更改节点树。所描述的是一个节点被移除但基于某种原因节点树并没有被修改</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onNodeUpdated</span><span class="params">(NodeUpdated notification)</span></span>;</div><div class="line"><span class="comment">/*</span></div><div class="line">交换机上线事件</div><div class="line">一个Node被修改则发起通知，但并不会更改节点树。所描述的是一个节点被修改但基于某种原因节点树并没有被修改</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onNodeConnectorUpdated</span><span class="params">(NodeConnectorUpdated notification)</span></span>;</div><div class="line"><span class="comment">/*</span></div><div class="line">交换机端口Up事件</div><div class="line">一个NodeConnector被修改则发起通知，但并不会更改节点树。所描述的是一个节点被修改但基于某种原因节点树并没有被修改</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h4 id="StatNotifyCommitPort（端口信息）"><a href="#StatNotifyCommitPort（端口信息）" class="headerlink" title="StatNotifyCommitPort（端口信息）"></a>StatNotifyCommitPort（端口信息）</h4><p>所在包org.opendaylight.openflowplugin.applications.statistics.manager.impl</p>
+<blockquote>
+<p>一个NotifyListener针对PortStatistics，所有期望或者注册的的PortStatistics将被提交给Datastore或者Operational</p>
+</blockquote>
+<h4 id="StatNotifyCommitTable（流表信息）"><a href="#StatNotifyCommitTable（流表信息）" class="headerlink" title="StatNotifyCommitTable（流表信息）"></a>StatNotifyCommitTable（流表信息）</h4><blockquote>
+<p>同inventory-manager内的NodeTableFeatureCommit 功能是一致的</p>
+</blockquote>
+<p>所在包org.opendaylight.openflowplugin.applications.statistics.manager.impl<br>继承类StatAbstractNotifyCommit&lt;· N extends NotificationListener&gt;</p>
+<h5 id="StatAbstractNotifyCommit-lt-·N-extends-NotificationListener-gt"><a href="#StatAbstractNotifyCommit-lt-·N-extends-NotificationListener-gt" class="headerlink" title="StatAbstractNotifyCommit&lt;·N extends NotificationListener&gt;"></a>StatAbstractNotifyCommit&lt;·N extends NotificationListener&gt;</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">StatAbstractListenCommit</span><span class="params">(<span class="keyword">final</span> StatisticsManager manager, <span class="keyword">final</span> DataBroker db,<span class="keyword">final</span> NotificationProviderService nps, <span class="keyword">final</span> Class&lt;T&gt; clazz, <span class="keyword">final</span> StatNodeRegistration nodeRegistrationManager)</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Class is abstract implementation for all no Configuration/DataStore DataObjects and represent common functionality for all DataObject Statistics Commiters.   Class defines contract between DataObject and relevant Statistics NotificationListener.</p>
+</blockquote>
+<p>继承祖父类StatNotifyCommiter&lt;·N&gt; </p>
+<p>实现接口OpendaylightFlowTableStatisticsListener</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OpendaylightFlowTableStatisticsListener</span></span></div><div class="line">    <span class="keyword">extends</span> <span class="title">NotificationListener</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Receive flow table statistics update</div><div class="line">     *</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onFlowTableStatisticsUpdate</span><span class="params">(FlowTableStatisticsUpdate notification)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Class is a NotifyListener for TableStatistics All expected (registered) tableStatistics will be builded and commit to Operational/DataStore</p>
+</blockquote>
+<h4 id="StatListenCommitMeter（Meter）"><a href="#StatListenCommitMeter（Meter）" class="headerlink" title="StatListenCommitMeter（Meter）"></a>StatListenCommitMeter（Meter）</h4><p>所在包org.opendaylight.openflowplugin.applications.statistics.manager.impl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public StatListenCommitMeter(final StatisticsManager manager, final DataBroker db, final NotificationProviderService nps, final StatNodeRegistration nrm)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>StatListenCommitMeter Class is a NotifyListener for MeterStatistics and DataChangeListener for Config/DataStore for Meter node. All expected (registered) MeterStatistics will be builded and commit to Operational/DataStore. DataChangeEven should call create/delete Meter in Operational/DS</p>
+</blockquote>
+<h4 id="StatListenCommitGroup（Group）"><a href="#StatListenCommitGroup（Group）" class="headerlink" title="StatListenCommitGroup（Group）"></a>StatListenCommitGroup（Group）</h4><p>所在包org.opendaylight.openflowplugin.applications.statistics.manager.impl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">StatListenCommitGroup</span><span class="params">(<span class="keyword">final</span> StatisticsManager manager,  <span class="keyword">final</span> DataBroker db, <span class="keyword">final</span> NotificationProviderService nps,<span class="keyword">final</span> StatNodeRegistration nrm)</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Class is a NotifyListener for GroupStatistics and DataChangeListener for Config/DataStore for Group node.All expected (registered) GroupStatistics will be builded and commit to Operational/DataStore. DataChangeEven should call create/delete Group in Operational/DS</p>
+</blockquote>
+<h4 id="Statistics-Manger"><a href="#Statistics-Manger" class="headerlink" title="Statistics.Manger"></a>Statistics.Manger</h4><blockquote>
+<p>It represent a central point for whole module. Implementation <strong>DataStore的数据存储包含两种形式，分别为Config/DS和Operational/DS,config持有由应用所写的数据，oprational反映了设备实际的状态</strong><br>StatisticsManager registers all Operation/DS {@link StatNotifyCommiter} and Config/DS {@link StatListeningCommiter}, as well as {@link StatPermCollector} for statistic collecting and {@link StatRpcMsgManager} as Device RPCs provider. In next, StatisticsManager provides all DS contact Transaction services.<br><strong>即完成所有注册之后，提供所有的DataStore数据交互业务的服务</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 整个statistics-manager的入口函数</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> notifService</div><div class="line">    * <span class="doctag">@param</span> rpcRegistry</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">(<span class="keyword">final</span> NotificationProviderService notifService,</span></span></div><div class="line">           <span class="keyword">final</span> RpcConsumerRegistry rpcRegistry);</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method provides read/write DataStore functionality cross applyOperation</div><div class="line">    * defined in &#123;<span class="doctag">@link</span> StatDataStoreOperation&#125;</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> inventoryOper - operation for DataStore</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(<span class="keyword">final</span> StatDataStoreOperation inventoryOper)</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method wraps &#123;<span class="doctag">@link</span> StatisticsManager#isProvidedFlowNodeActive(InstanceIdentifier)&#125; method</div><div class="line">    * to provide parallel statCollection process for Set of Nodes. So it has to</div><div class="line">    * identify correct Node Set by NodeIdentifier</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> nodeIdent</div><div class="line">    */</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isProvidedFlowNodeActive</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.collectNextStatistics to provide</div><div class="line">     * parallel statCollection process for Set of Nodes. So it has to</div><div class="line">     * identify correct Node Set by NodeIdentifier.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">collectNextStatistics</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent, TransactionId xid)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.connectedNodeRegistration to provide</div><div class="line">     * parallel statCollection process for Set of Nodes. So it has to</div><div class="line">     * connect node to new or not full Node statCollector Set.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     * <span class="doctag">@param</span> statTypes</div><div class="line">     * <span class="doctag">@param</span> nrOfSwitchTables</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">connectedNodeRegistration</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent,</span></span></div><div class="line">            List&lt;StatCapabTypes&gt; statTypes, Short nrOfSwitchTables);</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.disconnectedNodeUnregistration to provide</div><div class="line">     * parallel statCollection process for Set of Nodes. So it has to identify</div><div class="line">     * correct collector for disconnect node.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">disconnectedNodeUnregistration</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.registerAdditionalNodeFeature to provide</div><div class="line">     * possibility to register additional Node Feature &#123;<span class="doctag">@link</span> StatCapabTypes&#125; for</div><div class="line">     * statistics collecting.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> nodeIdent</div><div class="line">     * <span class="doctag">@param</span> statCapab</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">registerAdditionalNodeFeature</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent, StatCapabTypes statCapab)</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method wraps &#123;<span class="doctag">@link</span> StatPermCollector&#125;.unregisterNodeStats to provide</div><div class="line">    * possibility to unregister Node stats type &#123;<span class="doctag">@link</span> StatCapabTypes&#125; from</div><div class="line">    * statistics collecting.</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> nodeIdent</div><div class="line">    * <span class="doctag">@param</span> statCapab</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">unregisterNodeStats</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeIdent, StatCapabTypes statCapab)</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Method provides access to Device RPC methods by wrapped</div><div class="line">    * internal method. In next &#123;<span class="doctag">@link</span> StatRpcMsgManager&#125; is registered all</div><div class="line">    * Multipart device msg response and joining all to be able run all</div><div class="line">    * collected statistics in one time (easy identification Data for delete)</div><div class="line">    *</div><div class="line">    * <span class="doctag">@return</span> &#123;<span class="doctag">@link</span> StatRpcMsgManager&#125;</div><div class="line">    */</div><div class="line">   <span class="function">StatRpcMsgManager <span class="title">getRpcMsgManager</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : &#123;<span class="doctag">@link</span> org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.FlowCapableNode&#125;</div><div class="line">    * Operational/DS data change listener -&amp;gt; impl. target -&amp;gt; register FlowCapableNode to Statistic Collecting process</div><div class="line">    * <span class="doctag">@return</span> &#123;<span class="doctag">@link</span> StatNodeRegistration&#125;</div><div class="line">    */</div><div class="line">   <span class="function">StatNodeRegistration <span class="title">getNodeRegistrator</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Flow Config/DS data change listener -&amp;gt; impl. target -&amp;gt;</div><div class="line">    * -&amp;gt; make pair between Config/DS FlowId and Device Flow response Hash</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Flow, OpendaylightFlowStatisticsListener&gt; <span class="title">getFlowListenComit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Meter Config/DS data change listener and Operation/DS notify commit</div><div class="line">    * functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Meter, OpendaylightMeterStatisticsListener&gt; <span class="title">getMeterListenCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Group Config/DS data change listener and Operation/DS notify commit</div><div class="line">    * functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Group, OpendaylightGroupStatisticsListener&gt; <span class="title">getGroupListenCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Queue Config/DS change listener and Operation/DS notify commit functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatListeningCommiter&lt;Queue, OpendaylightQueueStatisticsListener&gt; <span class="title">getQueueNotifyCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Table Operation/DS notify commit functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatNotifyCommiter&lt;OpendaylightFlowTableStatisticsListener&gt; <span class="title">getTableNotifCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Define Method : Port Operation/DS notify commit functionality</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function">StatNotifyCommiter&lt;OpendaylightPortStatisticsListener&gt; <span class="title">getPortNotifyCommit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="function">StatisticsManagerConfig <span class="title">getConfiguration</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * A unique UUID is generated with each node added by the statistics manager implementation in order to uniquely</div><div class="line">    * identify a session.</div><div class="line">    * <span class="doctag">@param</span> nodeInstanceIdentifier</div><div class="line">    */</div><div class="line">   <span class="function">UUID <span class="title">getGeneratedUUIDForNode</span><span class="params">(InstanceIdentifier&lt;Node&gt; nodeInstanceIdentifier)</span></span>;</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/SDN/">SDN</a>
+      
+        <a href="/tags/ODL/">ODL</a>
+      
+	  </div>
+    
+	</section>
+	
+		<section class="youyan" id="comments"> 
+			<div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
+		</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: 'opendaylightplugin学习笔记（一）——StatisticsManager',
+		tools: true
+	}
+</script>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='http://opeygftv2.bkt.clouddn.com/gufeng.jpeg' />
+
+<div class='header'>Lex-Zhao</div>
+<div class='content'>
+<div class='desc'>生活的理想是为了理想的生活</div>
+</div>
+</section>
+
+  <section class='m_widget links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://www.zhihu.com/people/zhao-xu-dong-26-49/activities">
+            <div class='name'>知乎</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://www.cnblogs.com/lex-to-lex/">
+            <div class='name'>博客园</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://bt.byr.cn/promotionlink.php?key=45a5b20a96726556639d68492017e011">
+            <div class='name'>北邮人BT</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://weibo.com/3879533950/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+            <div class='name'>微博</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>18</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/tags/Algorithm/" style="font-size: 20px; color: #000040">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16px; color: #0000bf">GC机制</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 18px; color: #000080">ODL</a> <a href="/tags/SDN/" style="font-size: 18px; color: #000080">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/Z1298174226" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://www.zhihu.com/people/zhao-xu-dong-26-49/activities" class="social zhihu"
+          target="_blank" rel="external">
+          <span class="icon icon-zhihu"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a href='https://github.com/Z1298174226' class="codename">Iron Man</a> designed by <a href="http://www.lex-zhao.xyz/" target="_blank">Mr.Zhao</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+<script>
+  var disqus_shortname = 'kevinhome';
+  
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/07/28/opendaylightplugin学习笔记（一）——StatisticsManager-1/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

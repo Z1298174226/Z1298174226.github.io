@@ -19,7 +19,7 @@
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/28/opendaylightplugin学习笔记（一）——StatisticsManager-1/index.html">
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] StatNodeRegistrationImpl StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inven">
-<meta property="og:updated_time" content="2017-07-27T16:01:38.045Z">
+<meta property="og:updated_time" content="2017-07-28T00:24:47.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="opendaylightplugin学习笔记（一）——StatisticsManager">
 <meta name="twitter:description" content="@(Opendaylight)[openflowplugin|statistics-manager|beryllium] StatNodeRegistrationImpl StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inven">
@@ -176,7 +176,7 @@
 <p>同inventory-manager内的NodeTableFeatureCommit 功能是一致的</p>
 </blockquote>
 <p>所在包org.opendaylight.openflowplugin.applications.statistics.manager.impl<br>继承类StatAbstractNotifyCommit&lt;· N extends NotificationListener&gt;</p>
-<h5 id="StatAbstractNotifyCommit-lt-·N-extends-NotificationListener-gt"><a href="#StatAbstractNotifyCommit-lt-·N-extends-NotificationListener-gt" class="headerlink" title="StatAbstractNotifyCommit&lt;·N extends NotificationListener&gt;"></a>StatAbstractNotifyCommit&lt;·N extends NotificationListener&gt;</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">StatAbstractListenCommit</span><span class="params">(<span class="keyword">final</span> StatisticsManager manager, <span class="keyword">final</span> DataBroker db,<span class="keyword">final</span> NotificationProviderService nps, <span class="keyword">final</span> Class&lt;T&gt; clazz, <span class="keyword">final</span> StatNodeRegistration nodeRegistrationManager)</span></span></div></pre></td></tr></table></figure>
+<h5 id="StatAbstractNotifyCommit-lt-·N-extends-NotificationListener-gt"><a href="#StatAbstractNotifyCommit-lt-·N-extends-NotificationListener-gt" class="headerlink" title="StatAbstractNotifyCommit&lt;·N extends NotificationListener&gt;"></a>StatAbstractNotifyCommit&lt;·N extends NotificationListener&gt;</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">StatAbstractListenCommit</span><span class="params">(<span class="keyword">final</span> StatisticsManager manager, </span></span></div><div class="line"><span class="keyword">final</span> DataBroker db,<span class="keyword">final</span> NotificationProviderService nps, </div><div class="line"><span class="keyword">final</span> Class&lt;T&gt; clazz, <span class="keyword">final</span> StatNodeRegistration nodeRegistrationManager)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>Class is abstract implementation for all no Configuration/DataStore DataObjects and represent common functionality for all DataObject Statistics Commiters.   Class defines contract between DataObject and relevant Statistics NotificationListener.</p>
 </blockquote>

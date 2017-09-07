@@ -142,6 +142,84 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2017/09/07/最小高度树/">
+        最小高度树
+      </a>
+    </h2>
+    
+    <time>
+      9月 7, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>问题描述：</p>
+<p><strong>For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.</strong></p>
+<p>Format</p>
+<p>The graph contains n nodes which are labeled from 0 to n - 1. You will be given the number n and a list of undirected edges (each edge is a pair of labels).</p>
+<p>You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170907102600.png" alt=""></p>
+<p>在已知树形结构求树根的问题，优先解决方案应该是BFS，从叶子节点逐层遍历，直到找到满足要求的树根</p>
+<pre>
+<code>
+class Solution {
+    public List<integer> findMinHeightTrees(int n, int[][] edges) {
+        List<integer>[] adj =  (ArrayList<integer>[]) new ArrayList[n];
+        for(int i = 0; i <n ;i++)="" adj[i]="new" arraylist<integer="">();
+        List<integer> result = new ArrayList<integer>();
+        if(n == 1){
+            result.add(0);
+            return result;
+        }
+        for(int[] edge : edges) {
+            adj[edge[0]].add(edge[1]);
+            adj[edge[1]].add(edge[0]);
+        }
+        for(int i =0 ;i < n; i++) {
+            if(adj[i].size() == 1)
+                result.add(i);
+        }
+        while(n > 2) {
+            n -= result.size();
+            List<integer> newResult = new ArrayList<integer>();
+            for(int vertex : result) {
+                int parent = adj[vertex].get(0);
+                adj[parent].remove((Integer)vertex);
+                if(adj[parent].size() == 1) newResult.add(parent);
+            }
+            result = newResult;           
+        }
+        return result;
+    }
+}
+</integer></integer></integer></integer></n></integer></integer></integer></code>
+</pre>
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/Leetcode/">Leetcode</a>
+      
+        <a href="/tags/DataStructure/">DataStructure</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2017/07/28/opendaylightplugin学习笔记（一）——StatisticsManager-1/">
         opendaylightplugin学习笔记（一）——StatisticsManager
       </a>
@@ -305,52 +383,6 @@
 </article>
     </div>
   
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/07/11/小问题/">
-        小问题
-      </a>
-    </h2>
-    
-    <time>
-      7月 11, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>今天吃饭的时候，问了自己一个问题，java反射到底是个啥，java反射可以实现啥？<br>自己稍微总结一下：</p>
-<p><strong>java反射是在程序运行时，拿到一个类可以得到类的全部属性和方法，拿到一个对象，可以调用对象的全部属性和方法。</strong></p>
-<p>java反射的作用：</p>
-<ul>
-<li>判断一个实例对象是否属于某个类</li>
-<li>构造类的实例化对象</li>
-<li>获取类的全部方法和属性</li>
-<li>调用对象的全部方法和属性</li>
-<li>动态代理 </li>
-</ul>
-
-
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
 </section>
 
 
@@ -409,7 +441,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>18</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>19</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -422,7 +454,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 20px; color: #000040">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16px; color: #0000bf">GC机制</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 18px; color: #000080">ODL</a> <a href="/tags/SDN/" style="font-size: 18px; color: #000080">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 20px; color: #000040">Algorithm</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 16px; color: #0000bf">GC机制</a> <a href="/tags/Leetcode/" style="font-size: 14px; color: #00f">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 18px; color: #000080">ODL</a> <a href="/tags/SDN/" style="font-size: 18px; color: #000080">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 22px; color: #000">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

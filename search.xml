@@ -3,6 +3,80 @@
   
     
     <entry>
+      <title><![CDATA[Remove Invalid Parentheses]]></title>
+      <url>/2017/09/13/Remove-Invalid-Parentheses/</url>
+      <content type="html"><![CDATA[<p>问题如下：<br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913174831.png" alt=""><br><a id="more"></a><br>考虑使用DFS，通过递归顺序遍历字符串，其中当遍历到’(‘和’)’时，均存在将其加入字符串和抛弃掉两种情况</p>
+<pre>
+<code>
+class Solution {
+    public List<string> removeInvalidParentheses(String s) {
+    int rmL = 0, rmR = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == '(') {
+            rmL++;
+        } else if (s.charAt(i) == ')') {
+            if (rmL != 0) {
+                rmL--;
+            } else {
+                rmR++;
+            }
+        }
+    }
+    Set<string> res = new HashSet<>();
+    dfs(s, 0, res, new StringBuilder(), rmL, rmR, 0);
+    return new ArrayList<string>(res);
+}
+
+public void dfs(String s, int i, Set<string> res, StringBuilder sb, int rmL, int rmR, int open) {
+    if (rmL < 0 || rmR < 0 || open < 0) {
+        return;
+    }
+    if (i == s.length()) {
+        if (rmL == 0 && rmR == 0 && open == 0) {
+            res.add(sb.toString());
+        }        
+        return;
+    }
+
+    char c = s.charAt(i); 
+    int len = sb.length();
+
+    if (c == '(') {
+        dfs(s, i + 1, res, sb, rmL - 1, rmR, open);            // not use (
+        dfs(s, i + 1, res, sb.append(c), rmL, rmR, open + 1);       // use (
+
+    } else if (c == ')') {
+        dfs(s, i + 1, res, sb, rmL, rmR - 1, open);                // not use  )
+        dfs(s, i + 1, res, sb.append(c), rmL, rmR, open - 1);          // use )
+
+    } else {
+        dfs(s, i + 1, res, sb.append(c), rmL, rmR, open);    
+    }
+
+    sb.setLength(len);        
+}
+}
+</string></string></string></string></code>
+</pre>]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Binary Tree Maximum Path Sum]]></title>
       <url>/2017/09/13/Binary-Tree-Maximum-Path-Sum/</url>
       <content type="html"><![CDATA[<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png" alt=""><br>这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。<br><a id="more"></a></p>

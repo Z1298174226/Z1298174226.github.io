@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-09-07T05:02:24.526Z</updated>
+  <updated>2017-09-13T07:49:58.784Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>中序遍历的应用</title>
+    <link href="http://www.lex-zhao.xyz/2017/09/13/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://www.lex-zhao.xyz/2017/09/13/中序遍历的应用/</id>
+    <published>2017-09-13T07:41:51.000Z</published>
+    <updated>2017-09-13T07:49:58.784Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于二叉树，当涉及到将二叉树转化为有序数组的问题时，应该首先考虑中序遍历和后序遍历。如题：&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="BST" scheme="http://www.lex-zhao.xyz/tags/BST/"/>
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>Perfect Square</title>
@@ -70,9 +94,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
-    
       <category term="ODL" scheme="http://www.lex-zhao.xyz/tags/ODL/"/>
+    
+      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
     
   </entry>
   
@@ -92,9 +116,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
-    
       <category term="ODL" scheme="http://www.lex-zhao.xyz/tags/ODL/"/>
+    
+      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
     
   </entry>
   
@@ -307,9 +331,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
-    
       <category term="ODL" scheme="http://www.lex-zhao.xyz/tags/ODL/"/>
+    
+      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
     
   </entry>
   
@@ -420,27 +444,6 @@
     
     
       <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Latch</title>
-    <link href="http://www.lex-zhao.xyz/2017/04/28/Latch/"/>
-    <id>http://www.lex-zhao.xyz/2017/04/28/Latch/</id>
-    <published>2017-04-28T07:40:52.000Z</published>
-    <updated>2017-05-03T09:50:34.498Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#Latch&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;同步工具&lt;/strong&gt;类除了最熟悉的阻塞队列之外，还包括&lt;strong&gt;Semaphore、Barrier&lt;/strong&gt;以及&lt;strong&gt;Latch&lt;/strong&gt;。同样，我们也可以创建属于自己的同步工具类。所有的同步工具类都包含了一些特定的结构属性：比如，封装了一些状态，而这些状态将决定执行同步工具类的线程是继续执行还是等待，除此而外，还提供了一些方法对状态进行操作，以及高效的等待同步工具类进入到预期的状态。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
     
   </entry>
   

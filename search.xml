@@ -3,6 +3,32 @@
   
     
     <entry>
+      <title><![CDATA[中序遍历的应用]]></title>
+      <url>/2017/09/13/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8/</url>
+      <content type="html"><![CDATA[<p>对于二叉树，当涉及到将二叉树转化为有序数组的问题时，应该首先考虑中序遍历和后序遍历。如题：<br><a id="more"></a><br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913154630.png" alt=""><br>使用中序遍历：</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913154706.png" alt=""></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> BST </tag>
+            
+            <tag> Leetcode </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Perfect Square]]></title>
       <url>/2017/09/07/Perfect-Square/</url>
       <content type="html"></content>
@@ -124,9 +150,9 @@ class Solution {
         
         <tags>
             
-            <tag> SDN </tag>
-            
             <tag> ODL </tag>
+            
+            <tag> SDN </tag>
             
         </tags>
         
@@ -147,9 +173,9 @@ class Solution {
         
         <tags>
             
-            <tag> SDN </tag>
-            
             <tag> ODL </tag>
+            
+            <tag> SDN </tag>
             
         </tags>
         
@@ -619,9 +645,9 @@ public static void main(String[] args){
         
         <tags>
             
-            <tag> SDN </tag>
-            
             <tag> ODL </tag>
+            
+            <tag> SDN </tag>
             
         </tags>
         

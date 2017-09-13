@@ -3,6 +3,49 @@
   
     
     <entry>
+      <title><![CDATA[Binary Tree Maximum Path Sum]]></title>
+      <url>/2017/09/13/Binary-Tree-Maximum-Path-Sum/</url>
+      <content type="html"><![CDATA[<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png" alt=""><br>这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。<br><a id="more"></a></p>
+<pre>
+<code>
+class Solution {
+
+    private int sum = Integer.MIN_VALUE;
+
+    public int maxPathSum(TreeNode root) {
+        if(root == null) return 0;
+        maxPath(root);
+        return sum;
+    }
+    public int maxPath(TreeNode root) {
+        if(root == null) return 0;
+        int sumLeft = Math.max(0, maxPath(root.left));
+        int sumRight = Math.max(0, maxPath(root.right));
+        sum = Math.max(sum,sumLeft + sumRight + root.val);
+        return Math.max(sumLeft,sumRight) + root.val;
+    }
+}
+</code>
+</pre>]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[中序遍历的应用]]></title>
       <url>/2017/09/13/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8/</url>
       <content type="html"><![CDATA[<p>对于二叉树，当涉及到将二叉树转化为有序数组的问题时，应该首先考虑中序遍历和后序遍历。如题：<br><a id="more"></a><br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913154630.png" alt=""><br>使用中序遍历：</p>
@@ -20,9 +63,9 @@
             
             <tag> Algorithm </tag>
             
-            <tag> BST </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> BST </tag>
             
         </tags>
         
@@ -150,9 +193,9 @@ class Solution {
         
         <tags>
             
-            <tag> ODL </tag>
-            
             <tag> SDN </tag>
+            
+            <tag> ODL </tag>
             
         </tags>
         
@@ -173,9 +216,9 @@ class Solution {
         
         <tags>
             
-            <tag> ODL </tag>
-            
             <tag> SDN </tag>
+            
+            <tag> ODL </tag>
             
         </tags>
         
@@ -645,9 +688,9 @@ public static void main(String[] args){
         
         <tags>
             
-            <tag> ODL </tag>
-            
             <tag> SDN </tag>
+            
+            <tag> ODL </tag>
             
         </tags>
         

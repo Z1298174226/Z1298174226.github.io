@@ -3,6 +3,14 @@
   
     
     <entry>
+      <title><![CDATA[Matchstickes to Square]]></title>
+      <url>/2017/09/15/Matchstickes-to-Square/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Remove Invalid Parentheses]]></title>
       <url>/2017/09/13/Remove-Invalid-Parentheses/</url>
       <content type="html"><![CDATA[<p>问题如下：<br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913174831.png" alt=""><br><a id="more"></a><br>考虑使用DFS，通过递归顺序遍历字符串，其中当遍历到’(‘和’)’时，均存在将其加入字符串和抛弃掉两种情况</p>
@@ -137,9 +145,9 @@ class Solution {
             
             <tag> Algorithm </tag>
             
-            <tag> Leetcode </tag>
-            
             <tag> BST </tag>
+            
+            <tag> Leetcode </tag>
             
         </tags>
         

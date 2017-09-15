@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-09-13T09:56:05.851Z</updated>
+  <updated>2017-09-15T09:16:10.686Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Matchstickes to Square</title>
+    <link href="http://www.lex-zhao.xyz/2017/09/15/Matchstickes-to-Square/"/>
+    <id>http://www.lex-zhao.xyz/2017/09/15/Matchstickes-to-Square/</id>
+    <published>2017-09-15T09:16:10.000Z</published>
+    <updated>2017-09-15T09:16:10.686Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Remove Invalid Parentheses</title>
@@ -77,9 +91,9 @@
     
       <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
-      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
-    
       <category term="BST" scheme="http://www.lex-zhao.xyz/tags/BST/"/>
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
     
   </entry>
   
@@ -424,30 +438,6 @@
       <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
     
       <category term="GC机制" scheme="http://www.lex-zhao.xyz/tags/GC%E6%9C%BA%E5%88%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>容器技术与虚拟机</title>
-    <link href="http://www.lex-zhao.xyz/2017/05/04/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    <id>http://www.lex-zhao.xyz/2017/05/04/容器技术与虚拟机/</id>
-    <published>2017-05-04T06:14:48.000Z</published>
-    <updated>2017-05-13T09:29:38.923Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;云计算的本质是集中资源再分配，再分配的过程就是资源的逻辑划分，提供资源抽象的实现方式。其中主要涉及两个方面，资源控制和资源隔离。&lt;/p&gt;
-&lt;p&gt;居然一直都无法准确表述镜像的概念，所谓镜像，包括各种打包的Apps、系统使用进程、应用软件、shell以及公用函数库。&lt;/p&gt;
-&lt;h1 id=&quot;虚拟机&quot;&gt;&lt;a href=&quot;#虚拟机&quot; class=&quot;headerlink&quot; title=&quot;虚拟机&quot;&gt;&lt;/a&gt;虚拟机&lt;/h1&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Docker" scheme="http://www.lex-zhao.xyz/tags/Docker/"/>
-    
-      <category term="虚拟机" scheme="http://www.lex-zhao.xyz/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
   </entry>
   

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lex-zhao.xyz/2017/09/20/Dynamic-Programming-One/</loc>
+    
+    <lastmod>2017-09-20T00:47:22.526Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lex-zhao.xyz/2017/09/15/Matchstickes-to-Square/</loc>
     
     <lastmod>2017-09-15T09:16:10.686Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://www.lex-zhao.xyz/2017/09/13/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
     
     <lastmod>2017-09-13T07:49:58.784Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lex-zhao.xyz/2017/09/07/Perfect-Square/</loc>
-    
-    <lastmod>2017-09-07T05:02:24.526Z</lastmod>
     
   </url>
   

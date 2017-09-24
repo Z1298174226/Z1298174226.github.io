@@ -3,6 +3,28 @@
   
     
     <entry>
+      <title><![CDATA[Dynamic Programming One]]></title>
+      <url>/2017/09/20/Dynamic-Programming-One/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> DP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Matchstickes to Square]]></title>
       <url>/2017/09/15/Matchstickes-to-Square/</url>
       <content type="html"></content>
@@ -145,19 +167,11 @@ class Solution {
             
             <tag> Algorithm </tag>
             
-            <tag> BST </tag>
-            
             <tag> Leetcode </tag>
             
+            <tag> BST </tag>
+            
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Perfect Square]]></title>
-      <url>/2017/09/07/Perfect-Square/</url>
-      <content type="html"></content>
-      
         
     </entry>
     
@@ -320,9 +334,9 @@ class Solution {
         
         <tags>
             
-            <tag> DataMining </tag>
-            
             <tag> Algorithm </tag>
+            
+            <tag> DataMining </tag>
             
         </tags>
         

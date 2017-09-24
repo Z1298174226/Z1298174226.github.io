@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-09-15T09:16:10.686Z</updated>
+  <updated>2017-09-20T00:47:22.526Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dynamic Programming One</title>
+    <link href="http://www.lex-zhao.xyz/2017/09/20/Dynamic-Programming-One/"/>
+    <id>http://www.lex-zhao.xyz/2017/09/20/Dynamic-Programming-One/</id>
+    <published>2017-09-20T00:44:35.000Z</published>
+    <updated>2017-09-20T00:47:22.526Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
+    
+  </entry>
   
   <entry>
     <title>Matchstickes to Square</title>
@@ -91,23 +111,9 @@
     
       <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
-      <category term="BST" scheme="http://www.lex-zhao.xyz/tags/BST/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Perfect Square</title>
-    <link href="http://www.lex-zhao.xyz/2017/09/07/Perfect-Square/"/>
-    <id>http://www.lex-zhao.xyz/2017/09/07/Perfect-Square/</id>
-    <published>2017-09-07T05:02:24.000Z</published>
-    <updated>2017-09-07T05:02:24.526Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
+      <category term="BST" scheme="http://www.lex-zhao.xyz/tags/BST/"/>
     
   </entry>
   
@@ -194,9 +200,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="DataMining" scheme="http://www.lex-zhao.xyz/tags/DataMining/"/>
-    
       <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="DataMining" scheme="http://www.lex-zhao.xyz/tags/DataMining/"/>
     
   </entry>
   

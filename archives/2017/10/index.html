@@ -165,46 +165,12 @@
   </section>
   <section class="article typo">
 	  <p><img src="http://opeygftv2.bkt.clouddn.com/strangepriter.JPG" alt=""></p>
-<p><strong>这道题的难度感觉是很大的</strong>，目前想到的方法是 <strong>&lt;O(n^3)</strong>,（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。<br>直接看代码</p>
-<pre>
-<code>
-class Solution {
-    public int strangePrinter(String s) {
-        if (s.length() == 0) return 0;
-        char[] sa = s.toCharArray();
-        int n = 1;
-        for (int i = 1; i < sa.length; ++i) {
-            if (sa[i] == sa[n - 1]) continue;
-            sa[n++] = sa[i];
-        }
-//去除数组当中的相邻且重复元素，降低数组长度，起到压缩数组的作用
-        int[][] dp = new int[n][n];
-        for (int j = 0; j < n; ++j) {
-            dp[j][j] = 1;
-            for (int i = j - 1; i >= 0; --i) {
-                if (sa[i] == sa[j]) {
-                    dp[i][j] = dp[i][j - 1];
-                    continue;
-                }
-                dp[i][j] = dp[i][j - 1] + 1;
-                for (int k = i + 1; k < j; ++k) {
-                    if (sa[k] == sa[j]) {
-                        if (dp[i][k - 1] + dp[k][j] < dp[i][j]) {
-                            dp[i][j] = dp[i][j - 1];
-                            break;
-//算法当中不可能存在可以两次松弛的情况，因此可以直接break，减少循环次数
-                        }
-                    }
-                }
-            }
-        }
-        return dp[0][n - 1];
-    }
-}
-</code>
-</pre>
+<p><strong>这道题的难度感觉是很大的</strong>，目前想到的方法是 <strong>&lt;O(n^3)</strong>,（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。<br>直接看代码<br></p>
 
-
+    
+	  <div class="readmore">
+      <a href="/2017/10/19/Strange-priter/">Read More</a>
+    </div>
     
     
     

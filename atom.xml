@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-10-19T11:08:14.064Z</updated>
+  <updated>2017-10-19T11:09:40.710Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://www.lex-zhao.xyz/2017/10/19/Strange-priter/"/>
     <id>http://www.lex-zhao.xyz/2017/10/19/Strange-priter/</id>
     <published>2017-10-19T10:26:55.000Z</published>
-    <updated>2017-10-19T11:08:14.064Z</updated>
+    <updated>2017-10-19T11:09:40.710Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/strangepriter.JPG&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;这道题的难度感觉是很大的&lt;/strong&gt;，目前想到的方法是 &lt;strong&gt;&amp;lt;O(n^3)&lt;/s
+&lt;p&gt;&lt;strong&gt;这道题的难度感觉是很大的&lt;/strong&gt;，目前想到的方法是 &lt;strong&gt;&amp;lt;O(n^3)&lt;/strong&gt;,（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。&lt;br&gt;直接看代码&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

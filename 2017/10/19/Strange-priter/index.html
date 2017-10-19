@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="google-site-verification" content="UfGN2iuA3cNUL9dAHL2Eb1UjKFc4U4PJqPNhpyhhKpU" />
   
-  <title>Archives: 2017/7 | 倾听枫声</title>
+  <title>Strange priter | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -13,15 +13,19 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生活的理想是为了理想的生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="倾听枫声">
-<meta property="og:url" content="http://www.lex-zhao.xyz/archives/2017/07/page/3/index.html">
+  <meta name="description" content="这道题的难度感觉是很大的，目前想到的方法是 &amp;lt;O(n^3),（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。直接看代码   class Solution {     public int strangePrinter(String s) {         if (s.length() == 0) return 0;">
+<meta name="keywords" content="Algorithm,Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Strange priter">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/10/19/Strange-priter/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="生活的理想是为了理想的生活">
+<meta property="og:description" content="这道题的难度感觉是很大的，目前想到的方法是 &amp;lt;O(n^3),（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。直接看代码   class Solution {     public int strangePrinter(String s) {         if (s.length() == 0) return 0;">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/strangepriter.JPG">
+<meta property="og:updated_time" content="2017-10-19T11:08:14.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="倾听枫声">
-<meta name="twitter:description" content="生活的理想是为了理想的生活">
+<meta name="twitter:title" content="Strange priter">
+<meta name="twitter:description" content="这道题的难度感觉是很大的，目前想到的方法是 &amp;lt;O(n^3),（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。直接看代码   class Solution {     public int strangePrinter(String s) {         if (s.length() == 0) return 0;">
+<meta name="twitter:image" content="http://opeygftv2.bkt.clouddn.com/strangepriter.JPG">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -135,68 +139,94 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        
+        <article id="post-Strange-priter"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/10/19/Strange-priter/">
+    	Strange priter
+    </a>
+  </h2>
+	<time>
+	  10月 19, 2017
+	</time>
 	
-  <script>
-    window.subData= { title:'Year : 2017.7'}
-  </script>
-
-<section class="post-list">
-	
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/07/02/弗洛伊德算法及证明/">
-        弗洛伊德算法及证明
-      </a>
-    </h2>
-    
-    <time>
-      7月 2, 2017
-    </time>
-		
     
     <div class='cats'>
         <a href="/categories/技术/">技术</a>
     </div>
 
-  </section>
-  <section class="article typo">
-	  <p>弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。<br>首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。<br>在此鸣谢<a href="http://www.cnblogs.com/skywang12345所提供的图片">http://www.cnblogs.com/skywang12345所提供的图片</a><br><img src="http://opeygftv2.bkt.clouddn.com/01.jpg" alt=""><br></p>
+	</section>
+	
+		<section class="toc-wrapper"></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p><img src="http://opeygftv2.bkt.clouddn.com/strangepriter.JPG" alt=""></p>
+<p><strong>这道题的难度感觉是很大的</strong>，目前想到的方法是 <strong>&lt;O(n^3)</strong>,（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。<br>直接看代码</p>
+<pre>
+<code>
+class Solution {
+    public int strangePrinter(String s) {
+        if (s.length() == 0) return 0;
+        char[] sa = s.toCharArray();
+        int n = 1;
+        for (int i = 1; i < sa.length; ++i) {
+            if (sa[i] == sa[n - 1]) continue;
+            sa[n++] = sa[i];
+        }
+//去除数组当中的相邻且重复元素，降低数组长度，起到压缩数组的作用
+        int[][] dp = new int[n][n];
+        for (int j = 0; j < n; ++j) {
+            dp[j][j] = 1;
+            for (int i = j - 1; i >= 0; --i) {
+                if (sa[i] == sa[j]) {
+                    dp[i][j] = dp[i][j - 1];
+                    continue;
+                }
+                dp[i][j] = dp[i][j - 1] + 1;
+                for (int k = i + 1; k < j; ++k) {
+                    if (sa[k] == sa[j]) {
+                        if (dp[i][k - 1] + dp[k][j] < dp[i][j]) {
+                            dp[i][j] = dp[i][j - 1];
+                            break;
+//算法当中不可能存在可以两次松弛的情况，因此可以直接break，减少循环次数
+                        }
+                    }
+                }
+            }
+        }
+        return dp[0][n - 1];
+    }
+}
+</code>
+</pre>
 
-    
-	  <div class="readmore">
-      <a href="/2017/07/02/弗洛伊德算法及证明/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
+  	</div>
+	  
+	  <div class="article-tags tags">
       
         <a href="/tags/Algorithm/">Algorithm</a>
       
+        <a href="/tags/Leetcode/">Leetcode</a>
+      
 	  </div>
     
-  </section>
+	</section>
+	
+		<section class="youyan" id="comments"> 
+			<div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
+		</section>
+	
 </article>
-    </div>
-  
-</section>
-
-
-  <nav id="page-nav">
-    
-    <a class="prev" rel="prev" href="/archives/2017/07/page/2/">
-      <span class="icon icon-chevron-left"></span>
-      <span class="text">Previous</span>
-    </a>
-    
-    
-  </nav>
-  
-
+<script>
+	window.subData = {
+		title: 'Strange priter',
+		tools: true
+	}
+</script>
 
       </div>
       <aside class='l_side'>
@@ -298,11 +328,13 @@
 <script>
   var disqus_shortname = 'kevinhome';
   
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/10/19/Strange-priter/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

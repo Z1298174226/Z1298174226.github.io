@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-10-19T11:09:40.710Z</updated>
+  <updated>2017-11-02T03:32:57.429Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>InterleavingString</title>
+    <link href="http://www.lex-zhao.xyz/2017/11/02/InterleabingString/"/>
+    <id>http://www.lex-zhao.xyz/2017/11/02/InterleabingString/</id>
+    <published>2017-11-02T02:19:53.000Z</published>
+    <updated>2017-11-02T03:32:57.429Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;动态规划问题到目前为止已经刷了差不多40余题，借几道题稍微做一个总结。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;直接上题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MinimumASCIIDeleteSum</title>
+    <link href="http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/"/>
+    <id>http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/</id>
+    <published>2017-11-02T02:19:08.000Z</published>
+    <updated>2017-11-02T03:33:05.285Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;话不多说，先上题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CountRepetition</title>
+    <link href="http://www.lex-zhao.xyz/2017/11/02/CountRepetition/"/>
+    <id>http://www.lex-zhao.xyz/2017/11/02/CountRepetition/</id>
+    <published>2017-11-02T02:15:40.000Z</published>
+    <updated>2017-11-02T03:32:50.639Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;依然直接上题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102111759.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
+    
+  </entry>
   
   <entry>
     <title>Strange priter</title>
@@ -378,71 +454,6 @@
     
     
       <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>弗洛伊德算法及证明</title>
-    <link href="http://www.lex-zhao.xyz/2017/07/02/%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%81%E6%98%8E/"/>
-    <id>http://www.lex-zhao.xyz/2017/07/02/弗洛伊德算法及证明/</id>
-    <published>2017-07-02T09:45:38.000Z</published>
-    <updated>2017-07-02T11:04:43.542Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。&lt;br&gt;首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。&lt;br&gt;在此鸣谢&lt;a href=&quot;http://www.cnblogs.com/skywang12345所提供的图片&quot;&gt;http://www.cnblogs.com/skywang12345所提供的图片&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/01.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ODL对packet_in消息的处理流程</title>
-    <link href="http://www.lex-zhao.xyz/2017/06/03/OpenFlowJava%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/"/>
-    <id>http://www.lex-zhao.xyz/2017/06/03/OpenFlowJava处理流程/</id>
-    <published>2017-06-03T13:31:04.000Z</published>
-    <updated>2017-06-03T13:52:51.695Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;em&gt;OpenFlowJava对PakcetIn消息的处理流程&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;(1)当交换机遇到无法识别，或者需要上报的数据包（reason字段），通过与OpenFlowJava建立连接，向控制器发送消息。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
-    
-      <category term="ODL" scheme="http://www.lex-zhao.xyz/tags/ODL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM 垃圾回收机制(二)——方法区回收</title>
-    <link href="http://www.lex-zhao.xyz/2017/05/13/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6-%E4%B8%80-%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8C%BA%E5%9B%9E%E6%94%B6/"/>
-    <id>http://www.lex-zhao.xyz/2017/05/13/JVM-垃圾回收机制-一-——方法区回收/</id>
-    <published>2017-05-13T15:46:01.000Z</published>
-    <updated>2017-05-13T16:00:46.228Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;方法区（HotSpot中的永久代）并非没有垃圾回收机制，只是永久代的垃圾回收效率远远低于新生代回收效率。&lt;br&gt;永久代中垃圾回收主要包括两部分：废弃常量和无用的类。回收废弃常量与回收java堆中的对象非常相似，但判断一个类是否是无用的类就比较麻烦，类需要同时满足一下三个条件，才能算是无用的类：&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
-    
-      <category term="GC机制" scheme="http://www.lex-zhao.xyz/tags/GC%E6%9C%BA%E5%88%B6/"/>
     
   </entry>
   

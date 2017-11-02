@@ -3,6 +3,197 @@
   
     
     <entry>
+      <title><![CDATA[InterleavingString]]></title>
+      <url>/2017/11/02/InterleabingString/</url>
+      <content type="html"><![CDATA[<p>动态规划问题到目前为止已经刷了差不多40余题，借几道题稍微做一个总结。</p>
+<p><strong>直接上题</strong></p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png" alt=""><br><a id="more"></a><br>典型的动态规划问题。首先自然想到构造维度分别为s1.length()+1和s2.length()+1的boolean类型二维数组matrix</p>
+<p>另外，组成字符串s3的char要么来自s1，要么来自s2，因此，顺次将s1同s2和s3进行比较即可</p>
+<pre>
+<code>
+当row == 0
+for 1 to s2.length()  <--- 0="" 1="" col="" matrix[0][col]="matrix[0][col-1]" &&="" (s2.charat(col-1)="=" s3.charat(col-1))="" 当col="=" for="" to="" s1.length()="" <---="" row="" (s1.charat(row-1)="=" s3.charat(row-1))="" <---row="" s2.length()="" <---col="" matrix[row][col]="(matrix[row-1][col]" s1.charat(row-1)="=" s3.charat(row+col-1)="" ||="" (matrix[row][col]="" s2.charat(col-1)="=" s3.charat(row="" +="" -1))="" return="" matrix[s1.length()][s2.length()]="" <="" code="">
+</---></code></pre>
+
+<pre><code>public boolean isInterleave(String s1, String s2, String s3) {
+
+if ((s1.length()+s2.length())!=s3.length()) return false;
+
+boolean[][] matrix = new boolean[s2.length()+1][s1.length()+1];
+
+matrix[0][0] = true;
+
+for (int i = 1; i &lt; matrix[0].length; i++){
+    matrix[0][i] = matrix[0][i-1]&amp;&amp;(s1.charAt(i-1)==s3.charAt(i-1));
+}
+
+for (int i = 1; i &lt; matrix.length; i++){
+    matrix[i][0] = matrix[i-1][0]&amp;&amp;(s2.charAt(i-1)==s3.charAt(i-1));
+}
+
+for (int i = 1; i &lt; matrix.length; i++){
+    for (int j = 1; j &lt; matrix[0].length; j++){
+        matrix[i][j] = (matrix[i-1][j]&amp;&amp;(s2.charAt(i-1)==s3.charAt(i+j-1)))
+                || (matrix[i][j-1]&amp;&amp;(s1.charAt(j-1)==s3.charAt(i+j-1)));
+    }
+}
+
+return matrix[s2.length()][s1.length()];
+</code></pre><p>}</p>
+<p>其中，时间复杂度为O(s1.length() * s2.length())</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> DP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MinimumASCIIDeleteSum]]></title>
+      <url>/2017/11/02/MinimumASCIIDeleteSum/</url>
+      <content type="html"><![CDATA[<p><strong>话不多说，先上题</strong></p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png" alt=""><br><a id="more"></a><br>其实动态规划问题，个人感觉好的算法，首先是明确每个阶段的状态去表征什么，再次才是寻找状态转移方程。</p>
+<p>这道题，同样，当我们构造出一个二维状态数组时，这个数组应该表示什么？我的想法是每个状态去表征s1前row的子字符串和s2前col字符串删除的最小ASCII码。</p>
+<p>这道题我用了递归，感觉思路会更明确一些，当然两层循环嵌套也可以，两种方法复杂度相当。</p>
+<p>直接上代码</p>
+<pre><code>public int minimumDeleteSum(String s1, String s2) {
+    int[][] dp = new int[s1.length() + 1][s2.length() + 1];
+
+    return findMinSum(s1,s2,s1.length(),s2.length(),dp);
+}
+
+public int findMinSum(String s1,String s2,int len1,int len2,int[][] dp){
+    if(dp[len1][len2] != 0){
+        return dp[len1][len2];
+    }
+
+    if(len1==0 &amp;&amp; len2==0){
+        dp[len1][len2]=0;
+        return 0;
+    }else if(len1 == 0){
+        int t = findMinSum(s1, s2, 0, len2 - 1, dp);
+        dp[0][len2] = t + (int)s2.charAt(len2 - 1);
+        return dp[0][len2];
+    }else if(len2 == 0){
+        int t = findMinSum(s1,s2,len1-1,0,dp);
+        dp[len1][0] = t + (int)s1.charAt(len1 - 1);
+        return dp[len1][0];
+    }
+
+    if(s1.charAt(len1 - 1) == s2.charAt(len2 - 1)){
+        int temp = findMinSum(s1,s2,len1 - 1,len2 - 1,dp);
+        dp[len1][len2]=temp;
+    }else{
+        int temp1 = findMinSum(s1, s2, len1, len2 - 1, dp);
+        int temp2 = findMinSum(s1, s2, len1 - 1, len2, dp);
+        dp[len1][len2] = Math.min(temp1 + (int)s2.charAt(len2 - 1),temp2 + (int)s1.charAt(len1 - 1));
+    }
+
+    return dp[len1][len2];
+}
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> DP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[CountRepetition]]></title>
+      <url>/2017/11/02/CountRepetition/</url>
+      <content type="html"><![CDATA[<p><strong>依然直接上题</strong></p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102111759.png" alt=""><br><a id="more"></a></p>
+<p>首先这道题我非常喜欢，为什么呢，因为我没做出来，最后看一种复杂度非常低的答案时，发现思路完全一致，但是自己又差了一点点，每次差的这一点，反映出的依然是自己在算法方面的巨大不足。</p>
+<pre><code>public class Solution {
+public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
+    int count = 0;
+    int k = 0;
+    int index = 0; int repTime = 0;
+    int[] rests = new int[200]; int[] reps = new int[200];
+    while(k == count) {
+        count++;
+        for(int i = 0; i &lt; s1.length(); i++) {
+            if(s1.charAt(i) == s2.charAt(index)) {
+                index++;
+                if(index == s2.length()) {
+                    repTime++;
+                    index = 0;
+                }
+            }
+        }
+        if(count &gt; n1) return repTime / n2;
+        for(k = 0; k &lt;count; k++) {
+            if(index == rests[k])
+                break;
+        }
+        reps[count] = repTime;
+        rests[count] = index;
+    }
+    int interval = count - k;
+    int repeatCount = (n1 - k) / interval;
+    int repeatTimes = repeatCount * (reps[count] - reps[k]);
+    int remainTimes = reps[(n1 - k) % interval + k];
+    return (repeatTimes + remainTimes) / n2;
+
+    // int repeatCount = n1 / count;
+    // int repeatTimes = repeatCount * reps[count];
+    // int remainTimes = reps[n1 % count];
+    // return (repeatTimes + remainTimes) / n2;
+}
+</code></pre><p>}</p>
+<p>首先这道题，S1是由n个s1组合而成，S2是由m个s2组合而成，因此考虑S1最多可以构成多少个S2时，显然不需要考虑全部的S1和S2，而只需要考虑s1和s2。另外需要想到，</p>
+<p><strong>一个s1和多个s1所能构成的s2可能并不是简单的倍数关系</strong></p>
+<p><strong>当一个s1遍历一遍时，当s2的index相同时，可以认为构成了循环</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> DP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Strange priter]]></title>
       <url>/2017/10/19/Strange-priter/</url>
       <content type="html"><![CDATA[<p><img src="http://opeygftv2.bkt.clouddn.com/strangepriter.JPG" alt=""></p>

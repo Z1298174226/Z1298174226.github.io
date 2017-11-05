@@ -148,6 +148,96 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2017/07/11/小问题/">
+        小问题
+      </a>
+    </h2>
+    
+    <time>
+      7月 11, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>今天吃饭的时候，问了自己一个问题，java反射到底是个啥，java反射可以实现啥？<br>自己稍微总结一下：</p>
+<p><strong>java反射是在程序运行时，拿到一个类可以得到类的全部属性和方法，拿到一个对象，可以调用对象的全部属性和方法。</strong></p>
+<p>java反射的作用：</p>
+<ul>
+<li>判断一个实例对象是否属于某个类</li>
+<li>构造类的实例化对象</li>
+<li>获取类的全部方法和属性</li>
+<li>调用对象的全部方法和属性</li>
+<li>动态代理 </li>
+</ul>
+
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/java/">java</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2017/07/09/并发锁与条件变量/">
+        并发锁与条件变量
+      </a>
+    </h2>
+    
+    <time>
+      7月 9, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>《Java 并发编程实践》一书给出了使用 ReentrantLock 的最佳时机：</p>
+<p>当你需要以下高级特性时，才应该使用：<strong>可定时的</strong>、<strong>可轮询的</strong>与<strong>可中断的</strong>锁获取操作，<strong>公平队列</strong>，或者<strong>非块结构</strong>的锁。否则，请使用 synchronized</p>
+<p><strong>互斥同步</strong>最主要的问题就是进行<strong>线程阻塞</strong>和<strong>唤醒</strong>所带来的性能问题，因而这种同步又称为阻塞同步，它属于一种悲观的并发策略，即线程获得的是独占锁。<strong>独占锁</strong>意味着其他线程只能依靠阻塞来等待线程释放锁。而在 CPU 转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起 CPU 频繁的上下文切换导致效率很低。synchronized 采用的便是这种并发策略。<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2017/07/09/并发锁与条件变量/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/java/">java</a>
+      
+        <a href="/tags/Concurrent/">Concurrent</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2017/07/06/匈牙利算法/">
         匈牙利算法
       </a>
@@ -265,87 +355,6 @@
 </article>
     </div>
   
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/07/02/类加载器/">
-        类加载器
-      </a>
-    </h2>
-    
-    <time>
-      7月 2, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>站在 Java 开发人员的角度来看，类加载器可以大致划分为以下三类：</p>
-<p>启动类加载器：Bootstrap ClassLoader，跟上面相同。它负责加载存放在JDK\jre\li(JDK 代表 JDK 的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的，并且能被虚拟机识别的类库（如 rt.jar，所有的java.<em>开头的类均被 Bootstrap ClassLoader 加载）。启动类加载器是无法被 Java 程序直接引用的。<br></em></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/07/02/类加载器/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/java/">java</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/07/02/弗洛伊德算法及证明/">
-        弗洛伊德算法及证明
-      </a>
-    </h2>
-    
-    <time>
-      7月 2, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。<br>首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。<br>在此鸣谢<a href="http://www.cnblogs.com/skywang12345所提供的图片">http://www.cnblogs.com/skywang12345所提供的图片</a><br><img src="http://opeygftv2.bkt.clouddn.com/01.jpg" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/07/02/弗洛伊德算法及证明/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Algorithm/">Algorithm</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
 </section>
 
 
@@ -410,7 +419,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>27</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>29</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -423,7 +432,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 14px; color: #00f">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 17.2px; color: #009">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.6px; color: #00c">GC机制</a> <a href="/tags/Leetcode/" style="font-size: 20.4px; color: #003">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 17.2px; color: #009">ODL</a> <a href="/tags/SDN/" style="font-size: 17.2px; color: #009">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 18.8px; color: #006">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 14px; color: #00f">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

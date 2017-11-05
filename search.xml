@@ -67,37 +67,8 @@
 <p><strong>97. Interleaving String</strong></p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png" alt=""><br><a id="more"></a><br>典型的动态规划问题。首先自然想到构造维度分别为s1.length()+1和s2.length()+1的boolean类型二维数组matrix</p>
 <p>另外，组成字符串s3的char要么来自s1，要么来自s2，因此，顺次将s1同s2和s3进行比较即可</p>
-<pre>
-<code>
-当row == 0
-for 1 to s2.length()  <--- 0="" 1="" col="" matrix[0][col]="matrix[0][col-1]" &&="" (s2.charat(col-1)="=" s3.charat(col-1))="" 当col="=" for="" to="" s1.length()="" <---="" row="" (s1.charat(row-1)="=" s3.charat(row-1))="" <---row="" s2.length()="" <---col="" matrix[row][col]="(matrix[row-1][col]" s1.charat(row-1)="=" s3.charat(row+col-1)="" ||="" (matrix[row][col]="" s2.charat(col-1)="=" s3.charat(row="" +="" -1))="" return="" matrix[s1.length()][s2.length()]="" <="" code="">
-</---></code></pre>
-
-<pre><code>public boolean isInterleave(String s1, String s2, String s3) {
-
-if ((s1.length()+s2.length())!=s3.length()) return false;
-
-boolean[][] matrix = new boolean[s2.length()+1][s1.length()+1];
-
-matrix[0][0] = true;
-
-for (int i = 1; i &lt; matrix[0].length; i++){
-    matrix[0][i] = matrix[0][i-1]&amp;&amp;(s1.charAt(i-1)==s3.charAt(i-1));
-}
-
-for (int i = 1; i &lt; matrix.length; i++){
-    matrix[i][0] = matrix[i-1][0]&amp;&amp;(s2.charAt(i-1)==s3.charAt(i-1));
-}
-
-for (int i = 1; i &lt; matrix.length; i++){
-    for (int j = 1; j &lt; matrix[0].length; j++){
-        matrix[i][j] = (matrix[i-1][j]&amp;&amp;(s2.charAt(i-1)==s3.charAt(i+j-1)))
-                || (matrix[i][j-1]&amp;&amp;(s1.charAt(j-1)==s3.charAt(i+j-1)));
-    }
-}
-
-return matrix[s2.length()][s1.length()];
-</code></pre><p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">当row == <span class="number">0</span></div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s2.length()  &lt;--- col</div><div class="line"></div><div class="line">matrix[<span class="number">0</span>][col] = matrix[<span class="number">0</span>][col-<span class="number">1</span>] &amp;&amp; (s2.charAt(col-<span class="number">1</span>) == s3.charAt(col-<span class="number">1</span>))</div><div class="line">当col == <span class="number">0</span></div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s1.length()  &lt;--- row</div><div class="line">matrix[<span class="number">0</span>][col] = matrix[row-<span class="number">1</span>][<span class="number">0</span>] &amp;&amp; (s1.charAt(row-<span class="number">1</span>) == s3.charAt(row-<span class="number">1</span>))</div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s1.length()  &lt;---row</div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s2.length() &lt;---col</div><div class="line">matrix[row][col] = (matrix[row-<span class="number">1</span>][col] &amp;&amp; s1.charAt(row-<span class="number">1</span>) == s3.charAt(row+col-<span class="number">1</span>) || (matrix[row][col] &amp;&amp; s2.charAt(col-<span class="number">1</span>) == s3.charAt(row + col -<span class="number">1</span>))</div><div class="line"><span class="keyword">return</span> matrix[s1.length()][s2.length()]</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterleave</span><span class="params">(String s1, String s2, String s3)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ((s1.length()+s2.length())!=s3.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="keyword">boolean</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">boolean</span>[s2.length()+<span class="number">1</span>][s1.length()+<span class="number">1</span>];</div><div class="line"></div><div class="line">    matrix[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">true</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; matrix[<span class="number">0</span>].length; i++)&#123;</div><div class="line">        matrix[<span class="number">0</span>][i] = matrix[<span class="number">0</span>][i-<span class="number">1</span>]&amp;&amp;(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; matrix.length; i++)&#123;</div><div class="line">        matrix[i][<span class="number">0</span>] = matrix[i-<span class="number">1</span>][<span class="number">0</span>]&amp;&amp;(s2.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; matrix.length; i++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; matrix[<span class="number">0</span>].length; j++)&#123;</div><div class="line">            matrix[i][j] = (matrix[i-<span class="number">1</span>][j]&amp;&amp;(s2.charAt(i-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)))</div><div class="line">                    || (matrix[i][j-<span class="number">1</span>]&amp;&amp;(s1.charAt(j-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> matrix[s2.length()][s1.length()];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其中，时间复杂度为O(s1.length() * s2.length())</p>
 ]]></content>
       
@@ -147,42 +118,7 @@ return matrix[s2.length()][s1.length()];
 </ul>
 <p>两种方法得到的算法具有相同的渐进运行时间，仅有的差异是在某些特殊情况下，自顶向下的方法并为真正递归所有可能的子问题。另外，由于没有频繁地递归函数调用的开销，自底向上方法的时间复杂性函数通常具有更小的系数。</p>
 <p>直接上代码</p>
-<pre><code>public int minimumDeleteSum(String s1, String s2) {
-    int[][] dp = new int[s1.length() + 1][s2.length() + 1];
-
-    return findMinSum(s1,s2,s1.length(),s2.length(),dp);
-}
-
-public int findMinSum(String s1,String s2,int len1,int len2,int[][] dp){
-    if(dp[len1][len2] != 0){
-        return dp[len1][len2];
-    }
-
-    if(len1==0 &amp;&amp; len2==0){
-        dp[len1][len2]=0;
-        return 0;
-    }else if(len1 == 0){
-        int t = findMinSum(s1, s2, 0, len2 - 1, dp);
-        dp[0][len2] = t + (int)s2.charAt(len2 - 1);
-        return dp[0][len2];
-    }else if(len2 == 0){
-        int t = findMinSum(s1,s2,len1-1,0,dp);
-        dp[len1][0] = t + (int)s1.charAt(len1 - 1);
-        return dp[len1][0];
-    }
-
-    if(s1.charAt(len1 - 1) == s2.charAt(len2 - 1)){
-        int temp = findMinSum(s1,s2,len1 - 1,len2 - 1,dp);
-        dp[len1][len2]=temp;
-    }else{
-        int temp1 = findMinSum(s1, s2, len1, len2 - 1, dp);
-        int temp2 = findMinSum(s1, s2, len1 - 1, len2, dp);
-        dp[len1][len2] = Math.min(temp1 + (int)s2.charAt(len2 - 1),temp2 + (int)s1.charAt(len1 - 1));
-    }
-
-    return dp[len1][len2];
-}
-</code></pre>]]></content>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(String s1, String s2)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s1.length() + <span class="number">1</span>][s2.length() + <span class="number">1</span>];</div><div class="line">     </div><div class="line">    <span class="keyword">return</span> findMinSum(s1,s2,s1.length(),s2.length(),dp);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMinSum</span><span class="params">(String s1,String s2,<span class="keyword">int</span> len1,<span class="keyword">int</span> len2,<span class="keyword">int</span>[][] dp)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(dp[len1][len2] != <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">return</span> dp[len1][len2];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(len1==<span class="number">0</span> &amp;&amp; len2==<span class="number">0</span>)&#123;</div><div class="line">        dp[len1][len2]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(len1 == <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">int</span> t = findMinSum(s1, s2, <span class="number">0</span>, len2 - <span class="number">1</span>, dp);</div><div class="line">        dp[<span class="number">0</span>][len2] = t + (<span class="keyword">int</span>)s2.charAt(len2 - <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][len2];</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(len2 == <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">int</span> t = findMinSum(s1,s2,len1-<span class="number">1</span>,<span class="number">0</span>,dp);</div><div class="line">        dp[len1][<span class="number">0</span>] = t + (<span class="keyword">int</span>)s1.charAt(len1 - <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> dp[len1][<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(s1.charAt(len1 - <span class="number">1</span>) == s2.charAt(len2 - <span class="number">1</span>))&#123;</div><div class="line">        <span class="keyword">int</span> temp = findMinSum(s1,s2,len1 - <span class="number">1</span>,len2 - <span class="number">1</span>,dp);</div><div class="line">        dp[len1][len2]=temp;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">int</span> temp1 = findMinSum(s1, s2, len1, len2 - <span class="number">1</span>, dp);</div><div class="line">        <span class="keyword">int</span> temp2 = findMinSum(s1, s2, len1 - <span class="number">1</span>, len2, dp);</div><div class="line">        dp[len1][len2] = Math.min(temp1 + (<span class="keyword">int</span>)s2.charAt(len2 - <span class="number">1</span>),temp2 + (<span class="keyword">int</span>)s1.charAt(len1 - <span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[len1][len2];</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
       
         <categories>
             

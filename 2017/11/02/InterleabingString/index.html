@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="动态规划问题到目前为止已经刷了差不多40余题，借几道题稍微做一个总结。 97. Interleaving String">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png">
-<meta property="og:updated_time" content="2017-11-05T06:08:43.363Z">
+<meta property="og:updated_time" content="2017-11-05T14:48:14.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="InterleavingString">
 <meta name="twitter:description" content="动态规划问题到目前为止已经刷了差不多40余题，借几道题稍微做一个总结。 97. Interleaving String">
@@ -167,37 +167,8 @@
 <p><strong>97. Interleaving String</strong></p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png" alt=""><br><a id="more"></a><br>典型的动态规划问题。首先自然想到构造维度分别为s1.length()+1和s2.length()+1的boolean类型二维数组matrix</p>
 <p>另外，组成字符串s3的char要么来自s1，要么来自s2，因此，顺次将s1同s2和s3进行比较即可</p>
-<pre>
-<code>
-当row == 0
-for 1 to s2.length()  <--- 0="" 1="" col="" matrix[0][col]="matrix[0][col-1]" &&="" (s2.charat(col-1)="=" s3.charat(col-1))="" 当col="=" for="" to="" s1.length()="" <---="" row="" (s1.charat(row-1)="=" s3.charat(row-1))="" <---row="" s2.length()="" <---col="" matrix[row][col]="(matrix[row-1][col]" s1.charat(row-1)="=" s3.charat(row+col-1)="" ||="" (matrix[row][col]="" s2.charat(col-1)="=" s3.charat(row="" +="" -1))="" return="" matrix[s1.length()][s2.length()]="" <="" code="">
-</---></code></pre>
-
-<pre><code>public boolean isInterleave(String s1, String s2, String s3) {
-
-if ((s1.length()+s2.length())!=s3.length()) return false;
-
-boolean[][] matrix = new boolean[s2.length()+1][s1.length()+1];
-
-matrix[0][0] = true;
-
-for (int i = 1; i &lt; matrix[0].length; i++){
-    matrix[0][i] = matrix[0][i-1]&amp;&amp;(s1.charAt(i-1)==s3.charAt(i-1));
-}
-
-for (int i = 1; i &lt; matrix.length; i++){
-    matrix[i][0] = matrix[i-1][0]&amp;&amp;(s2.charAt(i-1)==s3.charAt(i-1));
-}
-
-for (int i = 1; i &lt; matrix.length; i++){
-    for (int j = 1; j &lt; matrix[0].length; j++){
-        matrix[i][j] = (matrix[i-1][j]&amp;&amp;(s2.charAt(i-1)==s3.charAt(i+j-1)))
-                || (matrix[i][j-1]&amp;&amp;(s1.charAt(j-1)==s3.charAt(i+j-1)));
-    }
-}
-
-return matrix[s2.length()][s1.length()];
-</code></pre><p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">当row == <span class="number">0</span></div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s2.length()  &lt;--- col</div><div class="line"></div><div class="line">matrix[<span class="number">0</span>][col] = matrix[<span class="number">0</span>][col-<span class="number">1</span>] &amp;&amp; (s2.charAt(col-<span class="number">1</span>) == s3.charAt(col-<span class="number">1</span>))</div><div class="line">当col == <span class="number">0</span></div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s1.length()  &lt;--- row</div><div class="line">matrix[<span class="number">0</span>][col] = matrix[row-<span class="number">1</span>][<span class="number">0</span>] &amp;&amp; (s1.charAt(row-<span class="number">1</span>) == s3.charAt(row-<span class="number">1</span>))</div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s1.length()  &lt;---row</div><div class="line"><span class="keyword">for</span> <span class="number">1</span> to s2.length() &lt;---col</div><div class="line">matrix[row][col] = (matrix[row-<span class="number">1</span>][col] &amp;&amp; s1.charAt(row-<span class="number">1</span>) == s3.charAt(row+col-<span class="number">1</span>) || (matrix[row][col] &amp;&amp; s2.charAt(col-<span class="number">1</span>) == s3.charAt(row + col -<span class="number">1</span>))</div><div class="line"><span class="keyword">return</span> matrix[s1.length()][s2.length()]</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterleave</span><span class="params">(String s1, String s2, String s3)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ((s1.length()+s2.length())!=s3.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="keyword">boolean</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">boolean</span>[s2.length()+<span class="number">1</span>][s1.length()+<span class="number">1</span>];</div><div class="line"></div><div class="line">    matrix[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">true</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; matrix[<span class="number">0</span>].length; i++)&#123;</div><div class="line">        matrix[<span class="number">0</span>][i] = matrix[<span class="number">0</span>][i-<span class="number">1</span>]&amp;&amp;(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; matrix.length; i++)&#123;</div><div class="line">        matrix[i][<span class="number">0</span>] = matrix[i-<span class="number">1</span>][<span class="number">0</span>]&amp;&amp;(s2.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; matrix.length; i++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; matrix[<span class="number">0</span>].length; j++)&#123;</div><div class="line">            matrix[i][j] = (matrix[i-<span class="number">1</span>][j]&amp;&amp;(s2.charAt(i-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)))</div><div class="line">                    || (matrix[i][j-<span class="number">1</span>]&amp;&amp;(s1.charAt(j-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> matrix[s2.length()][s1.length()];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其中，时间复杂度为O(s1.length() * s2.length())</p>
 
   	</div>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/</loc>
+    
+    <lastmod>2017-11-05T14:49:09.241Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lex-zhao.xyz/2017/11/02/InterleabingString/</loc>
+    
+    <lastmod>2017-11-05T14:48:14.898Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lex-zhao.xyz/2017/11/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E5%B8%A6%E5%A4%87%E5%BF%98%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8/</loc>
     
     <lastmod>2017-11-05T06:56:31.102Z</lastmod>
@@ -58,23 +72,9 @@
   </url>
   
   <url>
-    <loc>http://www.lex-zhao.xyz/2017/11/02/InterleabingString/</loc>
-    
-    <lastmod>2017-11-05T06:08:43.363Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.lex-zhao.xyz/2017/09/13/Remove-Invalid-Parentheses/</loc>
     
     <lastmod>2017-11-05T06:07:36.202Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/</loc>
-    
-    <lastmod>2017-11-05T06:06:23.425Z</lastmod>
     
   </url>
   

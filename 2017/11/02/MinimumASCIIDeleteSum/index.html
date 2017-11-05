@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="712. Minimum ASCII Delete Sum for Two Strings">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png">
-<meta property="og:updated_time" content="2017-11-05T06:06:23.425Z">
+<meta property="og:updated_time" content="2017-11-05T14:49:09.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MinimumASCIIDeleteSum">
 <meta name="twitter:description" content="712. Minimum ASCII Delete Sum for Two Strings">
@@ -187,42 +187,7 @@
 </ul>
 <p>两种方法得到的算法具有相同的渐进运行时间，仅有的差异是在某些特殊情况下，自顶向下的方法并为真正递归所有可能的子问题。另外，由于没有频繁地递归函数调用的开销，自底向上方法的时间复杂性函数通常具有更小的系数。</p>
 <p>直接上代码</p>
-<pre><code>public int minimumDeleteSum(String s1, String s2) {
-    int[][] dp = new int[s1.length() + 1][s2.length() + 1];
-
-    return findMinSum(s1,s2,s1.length(),s2.length(),dp);
-}
-
-public int findMinSum(String s1,String s2,int len1,int len2,int[][] dp){
-    if(dp[len1][len2] != 0){
-        return dp[len1][len2];
-    }
-
-    if(len1==0 &amp;&amp; len2==0){
-        dp[len1][len2]=0;
-        return 0;
-    }else if(len1 == 0){
-        int t = findMinSum(s1, s2, 0, len2 - 1, dp);
-        dp[0][len2] = t + (int)s2.charAt(len2 - 1);
-        return dp[0][len2];
-    }else if(len2 == 0){
-        int t = findMinSum(s1,s2,len1-1,0,dp);
-        dp[len1][0] = t + (int)s1.charAt(len1 - 1);
-        return dp[len1][0];
-    }
-
-    if(s1.charAt(len1 - 1) == s2.charAt(len2 - 1)){
-        int temp = findMinSum(s1,s2,len1 - 1,len2 - 1,dp);
-        dp[len1][len2]=temp;
-    }else{
-        int temp1 = findMinSum(s1, s2, len1, len2 - 1, dp);
-        int temp2 = findMinSum(s1, s2, len1 - 1, len2, dp);
-        dp[len1][len2] = Math.min(temp1 + (int)s2.charAt(len2 - 1),temp2 + (int)s1.charAt(len1 - 1));
-    }
-
-    return dp[len1][len2];
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(String s1, String s2)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s1.length() + <span class="number">1</span>][s2.length() + <span class="number">1</span>];</div><div class="line">     </div><div class="line">    <span class="keyword">return</span> findMinSum(s1,s2,s1.length(),s2.length(),dp);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMinSum</span><span class="params">(String s1,String s2,<span class="keyword">int</span> len1,<span class="keyword">int</span> len2,<span class="keyword">int</span>[][] dp)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(dp[len1][len2] != <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">return</span> dp[len1][len2];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(len1==<span class="number">0</span> &amp;&amp; len2==<span class="number">0</span>)&#123;</div><div class="line">        dp[len1][len2]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(len1 == <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">int</span> t = findMinSum(s1, s2, <span class="number">0</span>, len2 - <span class="number">1</span>, dp);</div><div class="line">        dp[<span class="number">0</span>][len2] = t + (<span class="keyword">int</span>)s2.charAt(len2 - <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][len2];</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(len2 == <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">int</span> t = findMinSum(s1,s2,len1-<span class="number">1</span>,<span class="number">0</span>,dp);</div><div class="line">        dp[len1][<span class="number">0</span>] = t + (<span class="keyword">int</span>)s1.charAt(len1 - <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> dp[len1][<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(s1.charAt(len1 - <span class="number">1</span>) == s2.charAt(len2 - <span class="number">1</span>))&#123;</div><div class="line">        <span class="keyword">int</span> temp = findMinSum(s1,s2,len1 - <span class="number">1</span>,len2 - <span class="number">1</span>,dp);</div><div class="line">        dp[len1][len2]=temp;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">int</span> temp1 = findMinSum(s1, s2, len1, len2 - <span class="number">1</span>, dp);</div><div class="line">        <span class="keyword">int</span> temp2 = findMinSum(s1, s2, len1 - <span class="number">1</span>, len2, dp);</div><div class="line">        dp[len1][len2] = Math.min(temp1 + (<span class="keyword">int</span>)s2.charAt(len2 - <span class="number">1</span>),temp2 + (<span class="keyword">int</span>)s1.charAt(len1 - <span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[len1][len2];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
   	</div>
 	  
 	  <div class="article-tags tags">

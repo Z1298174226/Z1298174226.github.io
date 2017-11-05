@@ -13,18 +13,18 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="话不多说，先上题">
+  <meta name="description" content="712. Minimum ASCII Delete Sum for Two Strings">
 <meta name="keywords" content="Algorithm,Leetcode,DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MinimumASCIIDeleteSum">
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="话不多说，先上题">
+<meta property="og:description" content="712. Minimum ASCII Delete Sum for Two Strings">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png">
-<meta property="og:updated_time" content="2017-11-02T03:33:05.285Z">
+<meta property="og:updated_time" content="2017-11-05T06:06:23.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MinimumASCIIDeleteSum">
-<meta name="twitter:description" content="话不多说，先上题">
+<meta name="twitter:description" content="712. Minimum ASCII Delete Sum for Two Strings">
 <meta name="twitter:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
@@ -163,10 +163,29 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p><strong>话不多说，先上题</strong></p>
+    	<p><strong>712. Minimum ASCII Delete Sum for Two Strings</strong></p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png" alt=""><br><a id="more"></a><br>其实动态规划问题，个人感觉好的算法，首先是明确每个阶段的状态去表征什么，再次才是寻找状态转移方程。</p>
+<p><strong>总结一下动态规划问题的策略步骤：</strong></p>
+<ul>
+<li><p>子问题的划分。 按照一定的顺序把整个问题划分为若干个规模相等的子问题。</p>
+</li>
+<li><p>子问题状态的确定。根据问题需求和子问题的各个属性确定子问题的”状态“，同时需要满足无后效性。</p>
+</li>
+<li><p>推导状态转移方程。 状态转移指的就是根据上一个状态（或者叫上一个子问题的解）来获取当前子问题解的过程。 如果要进行具体的计算，那么就需要写出具体的算式。这一步也是最需要时间的，传说中最考验功力的一关</p>
+</li>
+<li><p>边界条件和初始值的确定。由于动态规划是根据之前子问题的解来推导当前子问题的解，所以最初状态的值必须确定。边界条件是用来描述结束状态的，如果当前状态完全到达边界，便视为已经到达了最终状态。</p>
+</li>
+</ul>
 <p>这道题，同样，当我们构造出一个二维状态数组时，这个数组应该表示什么？我的想法是每个状态去表征s1前row的子字符串和s2前col字符串删除的最小ASCII码。</p>
 <p>这道题我用了递归，感觉思路会更明确一些，当然两层循环嵌套也可以，两种方法复杂度相当。</p>
+<p><strong>在这里，总结一下动态规划的两种等价实现方法:</strong></p>
+<ul>
+<li><p>带备忘的自顶向下法。此方法仍按照自然的递归形式编写过程，但过程会保存每一个子问题的解（通常保存在数组或散列表当中）。当需要一个子问题的解时，过程首先检查过程是否已保存过此解。如果是，则直接返回保存的结果，否则，按通常方式计算这个子问题。我们称这个递归过程是带备忘的。因为它已经记住了之前已经计算的结果</p>
+</li>
+<li><p>第二种方法称为自底向上法。这种问题一般需要恰当定义子问题“规模”的概念，使得任何子问题的求解都只依赖于“更小子问题”的求解。因而我们可以将子问题按规模排序，按由小至大的顺序进行求解。当求解某个子问题时，它所依赖的那些更小的子问题都已经求解完毕，结果已经保存。每个子问题只需要求解一次，当我们求解它（也是第一次遇到它）时，它的所有前提子问题都已经求解完成。</p>
+</li>
+</ul>
+<p>两种方法得到的算法具有相同的渐进运行时间，仅有的差异是在某些特殊情况下，自顶向下的方法并为真正递归所有可能的子问题。另外，由于没有频繁地递归函数调用的开销，自底向上方法的时间复杂性函数通常具有更小的系数。</p>
 <p>直接上代码</p>
 <pre><code>public int minimumDeleteSum(String s1, String s2) {
     int[][] dp = new int[s1.length() + 1][s2.length() + 1];
@@ -288,7 +307,7 @@ public int findMinSum(String s1,String s2,int len1,int len2,int[][] dp){
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 14px; color: #00f">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18.8px; color: #006">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.6px; color: #00c">GC机制</a> <a href="/tags/Leetcode/" style="font-size: 20.4px; color: #003">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 17.2px; color: #009">ODL</a> <a href="/tags/SDN/" style="font-size: 17.2px; color: #009">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 20.4px; color: #003">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 14px; color: #00f">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 17.2px; color: #009">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.6px; color: #00c">GC机制</a> <a href="/tags/Leetcode/" style="font-size: 20.4px; color: #003">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 17.2px; color: #009">ODL</a> <a href="/tags/SDN/" style="font-size: 17.2px; color: #009">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/java/" style="font-size: 18.8px; color: #006">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

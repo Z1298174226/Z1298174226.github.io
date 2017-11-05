@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-11-02T03:39:01.300Z</updated>
+  <updated>2017-11-05T06:08:43.363Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://www.lex-zhao.xyz/2017/11/02/InterleabingString/"/>
     <id>http://www.lex-zhao.xyz/2017/11/02/InterleabingString/</id>
     <published>2017-11-02T02:19:53.000Z</published>
-    <updated>2017-11-02T03:39:01.300Z</updated>
+    <updated>2017-11-05T06:08:43.363Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;动态规划问题到目前为止已经刷了差不多40余题，借几道题稍微做一个总结。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;直接上题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;97. Interleaving String&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
@@ -46,11 +46,11 @@
     <link href="http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/"/>
     <id>http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/</id>
     <published>2017-11-02T02:19:08.000Z</published>
-    <updated>2017-11-02T03:33:05.285Z</updated>
+    <updated>2017-11-05T06:06:23.425Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;话不多说，先上题&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;712. Minimum ASCII Delete Sum for Two Strings&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
@@ -71,11 +71,11 @@
     <link href="http://www.lex-zhao.xyz/2017/11/02/CountRepetition/"/>
     <id>http://www.lex-zhao.xyz/2017/11/02/CountRepetition/</id>
     <published>2017-11-02T02:15:40.000Z</published>
-    <updated>2017-11-02T03:32:50.639Z</updated>
+    <updated>2017-11-05T06:10:20.291Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;依然直接上题&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;466. Count The Repetitions&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102111759.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
@@ -96,11 +96,11 @@
     <link href="http://www.lex-zhao.xyz/2017/10/19/Strange-priter/"/>
     <id>http://www.lex-zhao.xyz/2017/10/19/Strange-priter/</id>
     <published>2017-10-19T10:26:55.000Z</published>
-    <updated>2017-10-19T11:09:40.710Z</updated>
+    <updated>2017-11-05T06:09:23.824Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/strangepriter.JPG&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;664. Strange Printer&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/strangepriter.JPG&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;这道题的难度感觉是很大的&lt;/strong&gt;，目前想到的方法是 &lt;strong&gt;&amp;lt;O(n^3)&lt;/strong&gt;,（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。&lt;br&gt;直接看代码&lt;br&gt;&lt;/p&gt;
     
     </summary>
@@ -115,13 +115,16 @@
   </entry>
   
   <entry>
-    <title>Dynamic Programming One</title>
-    <link href="http://www.lex-zhao.xyz/2017/09/20/Dynamic-Programming-One/"/>
-    <id>http://www.lex-zhao.xyz/2017/09/20/Dynamic-Programming-One/</id>
-    <published>2017-09-20T00:44:35.000Z</published>
-    <updated>2017-09-20T00:47:22.526Z</updated>
+    <title>Matchstickes to Square</title>
+    <link href="http://www.lex-zhao.xyz/2017/09/15/Matchstickes-to-Square/"/>
+    <id>http://www.lex-zhao.xyz/2017/09/15/Matchstickes-to-Square/</id>
+    <published>2017-09-15T09:16:10.000Z</published>
+    <updated>2017-11-05T06:12:34.747Z</updated>
     
     <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;473. Matchsticks to Square&lt;/strong&gt;&lt;/p&gt;
+
     
     </summary>
     
@@ -130,21 +133,7 @@
     
       <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
-      <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matchstickes to Square</title>
-    <link href="http://www.lex-zhao.xyz/2017/09/15/Matchstickes-to-Square/"/>
-    <id>http://www.lex-zhao.xyz/2017/09/15/Matchstickes-to-Square/</id>
-    <published>2017-09-15T09:16:10.000Z</published>
-    <updated>2017-09-15T09:16:10.686Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
     
   </entry>
   
@@ -153,11 +142,11 @@
     <link href="http://www.lex-zhao.xyz/2017/09/13/Remove-Invalid-Parentheses/"/>
     <id>http://www.lex-zhao.xyz/2017/09/13/Remove-Invalid-Parentheses/</id>
     <published>2017-09-13T09:48:01.000Z</published>
-    <updated>2017-09-13T09:56:05.851Z</updated>
+    <updated>2017-11-05T06:07:36.202Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;问题如下：&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913174831.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;301. Remove Invalid Parentheses&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913174831.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -175,11 +164,11 @@
     <link href="http://www.lex-zhao.xyz/2017/09/13/Binary-Tree-Maximum-Path-Sum/"/>
     <id>http://www.lex-zhao.xyz/2017/09/13/Binary-Tree-Maximum-Path-Sum/</id>
     <published>2017-09-13T08:09:36.000Z</published>
-    <updated>2017-09-13T08:17:08.697Z</updated>
+    <updated>2017-11-05T06:14:20.698Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;124. Binary Tree Maximum Path Sum&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -197,7 +186,7 @@
     <link href="http://www.lex-zhao.xyz/2017/09/13/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8/"/>
     <id>http://www.lex-zhao.xyz/2017/09/13/中序遍历的应用/</id>
     <published>2017-09-13T07:41:51.000Z</published>
-    <updated>2017-09-13T07:49:58.784Z</updated>
+    <updated>2017-11-05T06:22:03.966Z</updated>
     
     <summary type="html">
     
@@ -221,12 +210,11 @@
     <link href="http://www.lex-zhao.xyz/2017/09/07/%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/"/>
     <id>http://www.lex-zhao.xyz/2017/09/07/最小高度树/</id>
     <published>2017-09-07T02:21:38.000Z</published>
-    <updated>2017-09-07T02:37:44.756Z</updated>
+    <updated>2017-11-05T06:21:12.249Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;问题描述：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;310. Minimum Height Trees&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -454,6 +442,26 @@
     
     
       <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>弗洛伊德算法及证明</title>
+    <link href="http://www.lex-zhao.xyz/2017/07/02/%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%81%E6%98%8E/"/>
+    <id>http://www.lex-zhao.xyz/2017/07/02/弗洛伊德算法及证明/</id>
+    <published>2017-07-02T09:45:38.000Z</published>
+    <updated>2017-07-02T11:04:43.542Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;弗洛伊德算法属于动态规划问题，通过插点的方式为加权图多源点间寻求最短路径。算法引入两个二维数组path[][]和dist[][],其中dist[i][j]描述两个节点i和j间的最短路径，path[i][j]用来描述节点i和j之间最短路径所经过的节点。&lt;br&gt;首先，初始化非相邻节点dist为INF，得到初始矩阵S，如图所示。&lt;br&gt;在此鸣谢&lt;a href=&quot;http://www.cnblogs.com/skywang12345所提供的图片&quot;&gt;http://www.cnblogs.com/skywang12345所提供的图片&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/01.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
   </entry>
   

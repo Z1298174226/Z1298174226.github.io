@@ -6,7 +6,7 @@
       <title><![CDATA[InterleavingString]]></title>
       <url>/2017/11/02/InterleabingString/</url>
       <content type="html"><![CDATA[<p>动态规划问题到目前为止已经刷了差不多40余题，借几道题稍微做一个总结。</p>
-<p><strong>直接上题</strong></p>
+<p><strong>97. Interleaving String</strong></p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png" alt=""><br><a id="more"></a><br>典型的动态规划问题。首先自然想到构造维度分别为s1.length()+1和s2.length()+1的boolean类型二维数组matrix</p>
 <p>另外，组成字符串s3的char要么来自s1，要么来自s2，因此，顺次将s1同s2和s3进行比较即可</p>
 <pre>
@@ -65,10 +65,29 @@ return matrix[s2.length()][s1.length()];
     <entry>
       <title><![CDATA[MinimumASCIIDeleteSum]]></title>
       <url>/2017/11/02/MinimumASCIIDeleteSum/</url>
-      <content type="html"><![CDATA[<p><strong>话不多说，先上题</strong></p>
+      <content type="html"><![CDATA[<p><strong>712. Minimum ASCII Delete Sum for Two Strings</strong></p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png" alt=""><br><a id="more"></a><br>其实动态规划问题，个人感觉好的算法，首先是明确每个阶段的状态去表征什么，再次才是寻找状态转移方程。</p>
+<p><strong>总结一下动态规划问题的策略步骤：</strong></p>
+<ul>
+<li><p>子问题的划分。 按照一定的顺序把整个问题划分为若干个规模相等的子问题。</p>
+</li>
+<li><p>子问题状态的确定。根据问题需求和子问题的各个属性确定子问题的”状态“，同时需要满足无后效性。</p>
+</li>
+<li><p>推导状态转移方程。 状态转移指的就是根据上一个状态（或者叫上一个子问题的解）来获取当前子问题解的过程。 如果要进行具体的计算，那么就需要写出具体的算式。这一步也是最需要时间的，传说中最考验功力的一关</p>
+</li>
+<li><p>边界条件和初始值的确定。由于动态规划是根据之前子问题的解来推导当前子问题的解，所以最初状态的值必须确定。边界条件是用来描述结束状态的，如果当前状态完全到达边界，便视为已经到达了最终状态。</p>
+</li>
+</ul>
 <p>这道题，同样，当我们构造出一个二维状态数组时，这个数组应该表示什么？我的想法是每个状态去表征s1前row的子字符串和s2前col字符串删除的最小ASCII码。</p>
 <p>这道题我用了递归，感觉思路会更明确一些，当然两层循环嵌套也可以，两种方法复杂度相当。</p>
+<p><strong>在这里，总结一下动态规划的两种等价实现方法:</strong></p>
+<ul>
+<li><p>带备忘的自顶向下法。此方法仍按照自然的递归形式编写过程，但过程会保存每一个子问题的解（通常保存在数组或散列表当中）。当需要一个子问题的解时，过程首先检查过程是否已保存过此解。如果是，则直接返回保存的结果，否则，按通常方式计算这个子问题。我们称这个递归过程是带备忘的。因为它已经记住了之前已经计算的结果</p>
+</li>
+<li><p>第二种方法称为自底向上法。这种问题一般需要恰当定义子问题“规模”的概念，使得任何子问题的求解都只依赖于“更小子问题”的求解。因而我们可以将子问题按规模排序，按由小至大的顺序进行求解。当求解某个子问题时，它所依赖的那些更小的子问题都已经求解完毕，结果已经保存。每个子问题只需要求解一次，当我们求解它（也是第一次遇到它）时，它的所有前提子问题都已经求解完成。</p>
+</li>
+</ul>
+<p>两种方法得到的算法具有相同的渐进运行时间，仅有的差异是在某些特殊情况下，自顶向下的方法并为真正递归所有可能的子问题。另外，由于没有频繁地递归函数调用的开销，自底向上方法的时间复杂性函数通常具有更小的系数。</p>
 <p>直接上代码</p>
 <pre><code>public int minimumDeleteSum(String s1, String s2) {
     int[][] dp = new int[s1.length() + 1][s2.length() + 1];
@@ -129,7 +148,7 @@ public int findMinSum(String s1,String s2,int len1,int len2,int[][] dp){
     <entry>
       <title><![CDATA[CountRepetition]]></title>
       <url>/2017/11/02/CountRepetition/</url>
-      <content type="html"><![CDATA[<p><strong>依然直接上题</strong></p>
+      <content type="html"><![CDATA[<p><strong>466. Count The Repetitions</strong></p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102111759.png" alt=""><br><a id="more"></a></p>
 <p>首先这道题我非常喜欢，为什么呢，因为我没做出来，最后看一种复杂度非常低的答案时，发现思路完全一致，但是自己又差了一点点，每次差的这一点，反映出的依然是自己在算法方面的巨大不足。</p>
 <pre><code>public class Solution {
@@ -196,7 +215,7 @@ public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
     <entry>
       <title><![CDATA[Strange priter]]></title>
       <url>/2017/10/19/Strange-priter/</url>
-      <content type="html"><![CDATA[<p><img src="http://opeygftv2.bkt.clouddn.com/strangepriter.JPG" alt=""></p>
+      <content type="html"><![CDATA[<p><strong>664. Strange Printer</strong><br><img src="http://opeygftv2.bkt.clouddn.com/strangepriter.JPG" alt=""></p>
 <p><strong>这道题的难度感觉是很大的</strong>，目前想到的方法是 <strong>&lt;O(n^3)</strong>,（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。<br>直接看代码<br><a id="more"></a></p>
 <pre>
 <code>
@@ -255,9 +274,10 @@ class Solution {
     </entry>
     
     <entry>
-      <title><![CDATA[Dynamic Programming One]]></title>
-      <url>/2017/09/20/Dynamic-Programming-One/</url>
-      <content type="html"></content>
+      <title><![CDATA[Matchstickes to Square]]></title>
+      <url>/2017/09/15/Matchstickes-to-Square/</url>
+      <content type="html"><![CDATA[<p><strong>473. Matchsticks to Square</strong></p>
+]]></content>
       
         <categories>
             
@@ -270,24 +290,16 @@ class Solution {
             
             <tag> Algorithm </tag>
             
-            <tag> DP </tag>
+            <tag> Leetcode </tag>
             
         </tags>
         
     </entry>
     
     <entry>
-      <title><![CDATA[Matchstickes to Square]]></title>
-      <url>/2017/09/15/Matchstickes-to-Square/</url>
-      <content type="html"></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Remove Invalid Parentheses]]></title>
       <url>/2017/09/13/Remove-Invalid-Parentheses/</url>
-      <content type="html"><![CDATA[<p>问题如下：<br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913174831.png" alt=""><br><a id="more"></a><br>考虑使用DFS，通过递归顺序遍历字符串，其中当遍历到’(‘和’)’时，均存在将其加入字符串和抛弃掉两种情况</p>
+      <content type="html"><![CDATA[<p><strong>301. Remove Invalid Parentheses</strong><br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913174831.png" alt=""><br><a id="more"></a><br>考虑使用DFS，通过递归顺序遍历字符串，其中当遍历到’(‘和’)’时，均存在将其加入字符串和抛弃掉两种情况</p>
 <pre>
 <code>
 class Solution {
@@ -361,7 +373,7 @@ public void dfs(String s, int i, Set<string> res, StringBuilder sb, int rmL, int
     <entry>
       <title><![CDATA[Binary Tree Maximum Path Sum]]></title>
       <url>/2017/09/13/Binary-Tree-Maximum-Path-Sum/</url>
-      <content type="html"><![CDATA[<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png" alt=""><br>这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<p><strong>124. Binary Tree Maximum Path Sum</strong><br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png" alt=""><br>这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。<br><a id="more"></a></p>
 <pre>
 <code>
 class Solution {
@@ -430,8 +442,7 @@ class Solution {
     <entry>
       <title><![CDATA[最小高度树]]></title>
       <url>/2017/09/07/%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/</url>
-      <content type="html"><![CDATA[<p>问题描述：</p>
-<p><strong>For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.</strong><br><a id="more"></a><br>Format</p>
+      <content type="html"><![CDATA[<p><strong>310. Minimum Height Trees</strong><br><strong>For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.</strong><br><a id="more"></a><br>Format</p>
 <p>The graph contains n nodes which are labeled from 0 to n - 1. You will be given the number n and a list of undirected edges (each edge is a pair of labels).</p>
 <p>You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.</p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170907102600.png" alt=""></p>

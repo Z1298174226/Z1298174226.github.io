@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-11-06T07:22:17.386Z</updated>
+  <updated>2017-11-06T07:32:05.602Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -20,12 +20,20 @@
     <link href="http://www.lex-zhao.xyz/2017/11/06/%E9%80%92%E5%BD%92-%E5%9B%9E%E6%BA%AF-DFS/"/>
     <id>http://www.lex-zhao.xyz/2017/11/06/递归-回溯-DFS/</id>
     <published>2017-11-06T07:22:17.000Z</published>
-    <updated>2017-11-06T07:22:17.386Z</updated>
+    <updated>2017-11-06T07:32:05.602Z</updated>
     
     <summary type="html">
     
     </summary>
     
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="dfs" scheme="http://www.lex-zhao.xyz/tags/dfs/"/>
+    
+      <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
     
   </entry>
   

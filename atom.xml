@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-11-05T06:56:31.102Z</updated>
+  <updated>2017-11-06T07:22:17.386Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>递归  回溯  DFS</title>
+    <link href="http://www.lex-zhao.xyz/2017/11/06/%E9%80%92%E5%BD%92-%E5%9B%9E%E6%BA%AF-DFS/"/>
+    <id>http://www.lex-zhao.xyz/2017/11/06/递归-回溯-DFS/</id>
+    <published>2017-11-06T07:22:17.000Z</published>
+    <updated>2017-11-06T07:22:17.386Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Construct Binary Tree from Array</title>
+    <link href="http://www.lex-zhao.xyz/2017/11/06/Construct-Binary-Tree-from-Array/"/>
+    <id>http://www.lex-zhao.xyz/2017/11/06/Construct-Binary-Tree-from-Array/</id>
+    <published>2017-11-06T07:16:41.000Z</published>
+    <updated>2017-11-06T07:28:14.395Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;105. Construct Binary Tree from Preorder and Inorder Traversal&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;106. Construct Binary Tree from Inorder and Postorder Traversal&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可以说是两道再经典不过的dfs题了,思路都很清晰，在这里记录一下吧&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="dfs" scheme="http://www.lex-zhao.xyz/tags/dfs/"/>
+    
+  </entry>
   
   <entry>
     <title>动态规划问题带备忘自顶向下方法的典型应用</title>
@@ -431,47 +471,6 @@
     
     
       <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最大网络流(Ford-Fulkerson)</title>
-    <link href="http://www.lex-zhao.xyz/2017/07/05/%E6%9C%80%E5%A4%A7%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
-    <id>http://www.lex-zhao.xyz/2017/07/05/最大网络流/</id>
-    <published>2017-07-05T10:04:42.000Z</published>
-    <updated>2017-07-06T01:38:21.684Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于最大网络流算法，网上的教程非常多，可以说形形色色，我个人也稍微做一下总结。&lt;br&gt;网络流算法与背包问题很相似，本质属于线性规划问题。首先需要明确的是容量和流量的两个概念，算法核心思想是从残余图中寻找增广路径直至增广路径不存在（增广路径：一条从源点到宿点的路径，所有的路路径流量为当前最小剩余流量）。穷举试错（DFS、BFS）的过程总是需要“反悔的”，我最开始不假思索想用栈回滚的方式。但Ford-Fulkerson算法很巧妙地利用了方向边，通过反向边的引入实际上实现了回溯。&lt;br&gt;这张图来自谢老师数据挖掘讲义，在此表示感谢。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>std::function</title>
-    <link href="http://www.lex-zhao.xyz/2017/07/04/std-function/"/>
-    <id>http://www.lex-zhao.xyz/2017/07/04/std-function/</id>
-    <published>2017-07-04T09:34:00.000Z</published>
-    <updated>2017-07-06T15:27:53.750Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;类模版&lt;strong&gt;std::function&lt;/strong&gt;是一种通用、多态的函数封装。&lt;strong&gt;std::function&lt;/strong&gt;的实例可以对任何可以调用的目标实体进行存储、复制、和调用操作，这些目标实体包括&lt;strong&gt;普通函数&lt;/strong&gt;、&lt;strong&gt;Lambda表达式&lt;/strong&gt;、&lt;strong&gt;函数指针&lt;/strong&gt;、以及其它函数对象等。&lt;strong&gt;std::function&lt;/strong&gt;对象是对C++中现有的可调用实体的一种类型安全的包裹（我们知道像函数指针这类可调用实体，是类型不安全的）。&lt;/p&gt;
-&lt;p&gt;通常&lt;strong&gt;std::function&lt;/strong&gt;是一个函数对象类，它包装其它任意的函数对象，被包装的函数对象具有类型为T1, …,TN的N个参数，并且返回一个可转换到R类型的值。std::function使用 模板转换构造函数接收被包装的函数对象；特别是，闭包类型可以隐式地转换为std::function。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="c++" scheme="http://www.lex-zhao.xyz/tags/c/"/>
     
   </entry>
   

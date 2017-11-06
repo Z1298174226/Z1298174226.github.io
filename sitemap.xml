@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lex-zhao.xyz/2017/11/06/Construct-Binary-Tree-from-Array/</loc>
+    
+    <lastmod>2017-11-06T07:28:14.395Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lex-zhao.xyz/2017/11/06/%E9%80%92%E5%BD%92-%E5%9B%9E%E6%BA%AF-DFS/</loc>
+    
+    <lastmod>2017-11-06T07:22:17.386Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lex-zhao.xyz/2017/11/02/MinimumASCIIDeleteSum/</loc>
     
     <lastmod>2017-11-05T14:49:09.241Z</lastmod>

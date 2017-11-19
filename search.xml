@@ -98,9 +98,9 @@ the subarray [4,3] has the minimal length under the problem constraint.
             
             <tag> Algorithm </tag>
             
-            <tag> dfs </tag>
-            
             <tag> DP </tag>
+            
+            <tag> dfs </tag>
             
         </tags>
         

@@ -3,15 +3,88 @@
   
     
     <entry>
+      <title><![CDATA[Two Pointer总结]]></title>
+      <url>/2017/11/19/Two-Pointer%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h3 id="前序"><a href="#前序" class="headerlink" title="前序"></a><strong>前序</strong></h3><p>Two Pointer应该说之前用到的还是很多的，像一次循环找到链表的中间元素，像快排等等，刚好这两天Leetcode刷到了Two Pointer这一块，借此机会做一个总结。在大多数适合于Two Pointer的场景下，恰当地使用Two pointer可以将复杂度维持在O(N)，特别是一些求解连续子序列相关的问题，Two pointer不失为一种很好地切入点。<br><a id="more"></a></p>
+<h3 id="Two-pointer应用场景总结"><a href="#Two-pointer应用场景总结" class="headerlink" title="Two pointer应用场景总结"></a>Two pointer应用场景总结</h3><ul>
+<li><p>合并两个sorted array到一个sorted array</p>
+</li>
+<li><p>一次循环找到链表的中间元素</p>
+</li>
+<li><p>判断一个链表是否存在环</p>
+</li>
+<li><p>找到链表中倒数第三个元素</p>
+</li>
+<li><p>求解连续子序列相关</p>
+</li>
+</ul>
+<p>接下来，我们将按照难度级别，对几个例子进行简单分析</p>
+<h3 id="Esay"><a href="#Esay" class="headerlink" title="Esay"></a>Esay</h3><h5 id="167-Two-SumII-Input-array-is-sorted"><a href="#167-Two-SumII-Input-array-is-sorted" class="headerlink" title="167. Two SumII - Input array is sorted"></a>167. Two SumII - Input array is sorted</h5><pre>
+Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+You may assume that each input would have exactly one solution and you may not use the same element twice.
+
+Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2
+</pre>
+
+<p>对于已经排好序的array，Two Pointer可以实现时间复杂度O(N)，空间复杂度为1，即两个pointer分别从两端向中间移动，其sun只有两种可能，和如果比target小，则左端指针右移，如果sum比target大，则右端指针左移，否则直接返回。如果不存在满则条件的解，则抛出异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h3><h5 id="ContinuousMaximumSubarray"><a href="#ContinuousMaximumSubarray" class="headerlink" title="ContinuousMaximumSubarray"></a>ContinuousMaximumSubarray</h5><pre>
+对于给定的array，求解不大于target的连续最大和子序列
+</pre>
+
+<p>对于这道求和题，除了Two Pointer的应用，还有一个技巧就是构造Cumulative sum array这样的一个递增序列，并且满足cumulative[end]-cumulative[start] &gt; target &amp;&amp; cumulative[end - 1] - cumulative[start] &lt;= target的条件，而start和end两个指针刚好定位了<br>满足题设条件的连续子序列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContinuousMaximumSubarray</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] continuousMaximumSubarray(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="keyword">int</span>[] sumArray = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        sumArray[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sum += nums[i];</div><div class="line">            sumArray[i + <span class="number">1</span>] = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>; <span class="keyword">int</span> right = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(left &lt; sumArray.length) &#123;</div><div class="line">            <span class="keyword">while</span>(right &lt; sumArray.length &amp;&amp; sumArray[right] - sumArray[left] &lt;= k)</div><div class="line">                right++;</div><div class="line">            <span class="keyword">if</span>(max &lt; sumArray[right - <span class="number">1</span>] - sumArray[left]) &#123;</div><div class="line">                max = sumArray[right - <span class="number">1</span>] - sumArray[left];</div><div class="line">                result[<span class="number">0</span>] = left; result[<span class="number">1</span>] = right - <span class="number">2</span>;</div><div class="line">            &#125;</div><div class="line">            left++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="ContinuousMinimumSubarray"><a href="#ContinuousMinimumSubarray" class="headerlink" title="ContinuousMinimumSubarray"></a>ContinuousMinimumSubarray</h6><pre>
+求解含有k个不同数字的连续最小和子序列
+</pre>
+
+<p>同上一道题相比，两道题如出一辙，只需对约束条件稍加修改即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContinuousMinimumSubarray</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] continuousMinimumSubarray(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="keyword">int</span>[] sumArray = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        sumArray[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sum += nums[i];</div><div class="line">            sumArray[i + <span class="number">1</span>] = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> right = <span class="number">0</span>; <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">while</span>(left &lt; sumArray.length) &#123;</div><div class="line">            <span class="keyword">while</span>(right &lt; sumArray.length &amp;&amp; right - left &lt; k)</div><div class="line">                right++;</div><div class="line">            <span class="keyword">if</span>(right &lt; sumArray.length &amp;&amp; min &gt; sumArray[right] - sumArray[left]) &#123;</div><div class="line">                min = sumArray[right] - sumArray[left];</div><div class="line">                result[<span class="number">0</span>] = left; result[<span class="number">1</span>] = right - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            left++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="209-Minimum-Size-Subarray-Sum"><a href="#209-Minimum-Size-Subarray-Sum" class="headerlink" title="209.Minimum Size Subarray Sum"></a>209.Minimum Size Subarray Sum</h5><pre>
+Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn't one, return 0 instead.
+
+For example, given the array [2,3,1,2,4,3] and s = 7,
+the subarray [4,3] has the minimal length under the problem constraint.
+</pre>
+
+<p>这道题如果稍微修改一下，即sum == s 而不是sum &gt;= s, 感觉可以直接应用map来解决，实际上属于拿空间换时间的方法，在此给出程序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Map&lt;Integer, Integer&gt; mapIndex = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        mapIndex.put(<span class="number">0</span>, -<span class="number">1</span>);</div><div class="line">        <span class="keyword">int</span> sumResult = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sumResult += nums[i];</div><div class="line">            Integer pre = mapIndex.get(sumResult - s);</div><div class="line">            <span class="keyword">if</span>(pre != <span class="keyword">null</span>) &#123;</div><div class="line">                min = Math.min(min, i - pre);</div><div class="line">            &#125;</div><div class="line">            mapIndex.put(sumResult, i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>而如果应用Two Pointer，则又回到了之前两道题的固定套路，区别仅仅是约束条件的改变，所谓万变不离其宗，最终left和right两个指针都可以为我们准确而方便地定位到满足题设的子序列。</p>
+<p><strong>注意cumulative[]和nums[]指针的差别和转换</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] sumArray = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        sumArray[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sum += nums[i];</div><div class="line">            sumArray[i + <span class="number">1</span>] = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>; <span class="keyword">int</span> right = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(left &lt; sumArray.length) &#123;</div><div class="line">            <span class="keyword">while</span>(right &lt; sumArray.length &amp;&amp; sumArray[right] - sumArray[left] &lt; s)</div><div class="line">                right++;</div><div class="line">            <span class="keyword">if</span>(right &lt; sumArray.length &amp;&amp; sumArray[right] - sumArray[left] &gt;= s &amp;&amp; min &gt; right - left)</div><div class="line">                min = right - left;</div><div class="line">            left++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> min &gt; <span class="number">10000000</span> ? <span class="number">0</span> : min;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[递归  回溯  DFS]]></title>
       <url>/2017/11/06/%E9%80%92%E5%BD%92-%E5%9B%9E%E6%BA%AF-DFS/</url>
       <content type="html"><![CDATA[<p>参考<a href="http://blog.csdn.net/ffmpeg4976/article/details/45007439" target="_blank" rel="external">http://blog.csdn.net/ffmpeg4976/article/details/45007439</a></p>
-<p>Wiki上有一个很棒的回溯法的演示：</p>
-<p><img src="http://img.blog.csdn.net/20150412084326667" alt=""><br><a id="more"></a></p>
 <p>在程序设计中，有相当一类求一组解，或求全部解或求最优解的问题，例如读者熟悉的八皇后问题，不是根据某种特定的计算法则，而是利用试探和回溯的搜索技术求解。回溯法也是设计递归过程的一种重要方法，它的求解过程实质上是一个先序遍历一棵”状态树”的过程,只是这棵树不是遍历前预先建立的,而是隐含在遍历过程中。</p>
-<p>《数据结构》(严蔚敏)<br>怎么理解这段话呢？</p>
+<p>《数据结构》(严蔚敏)<br>怎么理解这段话呢？<br><a id="more"></a></p>
 <p>首先，某种问题的解我们很难去找规律计算出来，没有公式可循，只能列出所有可能的解，然后一个个检查每个解是否符合我们要找的条件，也就是通常说的遍历。而解空间很多是树型的，就是树的遍历。<br>其次，树的先序遍历，也就是根是先被检查的，二叉树的先序遍历是根，左子树，右子树的顺序被输出。如果把树看做一种特殊的图的话，DFS就是先序遍历。所以，回溯和DFS是联系非常紧密的，可以认为回溯是DFS的一种应用场景。另外，DFS有个好处，它只存储深度，不存储广度。所以空间复杂度较小，而时间复杂度较大。</p>
 <p>最后，某些解空间是非常大的，可以认为是一个非常庞大的树，此时完全遍历的时间复杂度是难以忍受的。此时可以在遍历的同时检查一些条件，当遍历某分支的时候，若发现条件不满足，则退回到根节点进入下一个分支的遍历。这就是“回溯”这个词的来源。而根据条件有选择的遍历，叫做剪枝或分枝定界。</p>
+<p>Wiki上有一个很棒的回溯法的演示：</p>
+<p><img src="http://img.blog.csdn.net/20150412084326667" alt=""></p>
 ]]></content>
       
         <categories>

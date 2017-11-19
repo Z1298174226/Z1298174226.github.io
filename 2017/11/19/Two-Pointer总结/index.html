@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="google-site-verification" content="UfGN2iuA3cNUL9dAHL2Eb1UjKFc4U4PJqPNhpyhhKpU" />
+  
+  <title>Two Pointer总结 | 倾听枫声</title>
+  <meta name="description" content="生活的理想是为了理想的生活" />
+  <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/hexo.ico">
+  <link rel="alternate" href="/atom.xml" title="倾听枫声">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前序Two Pointer应该说之前用到的还是很多的，像一次循环找到链表的中间元素，像快排等等，刚好这两天Leetcode刷到了Two Pointer这一块，借此机会做一个总结。在大多数适合于Two Pointer的场景下，恰当地使用Two pointer可以将复杂度维持在O(N)，特别是一些求解连续子序列相关的问题，Two pointer不失为一种很好地切入点。">
+<meta name="keywords" content="Algorithm,Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two Pointer总结">
+<meta property="og:url" content="http://www.lex-zhao.xyz/2017/11/19/Two-Pointer总结/index.html">
+<meta property="og:site_name" content="倾听枫声">
+<meta property="og:description" content="前序Two Pointer应该说之前用到的还是很多的，像一次循环找到链表的中间元素，像快排等等，刚好这两天Leetcode刷到了Two Pointer这一块，借此机会做一个总结。在大多数适合于Two Pointer的场景下，恰当地使用Two pointer可以将复杂度维持在O(N)，特别是一些求解连续子序列相关的问题，Two pointer不失为一种很好地切入点。">
+<meta property="og:updated_time" content="2017-11-19T07:17:42.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Two Pointer总结">
+<meta name="twitter:description" content="前序Two Pointer应该说之前用到的还是很多的，像一次循环找到链表的中间元素，像快排等等，刚好这两天Leetcode刷到了Two Pointer这一块，借此机会做一个总结。在大多数适合于Two Pointer的场景下，恰当地使用Two pointer可以将复杂度维持在O(N)，特别是一些求解连续子序列相关的问题，Two pointer不失为一种很好地切入点。">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				倾听枫声
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-github' href='https://github.com/'>
+								Github
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="https://github.com/" class="nav-github nav">
+				Github
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+	<audio autoplay="autoplay">
+    <source = src="http://opeygftv2.bkt.clouddn.com/%E7%8E%96%E6%9C%88%E8%8A%B1%E5%84%BF%E4%B8%8E%E7%AD%9D%20-%20%E7%90%B5%E7%90%B6%E8%AF%AD%20%E5%8F%A4%E7%AD%9D%E7%89%88.mp3" type="audio/mp3">
+  </audio>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-Two-Pointer总结"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/11/19/Two-Pointer总结/">
+    	Two Pointer总结
+    </a>
+  </h2>
+	<time>
+	  11月 19, 2017
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前序"><span class="toc-number">1.</span> <span class="toc-text">前序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Two-pointer应用场景总结"><span class="toc-number">2.</span> <span class="toc-text">Two pointer应用场景总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Esay"><span class="toc-number">3.</span> <span class="toc-text">Esay</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#167-Two-SumII-Input-array-is-sorted"><span class="toc-number">3.0.1.</span> <span class="toc-text">167. Two SumII - Input array is sorted</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Medium"><span class="toc-number">4.</span> <span class="toc-text">Medium</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ContinuousMaximumSubarray"><span class="toc-number">4.0.1.</span> <span class="toc-text">ContinuousMaximumSubarray</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#ContinuousMinimumSubarray"><span class="toc-number">4.0.1.1.</span> <span class="toc-text">ContinuousMinimumSubarray</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#209-Minimum-Size-Subarray-Sum"><span class="toc-number">4.0.2.</span> <span class="toc-text">209.Minimum Size Subarray Sum</span></a></li></ol></li></ol></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h3 id="前序"><a href="#前序" class="headerlink" title="前序"></a><strong>前序</strong></h3><p>Two Pointer应该说之前用到的还是很多的，像一次循环找到链表的中间元素，像快排等等，刚好这两天Leetcode刷到了Two Pointer这一块，借此机会做一个总结。在大多数适合于Two Pointer的场景下，恰当地使用Two pointer可以将复杂度维持在O(N)，特别是一些求解连续子序列相关的问题，Two pointer不失为一种很好地切入点。<br><a id="more"></a></p>
+<h3 id="Two-pointer应用场景总结"><a href="#Two-pointer应用场景总结" class="headerlink" title="Two pointer应用场景总结"></a>Two pointer应用场景总结</h3><ul>
+<li><p>合并两个sorted array到一个sorted array</p>
+</li>
+<li><p>一次循环找到链表的中间元素</p>
+</li>
+<li><p>判断一个链表是否存在环</p>
+</li>
+<li><p>找到链表中倒数第三个元素</p>
+</li>
+<li><p>求解连续子序列相关</p>
+</li>
+</ul>
+<p>接下来，我们将按照难度级别，对几个例子进行简单分析</p>
+<h3 id="Esay"><a href="#Esay" class="headerlink" title="Esay"></a>Esay</h3><h5 id="167-Two-SumII-Input-array-is-sorted"><a href="#167-Two-SumII-Input-array-is-sorted" class="headerlink" title="167. Two SumII - Input array is sorted"></a>167. Two SumII - Input array is sorted</h5><pre>
+Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+You may assume that each input would have exactly one solution and you may not use the same element twice.
+
+Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2
+</pre>
+
+<p>对于已经排好序的array，Two Pointer可以实现时间复杂度O(N)，空间复杂度为1，即两个pointer分别从两端向中间移动，其sun只有两种可能，和如果比target小，则左端指针右移，如果sum比target大，则右端指针左移，否则直接返回。如果不存在满则条件的解，则抛出异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h3><h5 id="ContinuousMaximumSubarray"><a href="#ContinuousMaximumSubarray" class="headerlink" title="ContinuousMaximumSubarray"></a>ContinuousMaximumSubarray</h5><pre>
+对于给定的array，求解不大于target的连续最大和子序列
+</pre>
+
+<p>对于这道求和题，除了Two Pointer的应用，还有一个技巧就是构造Cumulative sum array这样的一个递增序列，并且满足cumulative[end]-cumulative[start] &gt; target &amp;&amp; cumulative[end - 1] - cumulative[start] &lt;= target的条件，而start和end两个指针刚好定位了<br>满足题设条件的连续子序列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContinuousMaximumSubarray</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] continuousMaximumSubarray(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="keyword">int</span>[] sumArray = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        sumArray[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sum += nums[i];</div><div class="line">            sumArray[i + <span class="number">1</span>] = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>; <span class="keyword">int</span> right = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(left &lt; sumArray.length) &#123;</div><div class="line">            <span class="keyword">while</span>(right &lt; sumArray.length &amp;&amp; sumArray[right] - sumArray[left] &lt;= k)</div><div class="line">                right++;</div><div class="line">            <span class="keyword">if</span>(max &lt; sumArray[right - <span class="number">1</span>] - sumArray[left]) &#123;</div><div class="line">                max = sumArray[right - <span class="number">1</span>] - sumArray[left];</div><div class="line">                result[<span class="number">0</span>] = left; result[<span class="number">1</span>] = right - <span class="number">2</span>;</div><div class="line">            &#125;</div><div class="line">            left++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="ContinuousMinimumSubarray"><a href="#ContinuousMinimumSubarray" class="headerlink" title="ContinuousMinimumSubarray"></a>ContinuousMinimumSubarray</h6><pre>
+求解含有k个不同数字的连续最小和子序列
+</pre>
+
+<p>同上一道题相比，两道题如出一辙，只需对约束条件稍加修改即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContinuousMinimumSubarray</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] continuousMinimumSubarray(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="keyword">int</span>[] sumArray = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        sumArray[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sum += nums[i];</div><div class="line">            sumArray[i + <span class="number">1</span>] = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> right = <span class="number">0</span>; <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">while</span>(left &lt; sumArray.length) &#123;</div><div class="line">            <span class="keyword">while</span>(right &lt; sumArray.length &amp;&amp; right - left &lt; k)</div><div class="line">                right++;</div><div class="line">            <span class="keyword">if</span>(right &lt; sumArray.length &amp;&amp; min &gt; sumArray[right] - sumArray[left]) &#123;</div><div class="line">                min = sumArray[right] - sumArray[left];</div><div class="line">                result[<span class="number">0</span>] = left; result[<span class="number">1</span>] = right - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            left++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="209-Minimum-Size-Subarray-Sum"><a href="#209-Minimum-Size-Subarray-Sum" class="headerlink" title="209.Minimum Size Subarray Sum"></a>209.Minimum Size Subarray Sum</h5><pre>
+Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn't one, return 0 instead.
+
+For example, given the array [2,3,1,2,4,3] and s = 7,
+the subarray [4,3] has the minimal length under the problem constraint.
+</pre>
+
+<p>这道题如果稍微修改一下，即sum == s 而不是sum &gt;= s, 感觉可以直接应用map来解决，实际上属于拿空间换时间的方法，在此给出程序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Map&lt;Integer, Integer&gt; mapIndex = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        mapIndex.put(<span class="number">0</span>, -<span class="number">1</span>);</div><div class="line">        <span class="keyword">int</span> sumResult = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sumResult += nums[i];</div><div class="line">            Integer pre = mapIndex.get(sumResult - s);</div><div class="line">            <span class="keyword">if</span>(pre != <span class="keyword">null</span>) &#123;</div><div class="line">                min = Math.min(min, i - pre);</div><div class="line">            &#125;</div><div class="line">            mapIndex.put(sumResult, i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>而如果应用Two Pointer，则又回到了之前两道题的固定套路，区别仅仅是约束条件的改变，所谓万变不离其宗，最终left和right两个指针都可以为我们准确而方便地定位到满足题设的子序列。</p>
+<p><strong>注意cumulative[]和nums[]指针的差别和转换</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] sumArray = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        sumArray[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            sum += nums[i];</div><div class="line">            sumArray[i + <span class="number">1</span>] = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>; <span class="keyword">int</span> right = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(left &lt; sumArray.length) &#123;</div><div class="line">            <span class="keyword">while</span>(right &lt; sumArray.length &amp;&amp; sumArray[right] - sumArray[left] &lt; s)</div><div class="line">                right++;</div><div class="line">            <span class="keyword">if</span>(right &lt; sumArray.length &amp;&amp; sumArray[right] - sumArray[left] &gt;= s &amp;&amp; min &gt; right - left)</div><div class="line">                min = right - left;</div><div class="line">            left++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> min &gt; <span class="number">10000000</span> ? <span class="number">0</span> : min;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Algorithm/">Algorithm</a>
+      
+        <a href="/tags/Leetcode/">Leetcode</a>
+      
+	  </div>
+    
+	</section>
+	
+		<section class="youyan" id="comments"> 
+			<div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
+		</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: 'Two Pointer总结',
+		tools: true
+	}
+</script>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='http://opeygftv2.bkt.clouddn.com/8d265c6034a85edf462d6bca4b540923dc547549.jpg' />
+
+<div class='header'>倾听枫声</div>
+<div class='content'>
+<div class='desc'>生活的理想是为了理想的生活</div>
+</div>
+</section>
+
+  <section class='m_widget links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://www.zhihu.com/people/zhao-xu-dong-26-49/activities">
+            <div class='name'>知乎</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://www.cnblogs.com/lex-to-lex/">
+            <div class='name'>博客园</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://bt.byr.cn/promotionlink.php?key=45a5b20a96726556639d68492017e011">
+            <div class='name'>北邮人BT</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://weibo.com/3879533950/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+            <div class='name'>微博</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>32</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 14px; color: #00f">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/Z1298174226" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://www.zhihu.com/people/zhao-xu-dong-26-49/activities" class="social zhihu"
+          target="_blank" rel="external">
+          <span class="icon icon-zhihu"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a href='https://github.com/Z1298174226' class="codename">Iron Man</a> designed by <a href="http://www.lex-zhao.xyz/" target="_blank">Mr.Zhao</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+<script>
+  var disqus_shortname = 'kevinhome';
+  
+  var disqus_url = 'http://www.lex-zhao.xyz/2017/11/19/Two-Pointer总结/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

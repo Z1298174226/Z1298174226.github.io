@@ -13,18 +13,18 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考http://blog.csdn.net/ffmpeg4976/article/details/45007439 Wiki上有一个很棒的回溯法的演示：">
+  <meta name="description" content="参考http://blog.csdn.net/ffmpeg4976/article/details/45007439 在程序设计中，有相当一类求一组解，或求全部解或求最优解的问题，例如读者熟悉的八皇后问题，不是根据某种特定的计算法则，而是利用试探和回溯的搜索技术求解。回溯法也是设计递归过程的一种重要方法，它的求解过程实质上是一个先序遍历一棵”状态树”的过程,只是这棵树不是遍历前预先建立的,而是隐含">
 <meta name="keywords" content="Algorithm,dfs,DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="递归  回溯  DFS">
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/11/06/递归-回溯-DFS/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="参考http://blog.csdn.net/ffmpeg4976/article/details/45007439 Wiki上有一个很棒的回溯法的演示：">
+<meta property="og:description" content="参考http://blog.csdn.net/ffmpeg4976/article/details/45007439 在程序设计中，有相当一类求一组解，或求全部解或求最优解的问题，例如读者熟悉的八皇后问题，不是根据某种特定的计算法则，而是利用试探和回溯的搜索技术求解。回溯法也是设计递归过程的一种重要方法，它的求解过程实质上是一个先序遍历一棵”状态树”的过程,只是这棵树不是遍历前预先建立的,而是隐含">
 <meta property="og:image" content="http://img.blog.csdn.net/20150412084326667">
-<meta property="og:updated_time" content="2017-11-06T15:17:34.811Z">
+<meta property="og:updated_time" content="2017-11-19T06:31:28.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归  回溯  DFS">
-<meta name="twitter:description" content="参考http://blog.csdn.net/ffmpeg4976/article/details/45007439 Wiki上有一个很棒的回溯法的演示：">
+<meta name="twitter:description" content="参考http://blog.csdn.net/ffmpeg4976/article/details/45007439 在程序设计中，有相当一类求一组解，或求全部解或求最优解的问题，例如读者熟悉的八皇后问题，不是根据某种特定的计算法则，而是利用试探和回溯的搜索技术求解。回溯法也是设计递归过程的一种重要方法，它的求解过程实质上是一个先序遍历一棵”状态树”的过程,只是这棵树不是遍历前预先建立的,而是隐含">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20150412084326667">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
@@ -164,12 +164,12 @@
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
     	<p>参考<a href="http://blog.csdn.net/ffmpeg4976/article/details/45007439" target="_blank" rel="external">http://blog.csdn.net/ffmpeg4976/article/details/45007439</a></p>
-<p>Wiki上有一个很棒的回溯法的演示：</p>
-<p><img src="http://img.blog.csdn.net/20150412084326667" alt=""><br><a id="more"></a></p>
 <p>在程序设计中，有相当一类求一组解，或求全部解或求最优解的问题，例如读者熟悉的八皇后问题，不是根据某种特定的计算法则，而是利用试探和回溯的搜索技术求解。回溯法也是设计递归过程的一种重要方法，它的求解过程实质上是一个先序遍历一棵”状态树”的过程,只是这棵树不是遍历前预先建立的,而是隐含在遍历过程中。</p>
-<p>《数据结构》(严蔚敏)<br>怎么理解这段话呢？</p>
+<p>《数据结构》(严蔚敏)<br>怎么理解这段话呢？<br><a id="more"></a></p>
 <p>首先，某种问题的解我们很难去找规律计算出来，没有公式可循，只能列出所有可能的解，然后一个个检查每个解是否符合我们要找的条件，也就是通常说的遍历。而解空间很多是树型的，就是树的遍历。<br>其次，树的先序遍历，也就是根是先被检查的，二叉树的先序遍历是根，左子树，右子树的顺序被输出。如果把树看做一种特殊的图的话，DFS就是先序遍历。所以，回溯和DFS是联系非常紧密的，可以认为回溯是DFS的一种应用场景。另外，DFS有个好处，它只存储深度，不存储广度。所以空间复杂度较小，而时间复杂度较大。</p>
 <p>最后，某些解空间是非常大的，可以认为是一个非常庞大的树，此时完全遍历的时间复杂度是难以忍受的。此时可以在遍历的同时检查一些条件，当遍历某分支的时候，若发现条件不满足，则退回到根节点进入下一个分支的遍历。这就是“回溯”这个词的来源。而根据条件有选择的遍历，叫做剪枝或分枝定界。</p>
+<p>Wiki上有一个很棒的回溯法的演示：</p>
+<p><img src="http://img.blog.csdn.net/20150412084326667" alt=""></p>
 
   	</div>
 	  
@@ -242,7 +242,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>31</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>32</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     

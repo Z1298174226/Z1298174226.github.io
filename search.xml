@@ -3,6 +3,30 @@
   
     
     <entry>
+      <title><![CDATA[AkkA_OSGi避坑大全]]></title>
+      <url>/2017/11/20/AkkA-OSGi%E9%81%BF%E5%9D%91%E5%A4%A7%E5%85%A8/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> AkkA </tag>
+            
+            <tag> OSGi </tag>
+            
+            <tag> scala </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Two Pointer总结]]></title>
       <url>/2017/11/19/Two-Pointer%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<h3 id="前序"><a href="#前序" class="headerlink" title="前序"></a><strong>前序</strong></h3><p>Two Pointer应该说之前用到的还是很多的，像一次循环找到链表的中间元素，像快排等等，刚好这两天Leetcode刷到了Two Pointer这一块，借此机会做一个总结。在大多数适合于Two Pointer的场景下，恰当地使用Two pointer可以将复杂度维持在O(N)，特别是一些求解连续子序列相关的问题，Two pointer不失为一种很好地切入点。<br><a id="more"></a></p>

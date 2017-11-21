@@ -5,7 +5,30 @@
     <entry>
       <title><![CDATA[AkkA_OSGi避坑大全]]></title>
       <url>/2017/11/20/AkkA-OSGi%E9%81%BF%E5%9D%91%E5%A4%A7%E5%85%A8/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p>实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121105638.png" alt=""><br><a id="more"></a></p>
+<h5 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h5><p>AkkA框架基于scala开发，所以在构建工程时，要注意AkkA同scala以及typesafe应该保持版本号一致</p>
+<ul>
+<li>由pom构建</li>
+</ul>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121110112.png" alt=""></p>
+<ul>
+<li>由SBT构建</li>
+</ul>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121110234.png" alt=""></p>
+<p>版本不一致的话会报各种无法解析依赖的错误</p>
+<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>AKKA框架会按照默认路径寻找配置文件application.conf，当然显示指定配置文件路径也可以，默认路径严格遵循以下路径：</p>
+<p><strong>src\main\resources\application.conf</strong></p>
+<h5 id="OSGi平台如何启动AkkA"><a href="#OSGi平台如何启动AkkA" class="headerlink" title="OSGi平台如何启动AkkA"></a>OSGi平台如何启动AkkA</h5><p>启动类Activator需继承ActorSystemActivator，<strong>config</strong>同<strong>start（startImp）</strong>函数作用相同，为<strong>Activator</strong>的启动函数，同时注意需要将<strong>ActorSystem</strong>注册到<strong>BundleContext</strong>上来</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20171121111657.png" alt=""></p>
+<h5 id="收发函数的调用"><a href="#收发函数的调用" class="headerlink" title="收发函数的调用"></a>收发函数的调用</h5><p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20171121112413.png" alt=""></p>
+<h5 id="远程ActorRef的获取"><a href="#远程ActorRef的获取" class="headerlink" title="远程ActorRef的获取"></a>远程ActorRef的获取</h5><p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121112757.png" alt=""></p>
+<h5 id="多个配置文件共存"><a href="#多个配置文件共存" class="headerlink" title="多个配置文件共存"></a>多个配置文件共存</h5><p>上文提到AkkA会按照默认路径寻找配置文件，但假如OSGi平台当中存在多个配置文件，会导致当前bundle追寻到错误的配置文件，这个问题相当棘手。</p>
+<p>比如bundleA存在配置文件application.confA，但是bundleA <strong>import</strong> 了BundleB，而bundleB拥有配置文件applicationB,那么BundleA最终调用的配置文件很有可能变成applicationB，而不是希望的applicationA，错误发生了。</p>
+<p>而且很有可能报的是这样的错误：</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121113920.png" alt=""></p>
+<p>后来发现，即使显示地指定bundleA配置文件application.conf的路径，这个错误依然存在，换句话说，只要OSGi平台当中存在多个配置文件，就会引发错误，所以可行的办法就是保证当前只有一个配置文件。</p>
+]]></content>
       
         <categories>
             
@@ -68,6 +91,7 @@
 <p>这道题需要特别注意的应该是边界条件，即对于</p>
 <p>right - left != s1.length() &amp;&amp; left &lt;= right</p>
 <p>应该有now[s1.charAt(left)]–;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkInclusion</span><span class="params">(String s1, String s2)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span>[] cnt = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="keyword">int</span>[] now = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s1.length(); i++)</div><div class="line">        cnt[s1.charAt(i)]++;</div><div class="line">    <span class="keyword">int</span> right = <span class="number">0</span>; <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">   <span class="keyword">while</span>(left &lt; s2.length()) &#123;</div><div class="line">        <span class="keyword">while</span>(right &lt; s2.length() &amp;&amp; now[s2.charAt(right)] + <span class="number">1</span> &lt;= cnt[s2.charAt(right)]) &#123;</div><div class="line">                now[s2.charAt(right)] += <span class="number">1</span>;</div><div class="line">                right++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(right - left == s1.length()) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">if</span>(left &lt;= right) now[s2.charAt(left)]--;</div><div class="line">        left++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>

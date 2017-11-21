@@ -13,17 +13,25 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生活的理想是为了理想的生活">
+  <meta name="description" content="实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。">
 <meta name="keywords" content="AkkA,OSGi,scala">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AkkA_OSGi避坑大全">
 <meta property="og:url" content="http://www.lex-zhao.xyz/2017/11/20/AkkA-OSGi避坑大全/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="生活的理想是为了理想的生活">
-<meta property="og:updated_time" content="2017-11-20T15:49:00.971Z">
+<meta property="og:description" content="实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121105638.png">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121110112.png">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121110234.png">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20171121111657.png">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20171121112413.png">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121112757.png">
+<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121113920.png">
+<meta property="og:updated_time" content="2017-11-21T08:24:25.381Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AkkA_OSGi避坑大全">
-<meta name="twitter:description" content="生活的理想是为了理想的生活">
+<meta name="twitter:description" content="实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。">
+<meta name="twitter:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121105638.png">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -157,11 +165,34 @@
 
 	</section>
 	
-		<section class="toc-wrapper"></section>
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#依赖"><span class="toc-number">1.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置文件"><span class="toc-number">2.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#OSGi平台如何启动AkkA"><span class="toc-number">3.</span> <span class="toc-text">OSGi平台如何启动AkkA</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#收发函数的调用"><span class="toc-number">4.</span> <span class="toc-text">收发函数的调用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#远程ActorRef的获取"><span class="toc-number">5.</span> <span class="toc-text">远程ActorRef的获取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多个配置文件共存"><span class="toc-number">6.</span> <span class="toc-text">多个配置文件共存</span></a></li></ol></section>
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	
+    	<p>实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121105638.png" alt=""><br><a id="more"></a></p>
+<h5 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h5><p>AkkA框架基于scala开发，所以在构建工程时，要注意AkkA同scala以及typesafe应该保持版本号一致</p>
+<ul>
+<li>由pom构建</li>
+</ul>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121110112.png" alt=""></p>
+<ul>
+<li>由SBT构建</li>
+</ul>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121110234.png" alt=""></p>
+<p>版本不一致的话会报各种无法解析依赖的错误</p>
+<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>AKKA框架会按照默认路径寻找配置文件application.conf，当然显示指定配置文件路径也可以，默认路径严格遵循以下路径：</p>
+<p><strong>src\main\resources\application.conf</strong></p>
+<h5 id="OSGi平台如何启动AkkA"><a href="#OSGi平台如何启动AkkA" class="headerlink" title="OSGi平台如何启动AkkA"></a>OSGi平台如何启动AkkA</h5><p>启动类Activator需继承ActorSystemActivator，<strong>config</strong>同<strong>start（startImp）</strong>函数作用相同，为<strong>Activator</strong>的启动函数，同时注意需要将<strong>ActorSystem</strong>注册到<strong>BundleContext</strong>上来</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20171121111657.png" alt=""></p>
+<h5 id="收发函数的调用"><a href="#收发函数的调用" class="headerlink" title="收发函数的调用"></a>收发函数的调用</h5><p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20171121112413.png" alt=""></p>
+<h5 id="远程ActorRef的获取"><a href="#远程ActorRef的获取" class="headerlink" title="远程ActorRef的获取"></a>远程ActorRef的获取</h5><p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121112757.png" alt=""></p>
+<h5 id="多个配置文件共存"><a href="#多个配置文件共存" class="headerlink" title="多个配置文件共存"></a>多个配置文件共存</h5><p>上文提到AkkA会按照默认路径寻找配置文件，但假如OSGi平台当中存在多个配置文件，会导致当前bundle追寻到错误的配置文件，这个问题相当棘手。</p>
+<p>比如bundleA存在配置文件application.confA，但是bundleA <strong>import</strong> 了BundleB，而bundleB拥有配置文件applicationB,那么BundleA最终调用的配置文件很有可能变成applicationB，而不是希望的applicationA，错误发生了。</p>
+<p>而且很有可能报的是这样的错误：</p>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121113920.png" alt=""></p>
+<p>后来发现，即使显示地指定bundleA配置文件application.conf的路径，这个错误依然存在，换句话说，只要OSGi平台当中存在多个配置文件，就会引发错误，所以可行的办法就是保证当前只有一个配置文件。</p>
+
   	</div>
 	  
 	  <div class="article-tags tags">

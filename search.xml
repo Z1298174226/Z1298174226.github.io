@@ -3,8 +3,8 @@
   
     
     <entry>
-      <title><![CDATA[AkkA_OSGi避坑大全]]></title>
-      <url>/2017/11/20/AkkA-OSGi%E9%81%BF%E5%9D%91%E5%A4%A7%E5%85%A8/</url>
+      <title><![CDATA[AkkA_OSGi避坑指南]]></title>
+      <url>/2017/11/20/AkkA-OSGi%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/</url>
       <content type="html"><![CDATA[<p>实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。</p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121105638.png" alt=""><br><a id="more"></a></p>
 <h5 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h5><p>AkkA框架基于scala开发，所以在构建工程时，要注意AkkA同scala以及typesafe应该保持版本号一致</p>
@@ -1389,7 +1389,7 @@ public static void main(String[] args){
     
     <entry>
       <title><![CDATA[春华秋实]]></title>
-      <url>/2017/05/03/%E5%8D%97%E4%BA%AC/</url>
+      <url>/2017/05/03/%E6%98%A5%E5%8D%8E%E7%A7%8B%E5%AE%9E/</url>
       <content type="html"><![CDATA[<p><img src="http://opeygftv2.bkt.clouddn.com/_DSC1096_%E5%89%AF%E6%9C%AC.jpg" alt=""><br><a id="more"></a><br><img src="http://opeygftv2.bkt.clouddn.com/_DSC1072_%E5%89%AF%E6%9C%AC.jpg" alt=""><br><img src="http://opeygftv2.bkt.clouddn.com/_DSC1102_%E5%89%AF%E6%9C%AC.jpg" alt=""><br><img src="http://opeygftv2.bkt.clouddn.com/_DSC1089_%E5%89%AF%E6%9C%AC.jpg" alt=""><br><img src="http://opeygftv2.bkt.clouddn.com/_DSC1110_%E5%89%AF%E6%9C%AC.jpg" alt=""><br><img src="http://opeygftv2.bkt.clouddn.com/_DSC1157_%E5%89%AF%E6%9C%AC.jpg" alt=""></p>
 ]]></content>
       

@@ -3,6 +3,66 @@
   
     
     <entry>
+      <title><![CDATA[canPartitionKSubsets]]></title>
+      <url>/2017/11/23/canPartitionKSubsets/</url>
+      <content type="html"><![CDATA[<p>拿出以下三道题来进行对比和总结。</p>
+<p><strong>560. Subarray Sum Equals K</strong></p>
+<p><strong>523. Continuous Subarray Sum</strong></p>
+<p><strong>209. Minimum Size Subarray Sum</strong></p>
+<p><strong>713. Subarray Product Less Than K</strong></p>
+<a id="more"></a>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171123110057.png" alt=""></p>
+<hr>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171123110055.png" alt=""></p>
+<hr>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171123110955.png" alt=""></p>
+<hr>
+<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171123110049.png" alt=""></p>
+<p>前三道题看到求连续子序列和问题，条件反射想到了Two Pointer，同时通过构建Map，可以以空间换时间的方式进一步降低算法复杂度。</p>
+<p><strong>map put进初值</strong></p>
+<ul>
+<li>求子序列长度</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">map.put(<span class="number">0</span>, -<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>求序列个数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">map.put(<span class="number">0</span>, <span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p>这几道题可以进一步做引申，分为两种情况：</p>
+<ul>
+<li>和为k</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</div><div class="line">   result += num;</div><div class="line">   Integer pre = map.get(result - k);</div><div class="line">   <span class="keyword">if</span>(pre != <span class="keyword">null</span>) &#123;</div><div class="line">      ...</div><div class="line">   &#125;</div><div class="line">   map.put(result, map.getOrDefault(result, <span class="number">0</span>) + <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>和为 m * k（k = 1， 2， 3， …)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</div><div class="line">   result += num;</div><div class="line">   result %= k;</div><div class="line">   Integer pre = map.get(result);</div><div class="line">   <span class="keyword">if</span>(pre != <span class="keyword">null</span>) &#123;</div><div class="line">      ...</div><div class="line">   &#125;</div><div class="line">   map.put(...);</div><div class="line">&#125;</div><div class="line"></div><div class="line">`</div></pre></td></tr></table></figure>
+<p>713题是一道DP，采用带备忘自顶向下的方法，思路比较清晰。同时因为各子序列间不能有重叠项，因此需要引入boolean类型数组作标记。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        <span class="keyword">int</span> result = <span class="number">0</span>; <span class="keyword">int</span> resultSum = <span class="number">0</span>;</div><div class="line">        map.put(<span class="number">0</span>, <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            resultSum += nums[i];</div><div class="line">            Integer pre = map.get(resultSum - k);</div><div class="line">            <span class="keyword">if</span>(pre != <span class="keyword">null</span>) &#123;</div><div class="line">                result += pre;</div><div class="line">            &#125;</div><div class="line">            map.put(resultSum, map.getOrDefault(resultSum, <span class="number">0</span>) + <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>=======================</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">canPartitionKSubsets</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums)sum += num;</div><div class="line">        <span class="keyword">if</span>(k &lt;= <span class="number">0</span> || sum%k != <span class="number">0</span>)<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">int</span>[] visited = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">        <span class="keyword">return</span> canPartition(nums, visited, <span class="number">0</span>, k, <span class="number">0</span>, <span class="number">0</span>, sum/k);</div><div class="line">    &#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">canPartition</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span>[] visited, <span class="keyword">int</span> start_index, <span class="keyword">int</span> k, <span class="keyword">int</span> cur_sum, <span class="keyword">int</span> cur_num, <span class="keyword">int</span> target)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(k==<span class="number">1</span>)<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">if</span>(cur_sum == target &amp;&amp; cur_num&gt;<span class="number">0</span>)<span class="keyword">return</span> canPartition(nums, visited, <span class="number">0</span>, k-<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, target);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = start_index; i&lt;nums.length; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(visited[i] == <span class="number">0</span>)&#123;</div><div class="line">                visited[i] = <span class="number">1</span>;</div><div class="line">                <span class="keyword">if</span>(canPartition(nums, visited, i+<span class="number">1</span>, k, cur_sum + nums[i], cur_num++, target))<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                visited[i] = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> DP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[AkkA_OSGi避坑指南]]></title>
       <url>/2017/11/20/AkkA-OSGi%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/</url>
       <content type="html"><![CDATA[<p>实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。</p>

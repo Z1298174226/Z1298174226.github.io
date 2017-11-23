@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-11-22T05:24:53.859Z</updated>
+  <updated>2017-11-23T04:37:18.325Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>canPartitionKSubsets</title>
+    <link href="http://www.lex-zhao.xyz/2017/11/23/canPartitionKSubsets/"/>
+    <id>http://www.lex-zhao.xyz/2017/11/23/canPartitionKSubsets/</id>
+    <published>2017-11-23T01:54:05.000Z</published>
+    <updated>2017-11-23T04:37:18.325Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;拿出以下三道题来进行对比和总结。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;560. Subarray Sum Equals K&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;523. Continuous Subarray Sum&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;209. Minimum Size Subarray Sum&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;713. Subarray Product Less Than K&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
+    
+  </entry>
   
   <entry>
     <title>AkkA_OSGi避坑指南</title>
@@ -464,27 +492,6 @@
       <category term="Netty" scheme="http://www.lex-zhao.xyz/tags/Netty/"/>
     
       <category term="nio" scheme="http://www.lex-zhao.xyz/tags/nio/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小问题</title>
-    <link href="http://www.lex-zhao.xyz/2017/07/11/%E5%B0%8F%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.lex-zhao.xyz/2017/07/11/小问题/</id>
-    <published>2017-07-11T02:28:37.000Z</published>
-    <updated>2017-07-11T02:34:55.661Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天吃饭的时候，问了自己一个问题，java反射到底是个啥，java反射可以实现啥？&lt;br&gt;自己稍微总结一下：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;java反射是在程序运行时，拿到一个类可以得到类的全部属性和方法，拿到一个对象，可以调用对象的全部属性和方法。&lt;/strong&gt;&lt;/p
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="java" scheme="http://www.lex-zhao.xyz/tags/java/"/>
     
   </entry>
   

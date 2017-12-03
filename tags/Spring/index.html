@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="google-site-verification" content="UfGN2iuA3cNUL9dAHL2Eb1UjKFc4U4PJqPNhpyhhKpU" />
   
-  <title>netty之ChannelPipeline和ChannelHandler | 倾听枫声</title>
+  <title>Tag: Spring | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -13,17 +13,15 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。">
-<meta name="keywords" content="java,Netty,nio">
-<meta property="og:type" content="article">
-<meta property="og:title" content="netty之ChannelPipeline和ChannelHandler">
-<meta property="og:url" content="http://www.lex-zhao.xyz/2017/07/15/netty之ChannelPipeline和ChannelHandler/index.html">
+  <meta name="description" content="生活的理想是为了理想的生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="倾听枫声">
+<meta property="og:url" content="http://www.lex-zhao.xyz/tags/Spring/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。">
-<meta property="og:updated_time" content="2017-07-15T10:55:35.918Z">
+<meta property="og:description" content="生活的理想是为了理想的生活">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="netty之ChannelPipeline和ChannelHandler">
-<meta name="twitter:description" content="Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。">
+<meta name="twitter:title" content="倾听枫声">
+<meta name="twitter:description" content="生活的理想是为了理想的生活">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -137,60 +135,53 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <article id="post-netty之ChannelPipeline和ChannelHandler"
-  class="post white-box article-type-post"
-  itemscope itemprop="blogPost">
-	<section class='meta'>
-	<h2 class="title">
-  	<a href="/2017/07/15/netty之ChannelPipeline和ChannelHandler/">
-    	netty之ChannelPipeline和ChannelHandler
-    </a>
-  </h2>
-	<time>
-	  7月 15, 2017
-	</time>
+        
+  <script>
+    window.subData= { title:'Tag : Spring'}
+  </script>
+
+<section class="post-list">
 	
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2017/12/03/Spring源码曲径通幽-1-Ioc控制反转/">
+        Spring源码曲径通幽(1)---Ioc控制反转
+      </a>
+    </h2>
+    
+    <time>
+      12月 3, 2017
+    </time>
+		
     
     <div class='cats'>
         <a href="/categories/技术/">技术</a>
     </div>
 
-	</section>
-	
-		<section class="toc-wrapper"></section>
-	
-	<section class="article typo">
-  	<div class="article-entry" itemprop="articleBody">
-    	<p>Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责连模式的一种变形（Netty的三层架构分别为通信业务层，职责链，上层业务），主要是方便事件的拦截和用户业务逻辑的定制。<br><a id="more"></a><br>众所周知，Servlet Filter是JAVA Web应用程序级的java代码组件，它能够以声明的方式插入到HTTP请求响应的处理过程中，用于拦截请求和响应，以便能够查看、提取或以某种方式操作正在客户端和服务器之间交换的数据。拦截器封装了业务定制逻辑，能够实现对Web应用程序的预处理和事后处理。</p>
-<p>过滤器提供了一种面向对象的模块化机制，用来将公共任务封装到可插入的组件中。这些组件通过Web部署配置文件(web.xml)进行声明，可以方便地添加或删除过滤器，无需改动任何应用程序代码或JSP页面，由Servlet进行动态调用。通过在请求、响应链中使用过滤器，可以对应用程序的Servlet或JSP页面提供的核心处理进行补充，而不破坏Servlet或JSP页面的功能。由于是纯Java实现，所以Servlet过滤器具有跨平台的可重用性，使得他们很容易被部署到任何符合Servlet规范的JEE环境中。</p>
-<p>同样的，Netty将数据管道封装为一个ChannelPipeline，消息在ChannelPipeline中流动和传递，ChannelPipeline维护一个IO事件拦截器ChannelHandler链表并可实现迭代，通过新增和删除ChannelHandler来实现不同的业务逻辑定制。</p>
-
-  	</div>
+  </section>
+  <section class="article typo">
 	  
-	  <div class="article-tags tags">
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/java/">java</a>
+        <a href="/tags/Spring/">Spring</a>
       
-        <a href="/tags/Netty/">Netty</a>
-      
-        <a href="/tags/nio/">nio</a>
+        <a href="/tags/Java/">Java</a>
       
 	  </div>
     
-	</section>
-	
-		<section class="youyan" id="comments"> 
-			<div id="uyan_frame"></div>
-            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
-		</section>
-	
+  </section>
 </article>
-<script>
-	window.subData = {
-		title: 'netty之ChannelPipeline和ChannelHandler',
-		tools: true
-	}
-</script>
+    </div>
+  
+</section>
+
 
       </div>
       <aside class='l_side'>
@@ -292,13 +283,11 @@
 <script>
   var disqus_shortname = 'kevinhome';
   
-  var disqus_url = 'http://www.lex-zhao.xyz/2017/07/15/netty之ChannelPipeline和ChannelHandler/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

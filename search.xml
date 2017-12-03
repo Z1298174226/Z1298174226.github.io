@@ -3,6 +3,30 @@
   
     
     <entry>
+      <title><![CDATA[Binary Search总结]]></title>
+      <url>/2017/12/03/Binary-Search%E6%80%BB%E7%BB%93/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> BST </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[canPartitionKSubsets]]></title>
       <url>/2017/11/23/canPartitionKSubsets/</url>
       <content type="html"><![CDATA[<p>拿出以下三道题来进行对比和总结。</p>

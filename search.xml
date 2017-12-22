@@ -6,6 +6,7 @@
       <title><![CDATA[AccountMerge(UnionFind)]]></title>
       <url>/2017/12/22/AccountMerge-UnionFind/</url>
       <content type="html"><![CDATA[<p><strong>721. Accounts Merge</strong><br><img src="http://opeygftv2.bkt.clouddn.com/721.JPG" alt=""></p>
+<a id="more"></a>
 <p>根据题意，容易想到应用并查集来解决问题。</p>
 <p>但又是一道没有做出来的题。</p>
 <p>这个是discuss当中排名最靠前的答案，感觉思路非常精巧。通过代码具体分析一下：</p>

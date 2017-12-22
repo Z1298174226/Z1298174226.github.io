@@ -3,6 +3,32 @@
   
     
     <entry>
+      <title><![CDATA[AccountMerge(UnionFind)]]></title>
+      <url>/2017/12/22/AccountMerge-UnionFind/</url>
+      <content type="html"><![CDATA[<p><strong>721. Accounts Merge</strong><br><img src="http://opeygftv2.bkt.clouddn.com/721.JPG" alt=""></p>
+<p>根据题意，容易想到应用并查集来解决问题。</p>
+<p>但又是一道没有做出来的题。</p>
+<p>这个是discuss当中排名最靠前的答案，感觉思路非常精巧。通过代码具体分析一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; accountsMerge(List&lt;List&lt;String&gt;&gt; acts) &#123;</div><div class="line">        Map&lt;String, String&gt; owner = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        Map&lt;String, String&gt; parents = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        Map&lt;String, TreeSet&lt;String&gt;&gt; unions = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (List&lt;String&gt; a : acts) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; a.size(); i++) &#123;</div><div class="line">                parents.put(a.get(i), a.get(i));</div><div class="line">                owner.put(a.get(i), a.get(<span class="number">0</span>));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (List&lt;String&gt; a : acts) &#123;</div><div class="line">            String p = find(a.get(<span class="number">1</span>), parents);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; a.size(); i++)</div><div class="line">                parents.put(find(a.get(i), parents), p);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (List&lt;String&gt; a : acts) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; a.size(); i++) &#123;</div><div class="line">                String p = find(a.get(i), parents);</div><div class="line">                <span class="keyword">if</span> (!unions.containsKey(p)) unions.put(p, <span class="keyword">new</span> TreeSet&lt;&gt;());</div><div class="line">                unions.get(p).add(a.get(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (String p : unions.keySet()) &#123;</div><div class="line">            List&lt;String&gt; emails = <span class="keyword">new</span> ArrayList(unions.get(p));</div><div class="line">            emails.add(<span class="number">0</span>, owner.get(p));</div><div class="line">            res.add(emails);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">find</span><span class="params">(String s, Map&lt;String, String&gt; p)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> p.get(s) == s ? s : find(p.get(s), p);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> UnionFind </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Spring源码曲径通幽(1)---Ioc控制反转]]></title>
       <url>/2017/12/03/Spring%E6%BA%90%E7%A0%81%E6%9B%B2%E5%BE%84%E9%80%9A%E5%B9%BD-1-Ioc%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/</url>
       <content type="html"></content>
@@ -38,9 +64,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> BST </tag>
             
@@ -105,9 +131,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -216,9 +242,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -273,9 +299,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> dfs </tag>
             
@@ -301,9 +327,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -331,9 +357,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -362,9 +388,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -410,9 +436,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -477,9 +503,9 @@ public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -540,9 +566,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -563,9 +589,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -637,9 +663,9 @@ public void dfs(String s, int i, Set<string> res, StringBuilder sb, int rmL, int
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -680,9 +706,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -704,9 +730,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> BST </tag>
             
@@ -872,9 +898,9 @@ class Solution {
         
         <tags>
             
-            <tag> DataMining </tag>
-            
             <tag> Algorithm </tag>
+            
+            <tag> DataMining </tag>
             
         </tags>
         

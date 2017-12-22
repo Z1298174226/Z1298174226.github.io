@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lex-zhao.xyz/"/>
-  <updated>2017-12-03T15:12:12.746Z</updated>
+  <updated>2017-12-22T15:31:34.843Z</updated>
   <id>http://www.lex-zhao.xyz/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AccountMerge(UnionFind)</title>
+    <link href="http://www.lex-zhao.xyz/2017/12/22/AccountMerge-UnionFind/"/>
+    <id>http://www.lex-zhao.xyz/2017/12/22/AccountMerge-UnionFind/</id>
+    <published>2017-12-22T15:24:24.000Z</published>
+    <updated>2017-12-22T15:31:34.843Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;721. Accounts Merge&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/721.JPG&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;根据题意，容易想到应用并查集来解决问题。&lt;/p&gt;
+&lt;p&gt;但又
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="UnionFind" scheme="http://www.lex-zhao.xyz/tags/UnionFind/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring源码曲径通幽(1)---Ioc控制反转</title>
@@ -49,9 +73,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="BST" scheme="http://www.lex-zhao.xyz/tags/BST/"/>
     
@@ -77,9 +101,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
     
@@ -126,9 +150,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
   </entry>
   
@@ -176,9 +200,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="dfs" scheme="http://www.lex-zhao.xyz/tags/dfs/"/>
     
@@ -201,9 +225,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
     
@@ -227,9 +251,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
     
@@ -253,9 +277,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
     
@@ -278,9 +302,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
     
@@ -303,9 +327,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="DP" scheme="http://www.lex-zhao.xyz/tags/DP/"/>
     
@@ -328,9 +352,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
   </entry>
   
@@ -351,9 +375,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
   </entry>
   
@@ -373,9 +397,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
   </entry>
   
@@ -395,9 +419,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
   </entry>
   
@@ -417,9 +441,9 @@
       <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lex-zhao.xyz/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lex-zhao.xyz/tags/Algorithm/"/>
     
       <category term="BST" scheme="http://www.lex-zhao.xyz/tags/BST/"/>
     
@@ -459,28 +483,6 @@
       &lt;p&gt;@(Opendaylight)[openflowplugin|statistics-manager|beryllium]&lt;/p&gt;
 &lt;h4 id=&quot;StatNodeRegistrationImpl&quot;&gt;&lt;a href=&quot;#StatNodeRegistrationImpl&quot; class=&quot;headerlink&quot; title=&quot;StatNodeRegistrationImpl&quot;&gt;&lt;/a&gt;StatNodeRegistrationImpl&lt;/h4&gt;&lt;blockquote&gt;
 &lt;p&gt;StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inventory-mananger转移到了statistics-manager。有待于进一步证实。&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lex-zhao.xyz/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="SDN" scheme="http://www.lex-zhao.xyz/tags/SDN/"/>
-    
-      <category term="ODL" scheme="http://www.lex-zhao.xyz/tags/ODL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>opendaylightplugin学习笔记（二）——TopologyManager</title>
-    <link href="http://www.lex-zhao.xyz/2017/07/27/opendaylightplugin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94TopologyManager-1/"/>
-    <id>http://www.lex-zhao.xyz/2017/07/27/opendaylightplugin学习笔记（二）——TopologyManager-1/</id>
-    <published>2017-07-27T15:57:43.000Z</published>
-    <updated>2017-07-27T15:58:50.830Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;topology-manager&lt;/strong&gt;模块是作为&lt;strong&gt;openflowplugin&lt;/strong&gt;的应用层程序（Applications），负责处理operational数据库下network-topology:network-topology数据节点（datastore数据库）的增删改查，例如ODL控制器发现添加一台主机host、新加主机与交换机的link链接等。显示拓扑的前端需要从该数据节点上获取主机或者交换机节点数据才能绘制网络拓扑图，构成拓扑图来源有两方面，一方面是通过LLDP发现的switch设备以及相关link连接，另一外面是通过L2switch的hosttracker模块发现的下挂在switch上的host主机以及相关连接。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

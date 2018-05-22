@@ -17,7 +17,7 @@
 <meta name="keywords" content="java,GC机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="（译）JVM 垃圾回收机制(一)——新生代垃圾回收">
-<meta property="og:url" content="http://www.lex-zhao.xyz/2017/05/10/JVM-垃圾回收机制/index.html">
+<meta property="og:url" content="http://www.lexzhao.top/2017/05/10/JVM-垃圾回收机制/index.html">
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="原作者：PATRICK PESCHLOW 本文对原文有改动 单纯从 JVM 的功能考虑，并不需要新生代，完全可以针对整个堆进行操作。新生代存在的唯一理由是优化垃圾回收 (GC) 的性能。更具体说，把堆划分为新生代和老年代有 2 个好处：简化了新对象的分配 (只在新生代分配内存)， 可以更有效的清除不再需要的对象 (即死对象)(新生代和老年代使用不同的 GC 算法)">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/1.png">
@@ -346,7 +346,7 @@
 <script>
   var disqus_shortname = 'kevinhome';
   
-  var disqus_url = 'http://www.lex-zhao.xyz/2017/05/10/JVM-垃圾回收机制/';
+  var disqus_url = 'http://www.lexzhao.top/2017/05/10/JVM-垃圾回收机制/';
   
   (function(){
     var dsq = document.createElement('script');

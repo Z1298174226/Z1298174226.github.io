@@ -174,9 +174,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> BST </tag>
             
@@ -241,9 +241,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -352,9 +352,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -409,9 +409,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> dfs </tag>
             
@@ -437,9 +437,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -467,9 +467,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -498,9 +498,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -546,9 +546,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -613,9 +613,9 @@ public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -676,9 +676,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -699,9 +699,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -773,9 +773,9 @@ public void dfs(String s, int i, Set<string> res, StringBuilder sb, int rmL, int
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -816,9 +816,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -840,9 +840,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> BST </tag>
             

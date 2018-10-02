@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lexzhao.top/"/>
-  <updated>2017-12-24T15:39:27.984Z</updated>
+  <updated>2018-10-02T09:58:58.211Z</updated>
   <id>http://www.lexzhao.top/</id>
   
   <author>
@@ -14,6 +14,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>生成式对抗网</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
+    <id>http://www.lexzhao.top/2018/10/02/生成式对抗网/</id>
+    <published>2018-10-02T09:58:31.000Z</published>
+    <updated>2018-10-02T09:58:58.211Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络， 生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C-%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度生成模型预算法</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/"/>
+    <id>http://www.lexzhao.top/2018/10/02/深度生成模型预算法/</id>
+    <published>2018-10-02T09:54:08.000Z</published>
+    <updated>2018-10-02T09:57:43.273Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：&lt;br&gt;生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致&lt;br&gt;判别模型：在生成的“
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络， 生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C-%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jensen-Shannon散度</title>
+    <link href="http://www.lexzhao.top/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/"/>
+    <id>http://www.lexzhao.top/2018/10/02/Jensen-Shannon散度/</id>
+    <published>2018-10-02T09:54:08.000Z</published>
+    <updated>2018-10-02T09:56:00.392Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;KL散度（Kullback-Leibler divergence）&lt;br&gt;在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络， 生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C-%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
+    
+  </entry>
   
   <entry>
     <title>AccountMerge(UnionFind)</title>
@@ -71,9 +131,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="BST" scheme="http://www.lexzhao.top/tags/BST/"/>
     
@@ -99,9 +159,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -148,9 +208,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
   </entry>
   
@@ -198,9 +258,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="dfs" scheme="http://www.lexzhao.top/tags/dfs/"/>
     
@@ -223,9 +283,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -249,9 +309,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -275,9 +335,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -300,9 +360,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -325,9 +385,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -350,9 +410,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
   </entry>
   
@@ -373,9 +433,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
   </entry>
   
@@ -395,9 +455,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
   </entry>
   
@@ -417,79 +477,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
     
-  </entry>
-  
-  <entry>
-    <title>中序遍历的应用</title>
-    <link href="http://www.lexzhao.top/2017/09/13/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    <id>http://www.lexzhao.top/2017/09/13/中序遍历的应用/</id>
-    <published>2017-09-13T07:41:51.000Z</published>
-    <updated>2017-11-05T06:22:03.966Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;对于二叉树，当涉及到将二叉树转化为有序数组的问题时，应该首先考虑中序遍历和后序遍历。如题：&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
       <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="BST" scheme="http://www.lexzhao.top/tags/BST/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最小高度树</title>
-    <link href="http://www.lexzhao.top/2017/09/07/%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/"/>
-    <id>http://www.lexzhao.top/2017/09/07/最小高度树/</id>
-    <published>2017-09-07T02:21:38.000Z</published>
-    <updated>2017-11-05T06:21:12.249Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;310. Minimum Height Trees&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="DataStructure" scheme="http://www.lexzhao.top/tags/DataStructure/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>opendaylightplugin学习笔记（一）——StatisticsManager</title>
-    <link href="http://www.lexzhao.top/2017/07/28/opendaylightplugin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94StatisticsManager-1/"/>
-    <id>http://www.lexzhao.top/2017/07/28/opendaylightplugin学习笔记（一）——StatisticsManager-1/</id>
-    <published>2017-07-27T16:00:36.000Z</published>
-    <updated>2017-07-28T00:24:47.282Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;@(Opendaylight)[openflowplugin|statistics-manager|beryllium]&lt;/p&gt;
-&lt;h4 id=&quot;StatNodeRegistrationImpl&quot;&gt;&lt;a href=&quot;#StatNodeRegistrationImpl&quot; class=&quot;headerlink&quot; title=&quot;StatNodeRegistrationImpl&quot;&gt;&lt;/a&gt;StatNodeRegistrationImpl&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;StaNodeRegistrationImpl在铍版本似乎实现的是之前版本Inventory-Manager中NodeChangeCommit获取节点和端口信息的功能，也就说在铍版本，节点、端口信息获取和存储功能似乎从Inventory-mananger转移到了statistics-manager。有待于进一步证实。&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="SDN" scheme="http://www.lexzhao.top/tags/SDN/"/>
-    
-      <category term="ODL" scheme="http://www.lexzhao.top/tags/ODL/"/>
     
   </entry>
   

@@ -147,13 +147,13 @@
   <section class="meta">
     
     <h2 class="title">
-      <a href="/2017/12/03/Binary-Search总结/">
-        Binary Search总结
+      <a href="/2018/10/02/弹性反向传播-RProp-和均方根反向传播-RMSProp/">
+        弹性反向传播(RProp)和均方根反向传播(RMSProp)
       </a>
     </h2>
     
     <time>
-      12月 3, 2017
+      10月 2, 2018
     </time>
 		
     
@@ -163,8 +163,181 @@
 
   </section>
   <section class="article typo">
-	  
+	  <p>Rprop<br>为个权重变化附一个初始值，设定权重变化加速因子与减速因子<br>在网络前馈迭代中当连续误差梯度符号不变时，采用加速策略，加快训练速度；当连续误差梯度符号变化时，采用减速策略，以期稳定收敛。<br></p>
 
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/弹性反向传播-RProp-和均方根反向传播-RMSProp/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/DNN/">DNN</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2018/10/02/生成式对抗网/">
+        生成式对抗网
+      </a>
+    </h2>
+    
+    <time>
+      10月 2, 2018
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正太分布，那么就能得到一个由多层感知机组成的生成网络G(z;θg)，网络的输入是一个一维的随机变量，输出是一张图片。如何让输出的伪造图片看起来像训练样本，Goodfellow采用了这样一种方法，在生成网络后面接上一个多层感知机组成的判别网络D(x;θd)，这个网络的输入是随机选择一张真实样本或者生成网络的输出，输出是输入图片来自于真实样本pdata或者生成网络pg的概率，当判别网络能够很好的分辨出输入是不是真实样本时，也能通过梯度的方式说明什么样的输入更加像真实样本，从而通过这个信息来调整生成网络。从而G需要尽可能的让自己的输出像真实样本，而D则尽可能的将不是真实样本的情况分辨出来。下图左边是GAN算法的概率解释，右边是模型构成。<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/生成式对抗网/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2018/10/02/Jensen-Shannon散度/">
+        Jensen-Shannon散度
+      </a>
+    </h2>
+    
+    <time>
+      10月 2, 2018
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>KL散度（Kullback-Leibler divergence）<br>在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。<br>有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：<br>1）KL散度不是对称的；<br>2）KL散度不满足三角不等式。<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/Jensen-Shannon散度/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2018/10/02/深度生成模型预算法/">
+        深度生成模型预算法
+      </a>
+    </h2>
+    
+    <time>
+      10月 2, 2018
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：<br>生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致<br>判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器<br>实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据</p>
+<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/深度生成模型预算法/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2017/12/22/AccountMerge-UnionFind/">
+        AccountMerge(UnionFind)
+      </a>
+    </h2>
+    
+    <time>
+      12月 22, 2017
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p><strong>721. Accounts Merge</strong><br><img src="http://opeygftv2.bkt.clouddn.com/721.JPG" alt=""></p>
+
+    
+	  <div class="readmore">
+      <a href="/2017/12/22/AccountMerge-UnionFind/">Read More</a>
+    </div>
     
     
     
@@ -172,190 +345,7 @@
       
         <a href="/tags/Leetcode/">Leetcode</a>
       
-        <a href="/tags/Algorithm/">Algorithm</a>
-      
-        <a href="/tags/BST/">BST</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/11/23/canPartitionKSubsets/">
-        canPartitionKSubsets
-      </a>
-    </h2>
-    
-    <time>
-      11月 23, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>拿出以下三道题来进行对比和总结。</p>
-<p><strong>560. Subarray Sum Equals K</strong></p>
-<p><strong>523. Continuous Subarray Sum</strong></p>
-<p><strong>209. Minimum Size Subarray Sum</strong></p>
-<p><strong>713. Subarray Product Less Than K</strong></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/11/23/canPartitionKSubsets/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Leetcode/">Leetcode</a>
-      
-        <a href="/tags/Algorithm/">Algorithm</a>
-      
-        <a href="/tags/DP/">DP</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/11/20/AkkA-OSGi避坑指南/">
-        AkkA_OSGi避坑指南
-      </a>
-    </h2>
-    
-    <time>
-      11月 20, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>实验室项目需要，这段时间一直在搞AkkA框架在OSGi平台上的搭建，由于相关资料少之又少，可以说踩坑无数，于是有了写一篇避坑大全的想法。</p>
-<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171121105638.png" alt=""><br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/11/20/AkkA-OSGi避坑指南/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/AkkA/">AkkA</a>
-      
-        <a href="/tags/OSGi/">OSGi</a>
-      
-        <a href="/tags/scala/">scala</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/11/19/Two-Pointer总结/">
-        Two Pointer总结
-      </a>
-    </h2>
-    
-    <time>
-      11月 19, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <h3 id="前序"><a href="#前序" class="headerlink" title="前序"></a><strong>前序</strong></h3><p>Two Pointer应该说之前用到的还是很多的，像一次循环找到链表的中间元素，像快排等等，刚好这两天Leetcode刷到了Two Pointer这一块，借此机会做一个总结。在大多数适合于Two Pointer的场景下，恰当地使用Two pointer可以将复杂度维持在O(N)，特别是一些求解连续子序列相关的问题，Two pointer不失为一种很好地切入点。<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/11/19/Two-Pointer总结/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Leetcode/">Leetcode</a>
-      
-        <a href="/tags/Algorithm/">Algorithm</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2017/11/06/递归-回溯-DFS/">
-        递归  回溯  DFS
-      </a>
-    </h2>
-    
-    <time>
-      11月 6, 2017
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/技术/">技术</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>参考<a href="http://blog.csdn.net/ffmpeg4976/article/details/45007439">http://blog.csdn.net/ffmpeg4976/article/details/45007439</a></p>
-<p>在程序设计中，有相当一类求一组解，或求全部解或求最优解的问题，例如读者熟悉的八皇后问题，不是根据某种特定的计算法则，而是利用试探和回溯的搜索技术求解。回溯法也是设计递归过程的一种重要方法，它的求解过程实质上是一个先序遍历一棵”状态树”的过程,只是这棵树不是遍历前预先建立的,而是隐含在遍历过程中。</p>
-<p>《数据结构》(严蔚敏)<br>怎么理解这段话呢？<br></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/11/06/递归-回溯-DFS/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/Algorithm/">Algorithm</a>
-      
-        <a href="/tags/dfs/">dfs</a>
-      
-        <a href="/tags/DP/">DP</a>
+        <a href="/tags/UnionFind/">UnionFind</a>
       
 	  </div>
     
@@ -426,7 +416,7 @@
     
     <ul class="entry">
     
-        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>40</div></a></li>
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>46</div></a></li>
     
         <li><a class="flat-box" href="/categories/生活/"><div class='name'>生活</div><div class='badget'>2</div></a></li>
     
@@ -439,7 +429,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15.33px; color: #0000d5">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/生成式对抗网/" style="font-size: 16.67px; color: #00a">生成式对抗网</a> <a href="/tags/神经网络/" style="font-size: 16.67px; color: #00a">神经网络</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15px; color: #0000df">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DNN/" style="font-size: 17px; color: #00009f">DNN</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15px; color: #0000df">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 21px; color: #000020">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16px; color: #0000bf">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16px; color: #0000bf">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15px; color: #0000df">dfs</a> <a href="/tags/java/" style="font-size: 19px; color: #000060">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/生成式对抗网/" style="font-size: 16px; color: #0000bf">生成式对抗网</a> <a href="/tags/神经网络/" style="font-size: 20px; color: #000040">神经网络</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lexzhao.top/"/>
-  <updated>2018-10-02T10:10:10.663Z</updated>
+  <updated>2018-10-02T10:43:29.359Z</updated>
   <id>http://www.lexzhao.top/</id>
   
   <author>
@@ -14,6 +14,144 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>均方差和交叉熵</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E5%9D%87%E6%96%B9%E5%B7%AE%E5%92%8C%E4%BA%A4%E5%8F%89%E7%86%B5/"/>
+    <id>http://www.lexzhao.top/2018/10/02/均方差和交叉熵/</id>
+    <published>2018-10-02T10:38:54.000Z</published>
+    <updated>2018-10-02T10:43:29.359Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当使用sigmoid函数作为激活函数时，最好使用交叉熵作为损失函数，避免收敛速度过慢&lt;br&gt;均方差在误差较大时候惩罚力度大，不适合作为分类问题&lt;br&gt;在机器学习中，希望算法或者网络收敛更快，有些是对数据预处理，尤其是Batch Normalization，有些是采用不同的激
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="DNN" scheme="http://www.lexzhao.top/tags/DNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>谈谈深度学习中的Batch_size</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E8%B0%88%E8%B0%88%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84Batch-size/"/>
+    <id>http://www.lexzhao.top/2018/10/02/谈谈深度学习中的Batch-size/</id>
+    <published>2018-10-02T10:38:36.000Z</published>
+    <updated>2018-10-02T10:44:55.606Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Batch_Size（批尺寸）是机器学习中一个重要参数，涉及诸多矛盾，下面逐一展开。&lt;/p&gt;
+&lt;p&gt;首先，为什么需要有 Batch_Size 这个参数？&lt;br&gt;Batch 的选择，首先决定的是下降的方向。如果数据集比较小，完全可以采用全数据集 （ Full Batch Learning ）的形式，这样做至少有 2 个好处：其一，由全数据集确定的方向能够更好地代表样本总体，从而更准确地朝向极值所在的方向。其二，由于不同权重的梯度值差别巨大，因此选取一个全局的学习率很困难。 Full Batch Learning 可以使用 Rprop 只基于梯度符号并且针对性单独更新各权值。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="DNN" scheme="http://www.lexzhao.top/tags/DNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对几句话的思考</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E5%AF%B9%E5%87%A0%E5%8F%A5%E8%AF%9D%E7%9A%84%E6%80%9D%E8%80%83/"/>
+    <id>http://www.lexzhao.top/2018/10/02/对几句话的思考/</id>
+    <published>2018-10-02T10:38:14.000Z</published>
+    <updated>2018-10-02T10:42:12.372Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;神经网络本质是函数逼近器(万能逼近定理表明一个前馈神经网络如果具有线性输出层和多层的具有“挤压”性质的激活函数的隐藏层，只要给予这个网络足够数量的隐藏单元，那么它能任意精度地逼近从一个有限维空间到另一个有限维空间的Borel可测函数,借此理解为什么隐藏层层数越多，逼近能力越
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="DNN" scheme="http://www.lexzhao.top/tags/DNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Batch Normalization学习笔记</title>
+    <link href="http://www.lexzhao.top/2018/10/02/Batch-Normalization%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://www.lexzhao.top/2018/10/02/Batch-Normalization学习笔记/</id>
+    <published>2018-10-02T10:38:01.000Z</published>
+    <updated>2018-10-02T10:44:35.779Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;BN层的作用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;（1）加速收敛 &lt;/p&gt;
+&lt;p&gt;（2）控制过拟合，可以少用或不用Dropout和正则 &lt;/p&gt;
+&lt;p&gt;（3）降低网络对初始化权重不敏感&lt;/p&gt;
+&lt;p&gt;（4）允许使用较大的学习率&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="DNN" scheme="http://www.lexzhao.top/tags/DNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>万能（通用）逼近定理</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E4%B8%87%E8%83%BD%EF%BC%88%E9%80%9A%E7%94%A8%EF%BC%89%E9%80%BC%E8%BF%91%E5%AE%9A%E7%90%86/"/>
+    <id>http://www.lexzhao.top/2018/10/02/万能（通用）逼近定理/</id>
+    <published>2018-10-02T10:37:26.000Z</published>
+    <updated>2018-10-02T10:44:20.052Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;万能逼近定理表明一个前馈神经网络如果具有线性输出层和多层的具有“挤压”性质的激活函数的隐藏层，只要给予这个网络足够数量的隐藏单元，那么它能任意精度地逼近从一个有限维空间到另一个有限维空间的Borel可测函数,借此理解为什么隐藏层层数越多，逼近能力越强（不考虑overfitting）（类比泰勒级数展开，我猜的）&lt;br&gt;意味着神经网络具有任意的表示能力，但也只能存在式的证明&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="DNN" scheme="http://www.lexzhao.top/tags/DNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>弹性反向传播(RProp)和均方根反向传播(RMSProp)</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E5%BC%B9%E6%80%A7%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD-RProp-%E5%92%8C%E5%9D%87%E6%96%B9%E6%A0%B9%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD-RMSProp/"/>
+    <id>http://www.lexzhao.top/2018/10/02/弹性反向传播-RProp-和均方根反向传播-RMSProp/</id>
+    <published>2018-10-02T10:37:02.000Z</published>
+    <updated>2018-10-02T10:44:06.973Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Rprop&lt;br&gt;为个权重变化附一个初始值，设定权重变化加速因子与减速因子&lt;br&gt;在网络前馈迭代中当连续误差梯度符号不变时，采用加速策略，加快训练速度；当连续误差梯度符号变化时，采用减速策略，以期稳定收敛。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="DNN" scheme="http://www.lexzhao.top/tags/DNN/"/>
+    
+  </entry>
   
   <entry>
     <title>生成式对抗网</title>
@@ -38,16 +176,15 @@
   </entry>
   
   <entry>
-    <title>深度生成模型预算法</title>
-    <link href="http://www.lexzhao.top/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/"/>
-    <id>http://www.lexzhao.top/2018/10/02/深度生成模型预算法/</id>
+    <title>Jensen-Shannon散度</title>
+    <link href="http://www.lexzhao.top/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/"/>
+    <id>http://www.lexzhao.top/2018/10/02/Jensen-Shannon散度/</id>
     <published>2018-10-02T09:54:08.000Z</published>
-    <updated>2018-10-02T10:09:50.797Z</updated>
+    <updated>2018-10-02T10:09:29.280Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：&lt;br&gt;生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致&lt;br&gt;判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器&lt;br&gt;实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据&lt;/p&gt;
-&lt;p&gt;类似于二人博弈的感觉，零和博弈问题（纳什平衡）&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;KL散度（Kullback-Leibler divergence）&lt;br&gt;在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。&lt;br&gt;有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：&lt;br&gt;1）KL散度不是对称的；&lt;br&gt;2）KL散度不满足三角不等式。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -61,15 +198,16 @@
   </entry>
   
   <entry>
-    <title>Jensen-Shannon散度</title>
-    <link href="http://www.lexzhao.top/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/"/>
-    <id>http://www.lexzhao.top/2018/10/02/Jensen-Shannon散度/</id>
+    <title>深度生成模型预算法</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/"/>
+    <id>http://www.lexzhao.top/2018/10/02/深度生成模型预算法/</id>
     <published>2018-10-02T09:54:08.000Z</published>
-    <updated>2018-10-02T10:09:29.280Z</updated>
+    <updated>2018-10-02T10:09:50.797Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;KL散度（Kullback-Leibler divergence）&lt;br&gt;在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。&lt;br&gt;有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：&lt;br&gt;1）KL散度不是对称的；&lt;br&gt;2）KL散度不满足三角不等式。&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：&lt;br&gt;生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致&lt;br&gt;判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器&lt;br&gt;实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据&lt;/p&gt;
+&lt;p&gt;类似于二人博弈的感觉，零和博弈问题（纳什平衡）&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -138,9 +276,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="BST" scheme="http://www.lexzhao.top/tags/BST/"/>
     
@@ -166,9 +304,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -215,9 +353,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
   </entry>
   
@@ -265,9 +403,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="dfs" scheme="http://www.lexzhao.top/tags/dfs/"/>
     
@@ -290,9 +428,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -316,9 +454,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -342,151 +480,11 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
+    
+      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MinimumASCIIDeleteSum</title>
-    <link href="http://www.lexzhao.top/2017/11/02/MinimumASCIIDeleteSum/"/>
-    <id>http://www.lexzhao.top/2017/11/02/MinimumASCIIDeleteSum/</id>
-    <published>2017-11-02T02:19:08.000Z</published>
-    <updated>2017-11-05T14:49:09.241Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;712. Minimum ASCII Delete Sum for Two Strings&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102110943.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CountRepetition</title>
-    <link href="http://www.lexzhao.top/2017/11/02/CountRepetition/"/>
-    <id>http://www.lexzhao.top/2017/11/02/CountRepetition/</id>
-    <published>2017-11-02T02:15:40.000Z</published>
-    <updated>2017-11-05T06:10:20.291Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;466. Count The Repetitions&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102111759.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Strange priter</title>
-    <link href="http://www.lexzhao.top/2017/10/19/Strange-priter/"/>
-    <id>http://www.lexzhao.top/2017/10/19/Strange-priter/</id>
-    <published>2017-10-19T10:26:55.000Z</published>
-    <updated>2017-11-05T06:09:23.824Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;664. Strange Printer&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/strangepriter.JPG&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;这道题的难度感觉是很大的&lt;/strong&gt;，目前想到的方法是 &lt;strong&gt;&amp;lt;O(n^3)&lt;/strong&gt;,（其中n小于或等于字符串长度）是否存在更低时间复杂度，例如能否将某个维度降到logn级别还在进一步思考当中。&lt;br&gt;直接看代码&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matchstickes to Square</title>
-    <link href="http://www.lexzhao.top/2017/09/15/Matchstickes-to-Square/"/>
-    <id>http://www.lexzhao.top/2017/09/15/Matchstickes-to-Square/</id>
-    <published>2017-09-15T09:16:10.000Z</published>
-    <updated>2017-11-05T06:12:34.747Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;473. Matchsticks to Square&lt;/strong&gt;&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Remove Invalid Parentheses</title>
-    <link href="http://www.lexzhao.top/2017/09/13/Remove-Invalid-Parentheses/"/>
-    <id>http://www.lexzhao.top/2017/09/13/Remove-Invalid-Parentheses/</id>
-    <published>2017-09-13T09:48:01.000Z</published>
-    <updated>2017-11-05T06:07:36.202Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;301. Remove Invalid Parentheses&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913174831.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Binary Tree Maximum Path Sum</title>
-    <link href="http://www.lexzhao.top/2017/09/13/Binary-Tree-Maximum-Path-Sum/"/>
-    <id>http://www.lexzhao.top/2017/09/13/Binary-Tree-Maximum-Path-Sum/</id>
-    <published>2017-09-13T08:09:36.000Z</published>
-    <updated>2017-11-05T06:14:20.698Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;124. Binary Tree Maximum Path Sum&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
     
   </entry>
   

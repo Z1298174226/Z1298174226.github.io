@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lexzhao.top/"/>
-  <updated>2018-10-02T09:58:58.211Z</updated>
+  <updated>2018-10-02T10:10:10.663Z</updated>
   <id>http://www.lexzhao.top/</id>
   
   <author>
@@ -20,18 +20,20 @@
     <link href="http://www.lexzhao.top/2018/10/02/%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
     <id>http://www.lexzhao.top/2018/10/02/生成式对抗网/</id>
     <published>2018-10-02T09:58:31.000Z</published>
-    <updated>2018-10-02T09:58:58.211Z</updated>
+    <updated>2018-10-02T10:10:10.663Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采
+      &lt;p&gt;14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正太分布，那么就能得到一个由多层感知机组成的生成网络G(z;θg)，网络的输入是一个一维的随机变量，输出是一张图片。如何让输出的伪造图片看起来像训练样本，Goodfellow采用了这样一种方法，在生成网络后面接上一个多层感知机组成的判别网络D(x;θd)，这个网络的输入是随机选择一张真实样本或者生成网络的输出，输出是输入图片来自于真实样本pdata或者生成网络pg的概率，当判别网络能够很好的分辨出输入是不是真实样本时，也能通过梯度的方式说明什么样的输入更加像真实样本，从而通过这个信息来调整生成网络。从而G需要尽可能的让自己的输出像真实样本，而D则尽可能的将不是真实样本的情况分辨出来。下图左边是GAN算法的概率解释，右边是模型构成。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="神经网络， 生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C-%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
     
   </entry>
   
@@ -40,18 +42,21 @@
     <link href="http://www.lexzhao.top/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/"/>
     <id>http://www.lexzhao.top/2018/10/02/深度生成模型预算法/</id>
     <published>2018-10-02T09:54:08.000Z</published>
-    <updated>2018-10-02T09:57:43.273Z</updated>
+    <updated>2018-10-02T10:09:50.797Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：&lt;br&gt;生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致&lt;br&gt;判别模型：在生成的“
+      &lt;p&gt;Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：&lt;br&gt;生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致&lt;br&gt;判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器&lt;br&gt;实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据&lt;/p&gt;
+&lt;p&gt;类似于二人博弈的感觉，零和博弈问题（纳什平衡）&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="神经网络， 生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C-%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
     
   </entry>
   
@@ -60,18 +65,20 @@
     <link href="http://www.lexzhao.top/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/"/>
     <id>http://www.lexzhao.top/2018/10/02/Jensen-Shannon散度/</id>
     <published>2018-10-02T09:54:08.000Z</published>
-    <updated>2018-10-02T09:56:00.392Z</updated>
+    <updated>2018-10-02T10:09:29.280Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;KL散度（Kullback-Leibler divergence）&lt;br&gt;在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着
+      &lt;p&gt;KL散度（Kullback-Leibler divergence）&lt;br&gt;在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。&lt;br&gt;有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：&lt;br&gt;1）KL散度不是对称的；&lt;br&gt;2）KL散度不满足三角不等式。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="神经网络， 生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C-%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
+      <category term="神经网络" scheme="http://www.lexzhao.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="生成式对抗网" scheme="http://www.lexzhao.top/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91/"/>
     
   </entry>
   

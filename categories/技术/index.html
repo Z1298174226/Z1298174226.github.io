@@ -163,42 +163,20 @@
 
   </section>
   <section class="article typo">
-	  <p>14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正太分布，那么就能得到一个由多层感知机组成的生成网络G(z;θg)，网络的输入是一个一维的随机变量，输出是一张图片。如何让输出的伪造图片看起来像训练样本，Goodfellow采用了这样一种方法，在生成网络后面接上一个多层感知机组成的判别网络D(x;θd)，这个网络的输入是随机选择一张真实样本或者生成网络的输出，输出是输入图片来自于真实样本pdata或者生成网络pg的概率，当判别网络能够很好的分辨出输入是不是真实样本时，也能通过梯度的方式说明什么样的输入更加像真实样本，从而通过这个信息来调整生成网络。从而G需要尽可能的让自己的输出像真实样本，而D则尽可能的将不是真实样本的情况分辨出来。下图左边是GAN算法的概率解释，右边是模型构成。</p>
-<p><img src="http://7xkmdr.com1.z0.glb.clouddn.com/gan4.jpg" alt="image"></p>
-<p>GAN的优化是一个极小极大博弈问题，最终的目的是generator的输出给discriminator时很难判断是真实or伪造的，即极大化D的判断能力，极小化将G的输出判断为伪造的概率，公式如下。论文[5]中将下面式子转化成了Jensen-shannon散度的形式证明了仅当pg=pdata时能得到全局最小值，即生成网络能完全的还原出真实样本分布，并且证明了下式能够收敛。(算法流程论文讲的很清楚，这里就不说了，后面结合代码一起解释。)</p>
-<p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180912234248.png" alt="image"></p>
-<p>这部分主要结合tensorflow实现代码[7]、算法流程和下面的变化图[5]解释一下具体如何使用DCGAN来生成手写体图片。</p>
-<p>下图中黑色虚线是真实数据的高斯分布，绿色的线是生成网络学习到的伪造分布，蓝色的线是判别网络判定为真实图片的概率，标x的横线代表服从高斯分布x的采样空间，标z的横线代表服从均匀分布z的采样空间。可以看出G就是学习了从z的空间到x的空间的映射关系。</p>
-<p><img src="http://7xkmdr.com1.z0.glb.clouddn.com/gan5.png" alt="image"></p>
-<p>a.起始情况</p>
-<p>D是一个卷积神经网络，变量名是D，其中一层构造方式如下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">w = tf.get_variable(<span class="string">'w'</span>, [<span class="number">4</span>, <span class="number">4</span>, c_dim, num_filter], </div><div class="line">initializer=tf.truncated_normal_initializer(stddev=stddev))</div><div class="line">dconv = tf.nn.conv2d(ddata, w, strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</div><div class="line">biases = tf.get_variable(<span class="string">'biases'</span>, [num_filter], </div><div class="line">        initializer=tf.constant_initializer(<span class="number">0.0</span>))</div><div class="line">bias = tf.nn.bias_add(dconv, biases)</div><div class="line">dconv1 = tf.maximum(bias, leak*bias)</div></pre></td></tr></table></figure>
-<p>G 是一个逆卷积神经网络，变量名是G，其中一层构造方式如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">w = tf.get_variable(&apos;w&apos;, [4, 4, num_filter, num_filter*2], </div><div class="line">        initializer=tf.random_normal_initializer(stddev=stddev))</div><div class="line">deconv = tf.nn.conv2d_transpose(gconv2, w, </div><div class="line">        output_shape=[batch_size, s2, s2, num_filter], </div><div class="line">        strides=[1, 2, 2, 1])</div><div class="line">biases = tf.get_variable(&apos;biases&apos;, [num_filter],</div><div class="line">initializer=tf.constant_initializer(0.0))</div><div class="line">bias = tf.nn.bias_add(deconv, biases)</div><div class="line">deconv1 = tf.nn.relu(bias, name=scope.name)</div></pre></td></tr></table></figure>
-<p>G 的网络输入为一个zdim维服从-1~1均匀分布的随机变量，这里取的是100.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">batch_z = np.random.uniform(-1, 1, [config.batch_size, self.z_dim])</div><div class="line">                .astype(np.float32)</div></pre></td></tr></table></figure>
-<p>D 的网络输入是一个batch的64*64的图片，既可以是手写体数据也可以是G的一个batch的输出。</p>
-<p>这个过程可以参考上图的a状态，判别曲线处于不够稳定的状态，两个网络都还没训练好。</p>
-<p>b.训练判别网络</p>
-<p>判别网络的损失函数由两部分组成，一部分是真实数据判别为1的损失，一部分是G的输出self.G判别为0的损失，需要优化的损失函数定义如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">self.G = self.generator(self.z)</div><div class="line">self.D, self.D_logits = self.discriminator(self.images)</div><div class="line">self.D_, self.D_logits_ = self.discriminator(self.G, reuse=True)</div><div class="line">self.d_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(</div><div class="line">            self.D_logits, tf.ones_like(self.D)))</div><div class="line">self.d_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(</div><div class="line">            self.D_logits_, tf.zeros_like(self.D_)))</div><div class="line">self.d_loss = self.d_loss_real + self.d_loss_fake</div></pre></td></tr></table></figure>
-<p>然后将一个batch的真实数据batch_images，和随机变量batch_z当做输入，执行session更新D的参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># update discriminator on real</div><div class="line">d_optim = tf.train.AdamOptimizer(FLAGS.learning_rate, </div><div class="line">        beta1=FLAGS.beta1).minimize(d_loss, var_list=d_vars)</div><div class="line">...</div><div class="line">out1 = sess.run([d_optim], feed_dict=&#123;real_images: batch_images, </div><div class="line">        noise_images: batch_z&#125;)</div></pre></td></tr></table></figure>
-<p>这一步可以对比图b，判别曲线渐渐趋于平稳。</p>
-<p>c.训练生成网络</p>
-<p>生成网络并没有一个独立的目标函数，它更新网络的梯度来源是判别网络对伪造图片求的梯度，并且是在设定伪造图片的label是1的情况下，保持判别网络不变，那么判别网络对伪造图片的梯度就是向着真实图片变化的方向。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">self.g_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(</div><div class="line">            self.D_logits_, tf.ones_like(self.D_)))</div></pre></td></tr></table></figure>
-<p>然后用同样的随机变量batch_z当做输入更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">g_optim = tf.train.AdamOptimizer(config.learning_rate, beta1=config.beta1) </div><div class="line">            .minimize(self.g_loss, var_list=self.g_vars)</div><div class="line">...</div><div class="line">out2 = sess.run([g_optim], feed_dict=&#123;noise_images:batch_z&#125;)</div></pre></td></tr></table></figure>
-<p>这一步可以对比图c，pg的曲线在渐渐的向真实分布靠拢。而网络训练完成之后可以看到pg的曲线与pdata重叠在了一起，并且此时判别网络已经难以区分真实与伪造，因此取值就固定在了12。</p>
+	  <p>14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正太分布，那么就能得到一个由多层感知机组成的生成网络G(z;θg)，网络的输入是一个一维的随机变量，输出是一张图片。如何让输出的伪造图片看起来像训练样本，Goodfellow采用了这样一种方法，在生成网络后面接上一个多层感知机组成的判别网络D(x;θd)，这个网络的输入是随机选择一张真实样本或者生成网络的输出，输出是输入图片来自于真实样本pdata或者生成网络pg的概率，当判别网络能够很好的分辨出输入是不是真实样本时，也能通过梯度的方式说明什么样的输入更加像真实样本，从而通过这个信息来调整生成网络。从而G需要尽可能的让自己的输出像真实样本，而D则尽可能的将不是真实样本的情况分辨出来。下图左边是GAN算法的概率解释，右边是模型构成。<br></p>
 
-
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/生成式对抗网/">Read More</a>
+    </div>
     
     
     
 	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/神经网络，-生成式对抗网/">神经网络， 生成式对抗网</a>
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
       
 	  </div>
     
@@ -227,20 +205,20 @@
 
   </section>
   <section class="article typo">
-	  <p>KL散度（Kullback-Leibler divergence）<br>在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。<br>有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：<br>1）KL散度不是对称的；<br>2）KL散度不满足三角不等式。</p>
-<p>由于对数函数是上凸函数，所以：</p>
-<p>所以KL散度始终是大于等于0的，当且仅当两分布相同时，KL散度等于0。<br>JS散度（Jensen-Shannon）<br>JS散度相似度衡量指标。现有两个分布P1和P2，其JS散度公式为：</p>
-<p>Wasserstein距离<br>Wasserstein距离又叫Earth-Mover距离(EM距离)，用于衡量两个分布之间的距离，定义：</p>
-<p>Π(P1,P2)是P1和P2分布组合起来的所有可能的联合分布的集合。对于每一个可能的联合分布γ，可以从中采样(x,y)∼γ得到一个样本x和y，并计算出这对样本的距离||x−y||，所以可以计算该联合分布γ下，样本对距离的期望值E(x,y)∼γ[||x−y||]。在所有可能的联合分布中能够对这个期望值取到的下界infγ∼Π(P1,P2)E(x,y)∼γ[||x−y||]就是Wasserstein距离。<br>直观上可以把E(x,y)∼γ[||x−y||]理解为在γ这个路径规划下把土堆P1挪到土堆P2所需要的消耗。而Wasserstein距离就是在最优路径规划下的最小消耗。所以Wesserstein距离又叫Earth-Mover距离。<br>Wessertein距离相比KL散度和JS散度的优势在于，即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而[js散度在此情况下是常量，KL散度可能无意义。</p>
-<p>根据Kantorovich-Rubinstein对偶原理，可以得到Wasserstein距离的等价形式：</p>
+	  <p>KL散度（Kullback-Leibler divergence）<br>在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。<br>有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：<br>1）KL散度不是对称的；<br>2）KL散度不满足三角不等式。<br></p>
 
-
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/Jensen-Shannon散度/">Read More</a>
+    </div>
     
     
     
 	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/神经网络，-生成式对抗网/">神经网络， 生成式对抗网</a>
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
       
 	  </div>
     
@@ -270,26 +248,20 @@
   </section>
   <section class="article typo">
 	  <p>Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：<br>生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致<br>判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器<br>实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据</p>
-<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）</p>
-<p>GAN不仅可以用于探索复杂数据的潜在规律，还能够生成高质量的生成样本以作为真实数据的有效补充，为学习智能模型提供了新的视角和数据基础。</p>
-<p>对抗样本误分类是因为模型的线性性质导致的，说白了就是因为wTx存在点乘，当x的每一个维度上都发生改变x˜=x+η，就会累加起来在点乘的结果上附加上一个比较大的和wTx˜=wTx+wTη，而这个值可能就改变了预测结果。</p>
-<p>由于G和D一般采用高度非线性并且可微的深度神经网络结构，因而均可以采用端对端学习策略进行训练。具体而言，在训练G和D时，采用对抗学习策略，使二者的训练目标相反。D的目标是最大化对数似然函数以判断G(z)和x的来源，将G(z)判断为生成数据，将x判断为真实数据。与之相对的是，G的目标是最小化对数似然函数，使G(z)的分布pg逼近真实数据x的分布pdata。不断迭代此对抗训练过程，交替更新判别器D和生成器G的参数，使D和G的性能不断提高；当达到平衡状态时，则认为G(z)学习到了真实数据x的分布空间，此时G(z)和x在分布上不具有差异性，判别器D无法对数据来源做出正确的判断。</p>
-<p>生成模型在机器学习中有很多的作用，</p>
-<p>首先是可以做无监督的模型。比如现在判决式神经网络需要有大量的标注数据去训练。比如ImageNet。广义上来说有很多的没有标准的原始数据。我们有更多的没有标注的原始数据。对于这种数据可以用生成模型去学习它的一个表示，就是深度的生成模型。他可以发挥应用的场景，具体我们可以做无监督的学习，你可以做简单的密度估计、生成新的样本、可以做一些聚类、可以做一些特征提取，甚至做降维等这都是无监督的一些任务。</p>
-<p>有监督学习和无监督学习之间有一种混合的半监督学习，半监督学习就是希望用大量的无标注数据帮助我们做有监督的学习任务，提升分类的效果。</p>
-<p>深度卷积对抗生成网络</p>
-<p>生成模型<br>输入时随机噪声<br>生成模型使用转置卷积层操作（微步卷积）<br>判别网络<br>简单来讲，可以退化为多类逻辑回归问题</p>
-<p>存在问题<br>最终生成数据的概率分布函数收敛于自然数据的概率分布函数<br>生成数据的分布函数和自然数据的分布函数接近，但其支撑集互不相交或者重叠，则生成模型所对应的优化目标函数（詹森香农散度）关于参数的偏导退化为常数，并且判别模型越好，退化越严重</p>
-<p>生成网络G（Z）接收随机噪声输入Z</p>
-<p>优点<br>模型只用到了反向传播,而不需要马尔科夫链<br>训练时不需要对隐变量做推断<br>理论上,只要是可微分函数都可以用于构建D和G,因为能够与深度神经网络结合做深度生成式模型<br>G的参数更新不是直接来自数据样本,而是使用来自D的反向传播(这也是与传统方法相比差别最大的一条吧)<br>缺点<br>可解释性差,生成模型的分布 Pg(G)没有显式的表达<br>比较难训练,D与G之间需要很好的同步,例如D更新k次而G更新一次</p>
+<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）<br></p>
 
-
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/深度生成模型预算法/">Read More</a>
+    </div>
     
     
     
 	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/神经网络，-生成式对抗网/">神经网络， 生成式对抗网</a>
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
       
 	  </div>
     
@@ -448,7 +420,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15.33px; color: #0000d5">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/神经网络，-生成式对抗网/" style="font-size: 16.67px; color: #00a">神经网络， 生成式对抗网</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15.33px; color: #0000d5">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/生成式对抗网/" style="font-size: 16.67px; color: #00a">生成式对抗网</a> <a href="/tags/神经网络/" style="font-size: 16.67px; color: #00a">神经网络</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

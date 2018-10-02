@@ -14,7 +14,7 @@
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正">
-<meta name="keywords" content="神经网络， 生成式对抗网">
+<meta name="keywords" content="神经网络,生成式对抗网">
 <meta property="og:type" content="article">
 <meta property="og:title" content="生成式对抗网">
 <meta property="og:url" content="http://www.lexzhao.top/2018/10/02/生成式对抗网/index.html">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://7xkmdr.com1.z0.glb.clouddn.com/gan4.jpg">
 <meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180912234248.png">
 <meta property="og:image" content="http://7xkmdr.com1.z0.glb.clouddn.com/gan5.png">
-<meta property="og:updated_time" content="2018-10-02T09:58:58.211Z">
+<meta property="og:updated_time" content="2018-10-02T10:10:10.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成式对抗网">
 <meta name="twitter:description" content="14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正">
@@ -165,8 +165,7 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正太分布，那么就能得到一个由多层感知机组成的生成网络G(z;θg)，网络的输入是一个一维的随机变量，输出是一张图片。如何让输出的伪造图片看起来像训练样本，Goodfellow采用了这样一种方法，在生成网络后面接上一个多层感知机组成的判别网络D(x;θd)，这个网络的输入是随机选择一张真实样本或者生成网络的输出，输出是输入图片来自于真实样本pdata或者生成网络pg的概率，当判别网络能够很好的分辨出输入是不是真实样本时，也能通过梯度的方式说明什么样的输入更加像真实样本，从而通过这个信息来调整生成网络。从而G需要尽可能的让自己的输出像真实样本，而D则尽可能的将不是真实样本的情况分辨出来。下图左边是GAN算法的概率解释，右边是模型构成。</p>
-<p><img src="http://7xkmdr.com1.z0.glb.clouddn.com/gan4.jpg" alt="image"></p>
+    	<p>14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正太分布，那么就能得到一个由多层感知机组成的生成网络G(z;θg)，网络的输入是一个一维的随机变量，输出是一张图片。如何让输出的伪造图片看起来像训练样本，Goodfellow采用了这样一种方法，在生成网络后面接上一个多层感知机组成的判别网络D(x;θd)，这个网络的输入是随机选择一张真实样本或者生成网络的输出，输出是输入图片来自于真实样本pdata或者生成网络pg的概率，当判别网络能够很好的分辨出输入是不是真实样本时，也能通过梯度的方式说明什么样的输入更加像真实样本，从而通过这个信息来调整生成网络。从而G需要尽可能的让自己的输出像真实样本，而D则尽可能的将不是真实样本的情况分辨出来。下图左边是GAN算法的概率解释，右边是模型构成。<br><a id="more"></a><br><img src="http://7xkmdr.com1.z0.glb.clouddn.com/gan4.jpg" alt="image"></p>
 <p>GAN的优化是一个极小极大博弈问题，最终的目的是generator的输出给discriminator时很难判断是真实or伪造的，即极大化D的判断能力，极小化将G的输出判断为伪造的概率，公式如下。论文[5]中将下面式子转化成了Jensen-shannon散度的形式证明了仅当pg=pdata时能得到全局最小值，即生成网络能完全的还原出真实样本分布，并且证明了下式能够收敛。(算法流程论文讲的很清楚，这里就不说了，后面结合代码一起解释。)</p>
 <p><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180912234248.png" alt="image"></p>
 <p>这部分主要结合tensorflow实现代码[7]、算法流程和下面的变化图[5]解释一下具体如何使用DCGAN来生成手写体图片。</p>
@@ -198,7 +197,9 @@
 	  
 	  <div class="article-tags tags">
       
-        <a href="/tags/神经网络，-生成式对抗网/">神经网络， 生成式对抗网</a>
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
       
 	  </div>
     
@@ -295,7 +296,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15.33px; color: #0000d5">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/神经网络，-生成式对抗网/" style="font-size: 16.67px; color: #00a">神经网络， 生成式对抗网</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15.33px; color: #0000d5">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/生成式对抗网/" style="font-size: 16.67px; color: #00a">生成式对抗网</a> <a href="/tags/神经网络/" style="font-size: 16.67px; color: #00a">神经网络</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="google-site-verification" content="UfGN2iuA3cNUL9dAHL2Eb1UjKFc4U4PJqPNhpyhhKpU" />
   
-  <title>Binary Tree Maximum Path Sum | 倾听枫声</title>
+  <title>Tag: 神经网络 | 倾听枫声</title>
   <meta name="description" content="生活的理想是为了理想的生活" />
   <meta name="keywords" content="blog,algorithm,IT,Web Front End" />
   <meta name="HandheldFriendly" content="True" />
@@ -13,19 +13,15 @@
   <link rel="shortcut icon" href="/images/hexo.ico">
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="124. Binary Tree Maximum Path Sum这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。">
-<meta name="keywords" content="Algorithm,Leetcode">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Binary Tree Maximum Path Sum">
-<meta property="og:url" content="http://www.lexzhao.top/2017/09/13/Binary-Tree-Maximum-Path-Sum/index.html">
+  <meta name="description" content="生活的理想是为了理想的生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="倾听枫声">
+<meta property="og:url" content="http://www.lexzhao.top/tags/神经网络/index.html">
 <meta property="og:site_name" content="倾听枫声">
-<meta property="og:description" content="124. Binary Tree Maximum Path Sum这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。">
-<meta property="og:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png">
-<meta property="og:updated_time" content="2017-11-05T06:14:20.698Z">
+<meta property="og:description" content="生活的理想是为了理想的生活">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Binary Tree Maximum Path Sum">
-<meta name="twitter:description" content="124. Binary Tree Maximum Path Sum这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。">
-<meta name="twitter:image" content="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png">
+<meta name="twitter:title" content="倾听枫声">
+<meta name="twitter:description" content="生活的理想是为了理想的生活">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -139,97 +135,142 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <article id="post-Binary-Tree-Maximum-Path-Sum"
-  class="post white-box article-type-post"
-  itemscope itemprop="blogPost">
-	<section class='meta'>
-	<h2 class="title">
-  	<a href="/2017/09/13/Binary-Tree-Maximum-Path-Sum/">
-    	Binary Tree Maximum Path Sum
-    </a>
-  </h2>
-	<time>
-	  9月 13, 2017
-	</time>
+        
+  <script>
+    window.subData= { title:'Tag : 神经网络'}
+  </script>
+
+<section class="post-list">
 	
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2018/10/02/生成式对抗网/">
+        生成式对抗网
+      </a>
+    </h2>
+    
+    <time>
+      10月 2, 2018
+    </time>
+		
     
     <div class='cats'>
         <a href="/categories/技术/">技术</a>
     </div>
 
-	</section>
-	
-		<section class="toc-wrapper"></section>
-	
-	<section class="article typo">
-  	<div class="article-entry" itemprop="articleBody">
-    	<p><strong>124. Binary Tree Maximum Path Sum</strong><br><img src="http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170913161221.png" alt=""><br>这道题需要注意的地方是二叉树节点值可能为负数，因此在确定是否将左右子树最大值引入时，应该同0进行比较，同时应在每个节点处判断是否以该节点作为Sequence的根节点。<br><a id="more"></a></p>
-<pre>
-<code>
-class Solution {
+  </section>
+  <section class="article typo">
+	  <p>14年Goodfellow提出Generative adversarial nets即生成式对抗网络[5]，它要解决的问题是如何从训练样本中学习出新样本，训练样本是图片就生成新图片，训练样本是文章就输出新文章等等。如果能够知道训练样本的分布p(x)，那么就可以在分布中随机采样得到新样本，大部分的生成式模型都采用这种思路，GAN则是在学习从随机变量z到训练样本x的映射关系，其中随机变量可以选择服从正太分布，那么就能得到一个由多层感知机组成的生成网络G(z;θg)，网络的输入是一个一维的随机变量，输出是一张图片。如何让输出的伪造图片看起来像训练样本，Goodfellow采用了这样一种方法，在生成网络后面接上一个多层感知机组成的判别网络D(x;θd)，这个网络的输入是随机选择一张真实样本或者生成网络的输出，输出是输入图片来自于真实样本pdata或者生成网络pg的概率，当判别网络能够很好的分辨出输入是不是真实样本时，也能通过梯度的方式说明什么样的输入更加像真实样本，从而通过这个信息来调整生成网络。从而G需要尽可能的让自己的输出像真实样本，而D则尽可能的将不是真实样本的情况分辨出来。下图左边是GAN算法的概率解释，右边是模型构成。<br></p>
 
-    private int sum = Integer.MIN_VALUE;
-
-    public int maxPathSum(TreeNode root) {
-        if(root == null) return 0;
-        maxPath(root);
-        return sum;
-    }
-    public int maxPath(TreeNode root) {
-        if(root == null) return 0;
-        int sumLeft = Math.max(0, maxPath(root.left));
-        int sumRight = Math.max(0, maxPath(root.right));
-        sum = Math.max(sum,sumLeft + sumRight + root.val);
-        return Math.max(sumLeft,sumRight) + root.val;
-    }
-}
-</code>
-</pre>
-  	</div>
-	  
-	  <div class="article-tags tags">
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/生成式对抗网/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
       
-        <a href="/tags/Algorithm/">Algorithm</a>
+        <a href="/tags/神经网络/">神经网络</a>
       
-        <a href="/tags/Leetcode/">Leetcode</a>
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
       
 	  </div>
     
-	</section>
-	
-		<section class="youyan" id="comments"> 
-			<div id="uyan_frame"></div>
-            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2132179"></script>
-		</section>
-	
-	
-	<div class ="post-donate">
-    <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
-        <span class="donate_txt">
-           &uarr;<br>
-		   打赏支持
-        </span>
-        <br>
-      </div>  
-	<div id="donate_guide" class="donate_bar center hidden" >
-		<img src="http://opeygftv2.bkt.clouddn.com/xudong.JPG" alt="微信打赏">  
-    </div>
-	<script type="text/javascript">
-		document.getElementById('btn_donate').onclick = function(){
-			$('#donate_board').addClass('hidden');
-			$('#donate_guide').removeClass('hidden');
-		}
-	</script>
-</div>
-
+  </section>
 </article>
-<script>
-	window.subData = {
-		title: 'Binary Tree Maximum Path Sum',
-		tools: true
-	}
-</script>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2018/10/02/Jensen-Shannon散度/">
+        Jensen-Shannon散度
+      </a>
+    </h2>
+    
+    <time>
+      10月 2, 2018
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>KL散度（Kullback-Leibler divergence）<br>在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。<br>有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：<br>1）KL散度不是对称的；<br>2）KL散度不满足三角不等式。<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/Jensen-Shannon散度/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2018/10/02/深度生成模型预算法/">
+        深度生成模型预算法
+      </a>
+    </h2>
+    
+    <time>
+      10月 2, 2018
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：<br>生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致<br>判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器<br>实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据</p>
+<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）<br></p>
+
+    
+	  <div class="readmore">
+      <a href="/2018/10/02/深度生成模型预算法/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+</section>
+
 
       </div>
       <aside class='l_side'>
@@ -331,13 +372,11 @@ class Solution {
 <script>
   var disqus_shortname = 'kevinhome';
   
-  var disqus_url = 'http://www.lexzhao.top/2017/09/13/Binary-Tree-Maximum-Path-Sum/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

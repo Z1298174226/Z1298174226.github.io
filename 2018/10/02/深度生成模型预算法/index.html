@@ -14,13 +14,13 @@
   <link rel="alternate" href="/atom.xml" title="倾听枫声">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特">
-<meta name="keywords" content="神经网络， 生成式对抗网">
+<meta name="keywords" content="神经网络,生成式对抗网">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度生成模型预算法">
 <meta property="og:url" content="http://www.lexzhao.top/2018/10/02/深度生成模型预算法/index.html">
 <meta property="og:site_name" content="倾听枫声">
 <meta property="og:description" content="Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特">
-<meta property="og:updated_time" content="2018-10-02T09:57:43.273Z">
+<meta property="og:updated_time" content="2018-10-02T10:09:50.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度生成模型预算法">
 <meta name="twitter:description" content="Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特">
@@ -162,8 +162,7 @@
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
     	<p>Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：<br>生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致<br>判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器<br>实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据</p>
-<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）</p>
-<p>GAN不仅可以用于探索复杂数据的潜在规律，还能够生成高质量的生成样本以作为真实数据的有效补充，为学习智能模型提供了新的视角和数据基础。</p>
+<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）<br><a id="more"></a><br>GAN不仅可以用于探索复杂数据的潜在规律，还能够生成高质量的生成样本以作为真实数据的有效补充，为学习智能模型提供了新的视角和数据基础。</p>
 <p>对抗样本误分类是因为模型的线性性质导致的，说白了就是因为wTx存在点乘，当x的每一个维度上都发生改变x˜=x+η，就会累加起来在点乘的结果上附加上一个比较大的和wTx˜=wTx+wTη，而这个值可能就改变了预测结果。</p>
 <p>由于G和D一般采用高度非线性并且可微的深度神经网络结构，因而均可以采用端对端学习策略进行训练。具体而言，在训练G和D时，采用对抗学习策略，使二者的训练目标相反。D的目标是最大化对数似然函数以判断G(z)和x的来源，将G(z)判断为生成数据，将x判断为真实数据。与之相对的是，G的目标是最小化对数似然函数，使G(z)的分布pg逼近真实数据x的分布pdata。不断迭代此对抗训练过程，交替更新判别器D和生成器G的参数，使D和G的性能不断提高；当达到平衡状态时，则认为G(z)学习到了真实数据x的分布空间，此时G(z)和x在分布上不具有差异性，判别器D无法对数据来源做出正确的判断。</p>
 <p>生成模型在机器学习中有很多的作用，</p>
@@ -179,7 +178,9 @@
 	  
 	  <div class="article-tags tags">
       
-        <a href="/tags/神经网络，-生成式对抗网/">神经网络， 生成式对抗网</a>
+        <a href="/tags/神经网络/">神经网络</a>
+      
+        <a href="/tags/生成式对抗网/">生成式对抗网</a>
       
 	  </div>
     
@@ -276,7 +277,7 @@
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15.33px; color: #0000d5">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/神经网络，-生成式对抗网/" style="font-size: 16.67px; color: #00a">神经网络， 生成式对抗网</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
+        <a href="/tags/AkkA/" style="font-size: 14px; color: #00f">AkkA</a> <a href="/tags/Algorithm/" style="font-size: 22px; color: #000">Algorithm</a> <a href="/tags/BST/" style="font-size: 15.33px; color: #0000d5">BST</a> <a href="/tags/Concurrent/" style="font-size: 14px; color: #00f">Concurrent</a> <a href="/tags/DP/" style="font-size: 18px; color: #000080">DP</a> <a href="/tags/DataMining/" style="font-size: 14px; color: #00f">DataMining</a> <a href="/tags/DataStructure/" style="font-size: 14px; color: #00f">DataStructure</a> <a href="/tags/Docker/" style="font-size: 14px; color: #00f">Docker</a> <a href="/tags/GC机制/" style="font-size: 15.33px; color: #0000d5">GC机制</a> <a href="/tags/Java/" style="font-size: 14px; color: #00f">Java</a> <a href="/tags/Leetcode/" style="font-size: 20.67px; color: #00002b">Leetcode</a> <a href="/tags/Netty/" style="font-size: 14px; color: #00f">Netty</a> <a href="/tags/ODL/" style="font-size: 16.67px; color: #00a">ODL</a> <a href="/tags/OSGi/" style="font-size: 14px; color: #00f">OSGi</a> <a href="/tags/SDN/" style="font-size: 16.67px; color: #00a">SDN</a> <a href="/tags/Spring/" style="font-size: 14px; color: #00f">Spring</a> <a href="/tags/UnionFind/" style="font-size: 14px; color: #00f">UnionFind</a> <a href="/tags/c/" style="font-size: 14px; color: #00f">c++</a> <a href="/tags/dfs/" style="font-size: 15.33px; color: #0000d5">dfs</a> <a href="/tags/java/" style="font-size: 19.33px; color: #005">java</a> <a href="/tags/nio/" style="font-size: 14px; color: #00f">nio</a> <a href="/tags/planning/" style="font-size: 14px; color: #00f">planning</a> <a href="/tags/scala/" style="font-size: 14px; color: #00f">scala</a> <a href="/tags/travelog/" style="font-size: 14px; color: #00f">travelog</a> <a href="/tags/生成式对抗网/" style="font-size: 16.67px; color: #00a">生成式对抗网</a> <a href="/tags/神经网络/" style="font-size: 16.67px; color: #00a">神经网络</a> <a href="/tags/虚拟机/" style="font-size: 14px; color: #00f">虚拟机</a>
     </div>
 </div>
 

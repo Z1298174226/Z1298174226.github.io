@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lexzhao.top/"/>
-  <updated>2018-10-02T10:43:29.359Z</updated>
+  <updated>2018-10-02T10:54:20.230Z</updated>
   <id>http://www.lexzhao.top/</id>
   
   <author>
@@ -14,6 +14,94 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>线程池拒绝策略</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5/"/>
+    <id>http://www.lexzhao.top/2018/10/02/线程池拒绝策略/</id>
+    <published>2018-10-02T10:53:36.000Z</published>
+    <updated>2018-10-02T10:54:20.230Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;(1) 默认的ThreadPoolExecutor.AbortPolicy   处理程序遭到拒绝将抛出运行时RejectedExecutionException;&lt;br&gt;(2) ThreadPoolExecutor.CallerRunsPolicy 线程调用运行该任务的 e
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="java" scheme="http://www.lexzhao.top/tags/java/"/>
+    
+      <category term="Concurrent" scheme="http://www.lexzhao.top/tags/Concurrent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式六大原则</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99/"/>
+    <id>http://www.lexzhao.top/2018/10/02/设计模式六大原则/</id>
+    <published>2018-10-02T10:52:04.000Z</published>
+    <updated>2018-10-02T10:58:02.184Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;开闭原则：一个软件实体，如类、模块和函数应该对扩展开放，对修改关闭&lt;br&gt;单一职责原则：一个类只负责一项职责&lt;br&gt;里式替换原则&lt;br&gt;接口隔离原则：客户端不应该依赖它不需要的接口，一个类对另一个类的依赖应该建立在最小的接口上&lt;br&gt;依赖倒置原则：高层模块不应该依赖底层模块
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="java" scheme="http://www.lexzhao.top/tags/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lexzhao.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>观察者模式与监听模式</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://www.lexzhao.top/2018/10/02/观察者模式与监听模式/</id>
+    <published>2018-10-02T10:51:54.000Z</published>
+    <updated>2018-10-02T10:57:24.963Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;事件和消息的区别&lt;br&gt;事件本身即是具有特定业务含义的一种固定结构对象，而消息是数据传输过程中的载体。概念上宽泛来讲，事件可以称作是一种消息，而消息不能代替事件。事件反映的是特定的业务状态，比如订单创建、服务调用失败、应用宕机等。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="java" scheme="http://www.lexzhao.top/tags/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lexzhao.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>装饰模式与组合模式</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://www.lexzhao.top/2018/10/02/装饰模式与组合模式/</id>
+    <published>2018-10-02T10:51:39.000Z</published>
+    <updated>2018-10-02T10:56:30.291Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;装饰者模式可以用来透明地把对象包装在具有同样接口的另一个对象中。这样一来，你可以给一个方法加一些行为，然后将方法调用传递给原始对象。&lt;br&gt;component&lt;br&gt;concrete component&lt;br&gt;decorator&lt;br&gt;concrete decorator&lt;br&gt;相对于创建子类来说，使用装饰者对象是一种更灵活的选择。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="java" scheme="http://www.lexzhao.top/tags/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lexzhao.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>均方差和交叉熵</title>
@@ -379,112 +467,9 @@
     
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
     
-      <category term="dfs" scheme="http://www.lexzhao.top/tags/dfs/"/>
-    
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Construct Binary Tree from Array</title>
-    <link href="http://www.lexzhao.top/2017/11/06/Construct-Binary-Tree-from-Array/"/>
-    <id>http://www.lexzhao.top/2017/11/06/Construct-Binary-Tree-from-Array/</id>
-    <published>2017-11-06T07:16:41.000Z</published>
-    <updated>2017-11-06T07:28:14.395Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;105. Construct Binary Tree from Preorder and Inorder Traversal&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;106. Construct Binary Tree from Inorder and Postorder Traversal&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;可以说是两道再经典不过的dfs题了,思路都很清晰，在这里记录一下吧&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
       <category term="dfs" scheme="http://www.lexzhao.top/tags/dfs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>动态规划问题带备忘自顶向下方法的典型应用</title>
-    <link href="http://www.lexzhao.top/2017/11/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E5%B8%A6%E5%A4%87%E5%BF%98%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8/"/>
-    <id>http://www.lexzhao.top/2017/11/05/动态规划问题带备忘自顶向下方法的典型应用/</id>
-    <published>2017-11-05T06:29:22.000Z</published>
-    <updated>2017-11-05T06:56:31.102Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt; 44. Wildcard Matching&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt; 10. Regular Expression Matching&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171105145034.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Map在动态规划问题当中的应用</title>
-    <link href="http://www.lexzhao.top/2017/11/05/Map%E5%9C%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E5%BD%93%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    <id>http://www.lexzhao.top/2017/11/05/Map在动态规划问题当中的应用/</id>
-    <published>2017-11-05T06:27:59.000Z</published>
-    <updated>2017-11-05T06:48:07.782Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt; 140. Word Break II&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt; 638. Shopping Offers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171105143248.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>InterleavingString</title>
-    <link href="http://www.lexzhao.top/2017/11/02/InterleabingString/"/>
-    <id>http://www.lexzhao.top/2017/11/02/InterleabingString/</id>
-    <published>2017-11-02T02:19:53.000Z</published>
-    <updated>2017-11-05T14:48:14.898Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;动态规划问题到目前为止已经刷了差不多40余题，借几道题稍微做一个总结。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;97. Interleaving String&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://opeygftv2.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20171102104732.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
-    
-      <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
   </entry>
   

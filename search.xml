@@ -3,6 +3,100 @@
   
     
     <entry>
+      <title><![CDATA[线程池拒绝策略]]></title>
+      <url>/2018/10/02/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5/</url>
+      <content type="html"><![CDATA[<p>(1) 默认的ThreadPoolExecutor.AbortPolicy   处理程序遭到拒绝将抛出运行时RejectedExecutionException;<br>(2) ThreadPoolExecutor.CallerRunsPolicy 线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度（一种反馈机制）<br>(3) ThreadPoolExecutor.DiscardPolicy  不能执行的任务将被删除;<br>(4) ThreadPoolExecutor.DiscardOldestPolicy  如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> Concurrent </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[设计模式六大原则]]></title>
+      <url>/2018/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99/</url>
+      <content type="html"><![CDATA[<p>开闭原则：一个软件实体，如类、模块和函数应该对扩展开放，对修改关闭<br>单一职责原则：一个类只负责一项职责<br>里式替换原则<br>接口隔离原则：客户端不应该依赖它不需要的接口，一个类对另一个类的依赖应该建立在最小的接口上<br>依赖倒置原则：高层模块不应该依赖底层模块，二者都应该依赖抽象，抽象不应该依赖细节，细节应该依赖抽象<br>迪米特法则：一个对象应该对其他对象保持最少的了解</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[观察者模式与监听模式]]></title>
+      <url>/2018/10/02/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<p>事件和消息的区别<br>事件本身即是具有特定业务含义的一种固定结构对象，而消息是数据传输过程中的载体。概念上宽泛来讲，事件可以称作是一种消息，而消息不能代替事件。事件反映的是特定的业务状态，比如订单创建、服务调用失败、应用宕机等。<br><a id="more"></a><br>一个事件对象描述的是谁在什么时间做了什么事情，看到这个对象，我们就能知道是发生了什么特定的事情。但是事件对象本身不承载数据传递的职能。<br>消息中间件实现的是消息的存储，解决的是解耦上下游业务系统。事件处理系统是更多的侧重对事件的分析处理，并驱动业务的进一步扭转。<br>参考<br><a href="https://my.oschina.net/u/923324/blog/792857" target="_blank" rel="external">https://my.oschina.net/u/923324/blog/792857</a></p>
+<p>观察者模式：<br>Observer<br>Observable<br>监听模式（类似于观察者模式的进阶）：<br>EventListener<br>EventObject<br>EventSource</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[装饰模式与组合模式]]></title>
+      <url>/2018/10/02/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<p>装饰者模式可以用来透明地把对象包装在具有同样接口的另一个对象中。这样一来，你可以给一个方法加一些行为，然后将方法调用传递给原始对象。<br>component<br>concrete component<br>decorator<br>concrete decorator<br>相对于创建子类来说，使用装饰者对象是一种更灵活的选择。<br><a id="more"></a></p>
+<p>装饰者模式和结合模式两者很像，那么这二者之间又有什么区别呢？<br>1、组合模式是一种结构型模式，用于把众多子对象组织为一个整体，及此程序员与大批对象打交道时可以将他们当作一个对象来对待，并将它们组织为层次性的树。通常它并不修改方法调用，<br>而只是将其沿组合对象与子对象的链向下传递，直到到达并落实在对象上。<br>2、装饰者模式也是一种结构型模式，但它并非用于组织对象，而是用于在不修改现有对象或从其派生子类的前提下为其增添职责。在一些较简单的例子中，装饰者模式会透明而不加修改地传递所有方法调用，<br>不过，创建装饰者模式的目的就在于对方法进行修改。<br>尽管简单的组合对象与简单的装饰者对象是相同的，但二者却有着不同的焦点。组合对象并不修改方法调用，其着眼在点于组织子对象。而装饰者模式存在的唯一目的就是修改方法调用而不是组织子对象，因为子对象只有一个。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[均方差和交叉熵]]></title>
       <url>/2018/10/02/%E5%9D%87%E6%96%B9%E5%B7%AE%E5%92%8C%E4%BA%A4%E5%8F%89%E7%86%B5/</url>
       <content type="html"><![CDATA[<p>当使用sigmoid函数作为激活函数时，最好使用交叉熵作为损失函数，避免收敛速度过慢<br>均方差在误差较大时候惩罚力度大，不适合作为分类问题<br>在机器学习中，希望算法或者网络收敛更快，有些是对数据预处理，尤其是Batch Normalization，有些是采用不同的激活函数，尤其是Relu激活函数取得了巨大的成功，还有一种加速收敛方法是更换损失函数。</p>
@@ -552,9 +646,9 @@
             
             <tag> Algorithm </tag>
             
-            <tag> dfs </tag>
-            
             <tag> DP </tag>
+            
+            <tag> dfs </tag>
             
         </tags>
         

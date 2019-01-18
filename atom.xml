@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lexzhao.top/"/>
-  <updated>2018-10-02T10:54:20.230Z</updated>
+  <updated>2019-01-18T16:03:55.992Z</updated>
   <id>http://www.lexzhao.top/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Thread.interrupt()源码剖析</title>
+    <link href="http://www.lexzhao.top/2019/01/18/Thread-interrupt-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/"/>
+    <id>http://www.lexzhao.top/2019/01/18/Thread-interrupt-源码剖析/</id>
+    <published>2019-01-18T15:32:38.000Z</published>
+    <updated>2019-01-18T16:03:55.992Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1、如何终止一个Java线程&quot;&gt;&lt;a href=&quot;#1、如何终止一个Java线程&quot; class=&quot;headerlink&quot; title=&quot;1、如何终止一个Java线程&quot;&gt;&lt;/a&gt;1、如何终止一个Java线程&lt;/h2&gt;&lt;p&gt;Java线程的终止操作最初是直接暴露给用户的，java.lang.Thread类提供了stop()方法，允许用户暴力的终止一个线程并退出临界区（释放所有锁，并在当前调用栈抛出ThreadDeath Exception）。同样的，Thread.suspend()和Thread.resume()方法允许用户灵活的暂停和恢复线程。&lt;/p&gt;
+&lt;p&gt;然而这些看似简便的API在JDK1.2就被deprecate掉了，原因是stop()方法本质上是不安全的，它会强制释放掉线程持有的锁，这样临界区的数据中间状态就会遗留出来，从而造成不可预知的后果。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="java" scheme="http://www.lexzhao.top/tags/java/"/>
+    
+      <category term="concurrent" scheme="http://www.lexzhao.top/tags/concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>线程池拒绝策略</title>
@@ -264,15 +287,16 @@
   </entry>
   
   <entry>
-    <title>Jensen-Shannon散度</title>
-    <link href="http://www.lexzhao.top/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/"/>
-    <id>http://www.lexzhao.top/2018/10/02/Jensen-Shannon散度/</id>
+    <title>深度生成模型预算法</title>
+    <link href="http://www.lexzhao.top/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/"/>
+    <id>http://www.lexzhao.top/2018/10/02/深度生成模型预算法/</id>
     <published>2018-10-02T09:54:08.000Z</published>
-    <updated>2018-10-02T10:09:29.280Z</updated>
+    <updated>2018-10-02T10:09:50.797Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;KL散度（Kullback-Leibler divergence）&lt;br&gt;在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。&lt;br&gt;有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：&lt;br&gt;1）KL散度不是对称的；&lt;br&gt;2）KL散度不满足三角不等式。&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：&lt;br&gt;生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致&lt;br&gt;判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器&lt;br&gt;实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据&lt;/p&gt;
+&lt;p&gt;类似于二人博弈的感觉，零和博弈问题（纳什平衡）&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -286,16 +310,15 @@
   </entry>
   
   <entry>
-    <title>深度生成模型预算法</title>
-    <link href="http://www.lexzhao.top/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/"/>
-    <id>http://www.lexzhao.top/2018/10/02/深度生成模型预算法/</id>
+    <title>Jensen-Shannon散度</title>
+    <link href="http://www.lexzhao.top/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/"/>
+    <id>http://www.lexzhao.top/2018/10/02/Jensen-Shannon散度/</id>
     <published>2018-10-02T09:54:08.000Z</published>
-    <updated>2018-10-02T10:09:50.797Z</updated>
+    <updated>2018-10-02T10:09:29.280Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：&lt;br&gt;生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致&lt;br&gt;判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器&lt;br&gt;实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据&lt;/p&gt;
-&lt;p&gt;类似于二人博弈的感觉，零和博弈问题（纳什平衡）&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;KL散度（Kullback-Leibler divergence）&lt;br&gt;在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。&lt;br&gt;有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：&lt;br&gt;1）KL散度不是对称的；&lt;br&gt;2）KL散度不满足三角不等式。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -364,9 +387,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
     
       <category term="BST" scheme="http://www.lexzhao.top/tags/BST/"/>
     
@@ -392,9 +415,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
     
       <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
     
@@ -441,35 +464,9 @@
       <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="http://www.lexzhao.top/tags/Leetcode/"/>
     
-  </entry>
-  
-  <entry>
-    <title>递归  回溯  DFS</title>
-    <link href="http://www.lexzhao.top/2017/11/06/%E9%80%92%E5%BD%92-%E5%9B%9E%E6%BA%AF-DFS/"/>
-    <id>http://www.lexzhao.top/2017/11/06/递归-回溯-DFS/</id>
-    <published>2017-11-06T07:22:17.000Z</published>
-    <updated>2017-11-19T06:31:28.950Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参考&lt;a href=&quot;http://blog.csdn.net/ffmpeg4976/article/details/45007439&quot;&gt;http://blog.csdn.net/ffmpeg4976/article/details/45007439&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在程序设计中，有相当一类求一组解，或求全部解或求最优解的问题，例如读者熟悉的八皇后问题，不是根据某种特定的计算法则，而是利用试探和回溯的搜索技术求解。回溯法也是设计递归过程的一种重要方法，它的求解过程实质上是一个先序遍历一棵”状态树”的过程,只是这棵树不是遍历前预先建立的,而是隐含在遍历过程中。&lt;/p&gt;
-&lt;p&gt;《数据结构》(严蔚敏)&lt;br&gt;怎么理解这段话呢？&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.lexzhao.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
       <category term="Algorithm" scheme="http://www.lexzhao.top/tags/Algorithm/"/>
-    
-      <category term="DP" scheme="http://www.lexzhao.top/tags/DP/"/>
-    
-      <category term="dfs" scheme="http://www.lexzhao.top/tags/dfs/"/>
     
   </entry>
   

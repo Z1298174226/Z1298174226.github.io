@@ -3,6 +3,83 @@
   
     
     <entry>
+      <title><![CDATA[Thread.interrupt()源码剖析]]></title>
+      <url>/2019/01/18/Thread-interrupt-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/</url>
+      <content type="html"><![CDATA[<h2 id="1、如何终止一个Java线程"><a href="#1、如何终止一个Java线程" class="headerlink" title="1、如何终止一个Java线程"></a>1、如何终止一个Java线程</h2><p>Java线程的终止操作最初是直接暴露给用户的，java.lang.Thread类提供了stop()方法，允许用户暴力的终止一个线程并退出临界区（释放所有锁，并在当前调用栈抛出ThreadDeath Exception）。同样的，Thread.suspend()和Thread.resume()方法允许用户灵活的暂停和恢复线程。</p>
+<p>然而这些看似简便的API在JDK1.2就被deprecate掉了，原因是stop()方法本质上是不安全的，它会强制释放掉线程持有的锁，这样临界区的数据中间状态就会遗留出来，从而造成不可预知的后果。<br><a id="more"></a><br>当然Java线程不可能没有办法终止，在Java程序中，唯一的也是最好的办法就是让线程从run()方法返回。更具体来说，有以下几种情况：</p>
+<ul>
+<li>对于runnable的线程，利用一个变量做标记位，定期检查</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</div><div class="line">    flag = <span class="keyword">false</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span> (flag) &#123;</div><div class="line">        <span class="comment">//do something...</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>对于非runnable的线程，应该采取中断的方式退出阻塞，并处理捕获的中断异常</li>
+</ul>
+<p>对于大部分阻塞线程的方法，使用Thread.interrupt()，可以立刻退出等待，抛出InterruptedException</p>
+<p>这些方法包括Object.wait(), Thread.join()，Thread.sleep()，以及各种AQS衍生类：Lock.lockInterruptibly()等任何显示声明throws InterruptedException的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> Thread thread;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</div><div class="line">    thread.interrupt();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    thread = Thread.currentThread();</div><div class="line">    <span class="keyword">while</span> (flag) &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Thread.sleep(interval);</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</div><div class="line">            <span class="comment">//current thread was interrupted</span></div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>被阻塞的nio Channel也会响应interrupt()，抛出ClosedByInterruptException，相应nio通道需要实现java.nio.channels.InterruptibleChannel接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//This code does not work when run from within Eclipse</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> Thread thread;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</div><div class="line">        thread.interrupt();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        thread = Thread.currentThread();</div><div class="line">        BufferedReader in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(Channels.newInputStream(</div><div class="line">                                            <span class="keyword">new</span> FileInputStream(FileDescriptor.in).getChannel())));</div><div class="line">        <span class="keyword">while</span> (flag) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                String line = <span class="keyword">null</span>;</div><div class="line">                <span class="keyword">while</span> ((line = in.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">                    System.out.println(<span class="string">"Read line:'"</span>+line+<span class="string">"'"</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">catch</span> (ClosedByInterruptException e) &#123;</div><div class="line">                <span class="comment">//current channel was interrupted</span></div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123; </div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>注：如果使用的是传统IO（非Channel，如ServerSocket.accept），所在线程被interrupt时不会抛出ClosedByInterruptException。但可以使用流的close方法实现退出阻塞。</p>
+<p>还有一些阻塞方法不会响应interrupt，如等待进入synchronized段、Lock.lock()。他们不能被动的退出阻塞状态。</p>
+<h2 id="2-Thread-interrupt-源码分析"><a href="#2-Thread-interrupt-源码分析" class="headerlink" title="2.Thread.interrupt()源码分析"></a>2.Thread.interrupt()源码分析</h2><p>Thread.interrupt()方法设计的目的，是提示一个线程应该终止，但不强制该线程终止。程序员可以来决定如何响应这个终止提示。直接上源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Class java.lang.Thread</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">interrupt</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> != Thread.currentThread())</div><div class="line">            checkAccess();</div><div class="line">        <span class="keyword">synchronized</span> (blockerLock) &#123;</div><div class="line">            Interruptible b = blocker;   <span class="comment">//中断触发器</span></div><div class="line">            <span class="keyword">if</span> (b != <span class="keyword">null</span>) &#123;</div><div class="line">                interrupt0();           </div><div class="line">                b.interrupt(<span class="keyword">this</span>);   <span class="comment">//触发回调接口</span></div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        interrupt0();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="2-1-校验权限"><a href="#2-1-校验权限" class="headerlink" title="2.1 校验权限"></a>2.1 校验权限</h3><p>如果不是当前线程自我中断，会先做一次权限检查。如果被中断的线程属于系统线程组（即JVM线程），checkAccess()方法会使用系统的System.getSecurityManager()来判断权限。由于Java默认没有开启安全策略，此方法其实会跳过安全检查。</p>
+<h3 id="2-2-触发中断回调接口"><a href="#2-2-触发中断回调接口" class="headerlink" title="2.2 触发中断回调接口"></a>2.2 触发中断回调接口</h3><p>如果线程的中断触发器blocker不为null，则触发中断触发回调接口Interruptible。那么这个触发器blocker是什么时候被设置的呢？</p>
+<p>上文提到，如果一个nio通道实现了InterruptibleChannel接口，就可以响应interrupt()中断，其原理就在InterruptibleChannel接口的抽象实现类AbstractInterruptibleChannel的方法begin()中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Class java.nio.channels.spi.AbstractInterruptibleChannel</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">begin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (interruptor == <span class="keyword">null</span>) &#123;</div><div class="line">            interruptor = <span class="keyword">new</span> Interruptible() &#123;</div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">interrupt</span><span class="params">(Thread target)</span> </span>&#123;</div><div class="line">                        <span class="keyword">synchronized</span> (closeLock) &#123;</div><div class="line">                            <span class="keyword">if</span> (!open)</div><div class="line">                                <span class="keyword">return</span>;</div><div class="line">                            open = <span class="keyword">false</span>;</div><div class="line">                            interrupted = target;</div><div class="line">                            <span class="keyword">try</span> &#123;<span class="comment">//关闭io通道</span></div><div class="line">                                AbstractInterruptibleChannel.<span class="keyword">this</span>.implCloseChannel();</div><div class="line">                            &#125; <span class="keyword">catch</span> (IOException x) &#123; &#125;</div><div class="line">                        &#125;</div><div class="line">                    &#125;&#125;;</div><div class="line">        &#125;</div><div class="line">        blockedOn(interruptor);<span class="comment">//将interruptor设置为当前线程的blocker</span></div><div class="line">        Thread me = Thread.currentThread();</div><div class="line">        <span class="keyword">if</span> (me.isInterrupted())</div><div class="line">            interruptor.interrupt(me);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">end</span><span class="params">(<span class="keyword">boolean</span> completed)</span> <span class="keyword">throws</span> AsynchronousCloseException </span>&#123;</div><div class="line">        blockedOn(<span class="keyword">null</span>);</div><div class="line">        Thread interrupted = <span class="keyword">this</span>.interrupted;</div><div class="line">        <span class="keyword">if</span> (interrupted != <span class="keyword">null</span> &amp;&amp; interrupted == Thread.currentThread()) &#123;</div><div class="line">            interrupted = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ClosedByInterruptException();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!completed &amp;&amp; !open)</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> AsynchronousCloseException();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Class java.nio.channels.Channels.ReadableByteChannelImpl</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(ByteBuffer dst)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        ......    </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            begin();</div><div class="line">            bytesRead = in.read(buf, <span class="number">0</span>, bytesToRead);</div><div class="line">        <span class="keyword">finally</span> &#123;</div><div class="line">            end(bytesRead &gt; <span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">        ......</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>以上述代码为例，nio通道ReadableByteChannel每次执行阻塞方法read()前，都会执行begin()，把Interruptible回调接口注册到当前线程上，以实现能够响应其他线程的中断。当线程收到中断时，Thread.interrupt()触发回调接口，在回调接口Interruptible中关闭io通道并返回，最后在finally块中执行end()，end()方法会检查中断标记，抛出ClosedByInterruptException。</p>
+<h3 id="2-3-interrupt0"><a href="#2-3-interrupt0" class="headerlink" title="2.3 interrupt0()"></a>2.3 interrupt0()</h3><p>无论是否设置了中断触发回调blocker，都会执行这个关键的native方法interrupt0()：</p>
+<p>以openJDK7的Hotspot虚拟机为例，先找到native方法映射</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jdk\src\share\native\java\lang\Thread.c</span></div><div class="line"><span class="keyword">static</span> JNINativeMethod methods[] = &#123;</div><div class="line">    &#123;<span class="string">"start0"</span>,           <span class="string">"()V"</span>,        (<span class="keyword">void</span> *)&amp;JVM_StartThread&#125;,</div><div class="line">    &#123;<span class="string">"stop0"</span>,            <span class="string">"("</span> OBJ <span class="string">")V"</span>, (<span class="keyword">void</span> *)&amp;JVM_StopThread&#125;,</div><div class="line">    &#123;<span class="string">"isAlive"</span>,          <span class="string">"()Z"</span>,        (<span class="keyword">void</span> *)&amp;JVM_IsThreadAlive&#125;,</div><div class="line">    &#123;<span class="string">"suspend0"</span>,         <span class="string">"()V"</span>,        (<span class="keyword">void</span> *)&amp;JVM_SuspendThread&#125;,</div><div class="line">    &#123;<span class="string">"resume0"</span>,          <span class="string">"()V"</span>,        (<span class="keyword">void</span> *)&amp;JVM_ResumeThread&#125;,</div><div class="line">    &#123;<span class="string">"setPriority0"</span>,     <span class="string">"(I)V"</span>,       (<span class="keyword">void</span> *)&amp;JVM_SetThreadPriority&#125;,</div><div class="line">    &#123;<span class="string">"yield"</span>,            <span class="string">"()V"</span>,        (<span class="keyword">void</span> *)&amp;JVM_Yield&#125;,</div><div class="line">    &#123;<span class="string">"sleep"</span>,            <span class="string">"(J)V"</span>,       (<span class="keyword">void</span> *)&amp;JVM_Sleep&#125;,</div><div class="line">    &#123;<span class="string">"currentThread"</span>,    <span class="string">"()"</span> THD,     (<span class="keyword">void</span> *)&amp;JVM_CurrentThread&#125;,</div><div class="line">    &#123;<span class="string">"countStackFrames"</span>, <span class="string">"()I"</span>,        (<span class="keyword">void</span> *)&amp;JVM_CountStackFrames&#125;,</div><div class="line">    &#123;<span class="string">"interrupt0"</span>,       <span class="string">"()V"</span>,        (<span class="keyword">void</span> *)&amp;JVM_Interrupt&#125;,</div><div class="line">    &#123;<span class="string">"isInterrupted"</span>,    <span class="string">"(Z)Z"</span>,       (<span class="keyword">void</span> *)&amp;JVM_IsInterrupted&#125;,</div><div class="line">    &#123;<span class="string">"holdsLock"</span>,        <span class="string">"("</span> OBJ <span class="string">")Z"</span>, (<span class="keyword">void</span> *)&amp;JVM_HoldsLock&#125;,</div><div class="line">    &#123;<span class="string">"getThreads"</span>,        <span class="string">"()["</span> THD,   (<span class="keyword">void</span> *)&amp;JVM_GetAllThreads&#125;,</div><div class="line">    &#123;<span class="string">"dumpThreads"</span>,      <span class="string">"(["</span> THD <span class="string">")[["</span> STE, (<span class="keyword">void</span> *)&amp;JVM_DumpThreads&#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>可以找到interrupt0对应JVM_Interrupt这个函数，继续找到实现代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//hotspot\src\share\vm\prims\jvm.cpp</span></div><div class="line">JVM_ENTRY(<span class="keyword">void</span>, JVM_Interrupt(JNIEnv* env, jobject jthread))</div><div class="line">  JVMWrapper(<span class="string">"JVM_Interrupt"</span>);</div><div class="line">  <span class="comment">// Ensure that the C++ Thread and OSThread structures aren't freed before we operate</span></div><div class="line">  oop java_thread = JNIHandles::resolve_non_null(jthread);</div><div class="line">  <span class="function">MutexLockerEx <span class="title">ml</span><span class="params">(thread-&gt;threadObj()</span> </span>== java_thread ? <span class="literal">NULL</span> : Threads_lock);</div><div class="line">  <span class="comment">// We need to re-resolve the java_thread, since a GC might have happened during the</span></div><div class="line">  <span class="comment">// acquire of the lock</span></div><div class="line">  JavaThread* thr = java_lang_Thread::thread(JNIHandles::resolve_non_null(jthread));</div><div class="line">  <span class="keyword">if</span> (thr != <span class="literal">NULL</span>) &#123;</div><div class="line">    Thread::interrupt(thr);</div><div class="line">  &#125;</div><div class="line">JVM_END</div></pre></td></tr></table></figure>
+<p>  可以看到这是一个JNI方法，JVM_ENTRY是JNI调用的宏。关键函数Thread::interrupt(thr)，继续跟踪：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//hotspot\src\share\vm\runtime\thread.cpp</span></div><div class="line"><span class="keyword">void</span> Thread::interrupt(Thread* thread) &#123;</div><div class="line">  trace(<span class="string">"interrupt"</span>, thread);</div><div class="line">  debug_only(check_for_dangling_thread_pointer(thread);)</div><div class="line">  os::interrupt(thread);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>关键函数os::interrupt，os此时分为linux、solaris和windows，以linux为例继续跟踪：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//hotspot\src\os\linux\vm\os_linux.cpp</span></div><div class="line"><span class="keyword">void</span> os::interrupt(Thread* thread) &#123;</div><div class="line">  assert(Thread::current() == thread || Threads_lock-&gt;owned_by_self(),</div><div class="line">    <span class="string">"possibility of dangling Thread pointer"</span>);</div><div class="line">  OSThread* osthread = thread-&gt;osthread();</div><div class="line">  <span class="keyword">if</span> (!osthread-&gt;interrupted()) &#123;</div><div class="line">    osthread-&gt;set_interrupted(<span class="literal">true</span>);</div><div class="line">    <span class="comment">// More than one thread can get here with the same value of osthread,</span></div><div class="line">    <span class="comment">// resulting in multiple notifications.  We do, however, want the store</span></div><div class="line">    <span class="comment">// to interrupted() to be visible to other threads before we execute unpark().</span></div><div class="line">    OrderAccess::fence();</div><div class="line">    ParkEvent * <span class="keyword">const</span> slp = thread-&gt;_SleepEvent ;</div><div class="line">    <span class="keyword">if</span> (slp != <span class="literal">NULL</span>) slp-&gt;unpark() ;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// For JSR166. Unpark even if interrupt status already was set</span></div><div class="line">  <span class="keyword">if</span> (thread-&gt;is_Java_thread())</div><div class="line">    ((JavaThread*)thread)-&gt;parker()-&gt;unpark();</div><div class="line">  ParkEvent * ev = thread-&gt;_ParkEvent ;</div><div class="line">  <span class="keyword">if</span> (ev != <span class="literal">NULL</span>) ev-&gt;unpark() ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每一个Java线程都与一个osthread一一对应，如果相应的os线程没有被中断，则会设置osthread的interrupt标志位为true（对应一个volatile int），并唤醒线程的SleepEvent。随后唤醒线程的parker和ParkEvent。<br>简而言之，==interrupt操作会对三种事件进行unpark唤醒，分别是thread-&gt;_SleepEvent、thread-&gt;parker()和thread-&gt;_ParkEvent==，这些变量的具体声明如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//hotspot\src\share\vm\runtime\thread.cpp</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">  ParkEvent * _ParkEvent ;                     <span class="comment">// for synchronized()</span></div><div class="line">  ParkEvent * _SleepEvent ;                    <span class="comment">// for Thread.sleep</span></div><div class="line">  </div><div class="line">  <span class="comment">// JSR166 per-thread parker</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">  Parker*    _parker;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="function">Parker*     <span class="title">parker</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> _parker; &#125;</div></pre></td></tr></table></figure>
+<h3 id="2-4-唤醒ParkEvent"><a href="#2-4-唤醒ParkEvent" class="headerlink" title="2.4 唤醒ParkEvent"></a>2.4 唤醒ParkEvent</h3><p>==Thread类中包含了两种作用不同的ParkEvent，_ParkEvent变量用于synchronized同步块和Object.wait()，_SleepEvent变量用于Thread.sleep()，== ParkEvent类的声明如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParkEvent</span> :</span> <span class="keyword">public</span> os::PlatformEvent &#123;</div><div class="line">... <span class="comment">//略，直接看父类</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//hotspot\src\os\linux\vm\os_linux.cpp</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlatformEvent</span> :</span> <span class="keyword">public</span> CHeapObj &#123;</div><div class="line">  <span class="keyword">private</span>:</div><div class="line">    <span class="keyword">pthread_mutex_t</span> _mutex  [<span class="number">1</span>] ;</div><div class="line">    <span class="keyword">pthread_cond_t</span>  _cond   [<span class="number">1</span>] ;</div><div class="line">    ...</div><div class="line">  <span class="keyword">public</span>:</div><div class="line">    PlatformEvent() &#123;</div><div class="line">      <span class="keyword">int</span> status;</div><div class="line">      status = pthread_cond_init (_cond, <span class="literal">NULL</span>);</div><div class="line">      assert_status(status == <span class="number">0</span>, status, <span class="string">"cond_init"</span>);</div><div class="line">      status = pthread_mutex_init (_mutex, <span class="literal">NULL</span>);</div><div class="line">      assert_status(status == <span class="number">0</span>, status, <span class="string">"mutex_init"</span>);</div><div class="line">      _Event   = <span class="number">0</span> ;</div><div class="line">      _nParked = <span class="number">0</span> ;</div><div class="line">      _Assoc   = <span class="literal">NULL</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">park</span> <span class="params">()</span> </span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unpark</span> <span class="params">()</span> </span>;</div><div class="line">    <span class="function"><span class="keyword">int</span>  <span class="title">park</span> <span class="params">(jlong millis)</span> </span>;</div><div class="line">    ...</div><div class="line">&#125; ;</div></pre></td></tr></table></figure>
+<p>ParkEvent包含了一把mutex互斥锁和一个cond条件变量，并在构造函数中进行了初始化，线程的阻塞和唤醒（park和unpark）就是通过他们实现的：</p>
+<ul>
+<li>PlatformEvent::park() 方法会调用库函数pthread_cond_wait(_cond, _mutex)实现线程等待</li>
+</ul>
+<p>synchronized块的进入和Object.wait()的线程等待都是通过PlatformEvent::park()方法实现</p>
+<p>注：Thread.join()是使用的Object.wait()实现的</p>
+<ul>
+<li>PlatformEvent::park(jlong millis) 方法会调用库函数pthread_cond_timedwait(_cond, _mutex, _abstime)实现计时条件等待</li>
+</ul>
+<p>Thread.sleep(millis)就是通过PlatformEvent::park(jlong millis)实现</p>
+<ul>
+<li>PlatformEvent::unpark() 方法会调用库函数pthread_cond_signal (_cond)唤醒上述等待的条件变量</li>
+</ul>
+<p>Thread.interrupt()就会触发其子类SleepEvent和ParkEvent的unpark()方法</p>
+<p>synchronized块的退出也会触发unpark()。其所在对象ObjectMonitor维护了ParkEvent数组作为唤醒队列，synchronized同步块退出时，会触发ParkEvent::unpark()方法来唤醒等待进入同步块的线程，或等待在Object.wait()的线程。</p>
+<p>上述Thread类的两个ParkEvent成员变量：_ParkEvent和_SleepEvent，都会在Thread.interrupt()时触发unpark()动作。</p>
+<p>对于_ParkEvent来说，它可以代表一个synchronized等待进入同步块的时事件，也可以代表一个Object.wait()等待条件变量的事件。不同的是，如果是synchronized等待事件，被唤醒后会尝试获取锁，如果失败则会通过循环继续park()等待，因此synchronized等待实际上是不会被interrupt()中断的；如果是Object.wait()事件，则会通过标记为判断出是否是被notify()唤醒的，如果不是则抛出InterruptedException实现中断。</p>
+<p>对于_SleepEvent相对简单一些，它只代表线程sleep动作，可能是java.lang.Thread.sleep()，也可能是jvm内部调用的线程os::sleep()。如果是java.lang.Thread.sleep()，则会通过线程的is_interrupted标记位来判断抛出InterruptedException。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> concurrent </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[线程池拒绝策略]]></title>
       <url>/2018/10/02/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5/</url>
       <content type="html"><![CDATA[<p>(1) 默认的ThreadPoolExecutor.AbortPolicy   处理程序遭到拒绝将抛出运行时RejectedExecutionException;<br>(2) ThreadPoolExecutor.CallerRunsPolicy 线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度（一种反馈机制）<br>(3) ThreadPoolExecutor.DiscardPolicy  不能执行的任务将被删除;<br>(4) ThreadPoolExecutor.DiscardOldestPolicy  如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）。</p>
@@ -315,13 +392,20 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Jensen-Shannon散度]]></title>
-      <url>/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/</url>
-      <content type="html"><![CDATA[<p>KL散度（Kullback-Leibler divergence）<br>在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。<br>有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：<br>1）KL散度不是对称的；<br>2）KL散度不满足三角不等式。<br><a id="more"></a><br>由于对数函数是上凸函数，所以：</p>
-<p>所以KL散度始终是大于等于0的，当且仅当两分布相同时，KL散度等于0。<br>JS散度（Jensen-Shannon）<br>JS散度相似度衡量指标。现有两个分布P1和P2，其JS散度公式为：</p>
-<p>Wasserstein距离<br>Wasserstein距离又叫Earth-Mover距离(EM距离)，用于衡量两个分布之间的距离，定义：</p>
-<p>Π(P1,P2)是P1和P2分布组合起来的所有可能的联合分布的集合。对于每一个可能的联合分布γ，可以从中采样(x,y)∼γ得到一个样本x和y，并计算出这对样本的距离||x−y||，所以可以计算该联合分布γ下，样本对距离的期望值E(x,y)∼γ[||x−y||]。在所有可能的联合分布中能够对这个期望值取到的下界infγ∼Π(P1,P2)E(x,y)∼γ[||x−y||]就是Wasserstein距离。<br>直观上可以把E(x,y)∼γ[||x−y||]理解为在γ这个路径规划下把土堆P1挪到土堆P2所需要的消耗。而Wasserstein距离就是在最优路径规划下的最小消耗。所以Wesserstein距离又叫Earth-Mover距离。<br>Wessertein距离相比KL散度和JS散度的优势在于，即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而[js散度在此情况下是常量，KL散度可能无意义。</p>
-<p>根据Kantorovich-Rubinstein对偶原理，可以得到Wasserstein距离的等价形式：</p>
+      <title><![CDATA[深度生成模型预算法]]></title>
+      <url>/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：<br>生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致<br>判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器<br>实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据</p>
+<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）<br><a id="more"></a><br>GAN不仅可以用于探索复杂数据的潜在规律，还能够生成高质量的生成样本以作为真实数据的有效补充，为学习智能模型提供了新的视角和数据基础。</p>
+<p>对抗样本误分类是因为模型的线性性质导致的，说白了就是因为wTx存在点乘，当x的每一个维度上都发生改变x˜=x+η，就会累加起来在点乘的结果上附加上一个比较大的和wTx˜=wTx+wTη，而这个值可能就改变了预测结果。</p>
+<p>由于G和D一般采用高度非线性并且可微的深度神经网络结构，因而均可以采用端对端学习策略进行训练。具体而言，在训练G和D时，采用对抗学习策略，使二者的训练目标相反。D的目标是最大化对数似然函数以判断G(z)和x的来源，将G(z)判断为生成数据，将x判断为真实数据。与之相对的是，G的目标是最小化对数似然函数，使G(z)的分布pg逼近真实数据x的分布pdata。不断迭代此对抗训练过程，交替更新判别器D和生成器G的参数，使D和G的性能不断提高；当达到平衡状态时，则认为G(z)学习到了真实数据x的分布空间，此时G(z)和x在分布上不具有差异性，判别器D无法对数据来源做出正确的判断。</p>
+<p>生成模型在机器学习中有很多的作用，</p>
+<p>首先是可以做无监督的模型。比如现在判决式神经网络需要有大量的标注数据去训练。比如ImageNet。广义上来说有很多的没有标准的原始数据。我们有更多的没有标注的原始数据。对于这种数据可以用生成模型去学习它的一个表示，就是深度的生成模型。他可以发挥应用的场景，具体我们可以做无监督的学习，你可以做简单的密度估计、生成新的样本、可以做一些聚类、可以做一些特征提取，甚至做降维等这都是无监督的一些任务。</p>
+<p>有监督学习和无监督学习之间有一种混合的半监督学习，半监督学习就是希望用大量的无标注数据帮助我们做有监督的学习任务，提升分类的效果。</p>
+<p>深度卷积对抗生成网络</p>
+<p>生成模型<br>输入时随机噪声<br>生成模型使用转置卷积层操作（微步卷积）<br>判别网络<br>简单来讲，可以退化为多类逻辑回归问题</p>
+<p>存在问题<br>最终生成数据的概率分布函数收敛于自然数据的概率分布函数<br>生成数据的分布函数和自然数据的分布函数接近，但其支撑集互不相交或者重叠，则生成模型所对应的优化目标函数（詹森香农散度）关于参数的偏导退化为常数，并且判别模型越好，退化越严重</p>
+<p>生成网络G（Z）接收随机噪声输入Z</p>
+<p>优点<br>模型只用到了反向传播,而不需要马尔科夫链<br>训练时不需要对隐变量做推断<br>理论上,只要是可微分函数都可以用于构建D和G,因为能够与深度神经网络结合做深度生成式模型<br>G的参数更新不是直接来自数据样本,而是使用来自D的反向传播(这也是与传统方法相比差别最大的一条吧)<br>缺点<br>可解释性差,生成模型的分布 Pg(G)没有显式的表达<br>比较难训练,D与G之间需要很好的同步,例如D更新k次而G更新一次</p>
 ]]></content>
       
         <categories>
@@ -342,20 +426,13 @@
     </entry>
     
     <entry>
-      <title><![CDATA[深度生成模型预算法]]></title>
-      <url>/2018/10/02/%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E9%A2%84%E7%AE%97%E6%B3%95/</url>
-      <content type="html"><![CDATA[<p>Generative Adversarial Nets,核心思想是从训练样本中学习所对应的概率分布，来期望根据概率分布函数获取更多的生成样本来实现数据的扩张。包括两个子网络模型：<br>生成模型：使得生成的“伪”图像尽可能与“自然”图像的分布一致<br>判别模型：在生成的“伪”图像和“自然”图像之间做出正确的判断，即二类分类器<br>实现整个网络训练的方法便是让着两个网络相互竞争，最终生成模型通过学习“自然”数据的本质特性，从而刻画出“自然”样本的分布概率，生成与“自然”样本相似的新数据</p>
-<p>类似于二人博弈的感觉，零和博弈问题（纳什平衡）<br><a id="more"></a><br>GAN不仅可以用于探索复杂数据的潜在规律，还能够生成高质量的生成样本以作为真实数据的有效补充，为学习智能模型提供了新的视角和数据基础。</p>
-<p>对抗样本误分类是因为模型的线性性质导致的，说白了就是因为wTx存在点乘，当x的每一个维度上都发生改变x˜=x+η，就会累加起来在点乘的结果上附加上一个比较大的和wTx˜=wTx+wTη，而这个值可能就改变了预测结果。</p>
-<p>由于G和D一般采用高度非线性并且可微的深度神经网络结构，因而均可以采用端对端学习策略进行训练。具体而言，在训练G和D时，采用对抗学习策略，使二者的训练目标相反。D的目标是最大化对数似然函数以判断G(z)和x的来源，将G(z)判断为生成数据，将x判断为真实数据。与之相对的是，G的目标是最小化对数似然函数，使G(z)的分布pg逼近真实数据x的分布pdata。不断迭代此对抗训练过程，交替更新判别器D和生成器G的参数，使D和G的性能不断提高；当达到平衡状态时，则认为G(z)学习到了真实数据x的分布空间，此时G(z)和x在分布上不具有差异性，判别器D无法对数据来源做出正确的判断。</p>
-<p>生成模型在机器学习中有很多的作用，</p>
-<p>首先是可以做无监督的模型。比如现在判决式神经网络需要有大量的标注数据去训练。比如ImageNet。广义上来说有很多的没有标准的原始数据。我们有更多的没有标注的原始数据。对于这种数据可以用生成模型去学习它的一个表示，就是深度的生成模型。他可以发挥应用的场景，具体我们可以做无监督的学习，你可以做简单的密度估计、生成新的样本、可以做一些聚类、可以做一些特征提取，甚至做降维等这都是无监督的一些任务。</p>
-<p>有监督学习和无监督学习之间有一种混合的半监督学习，半监督学习就是希望用大量的无标注数据帮助我们做有监督的学习任务，提升分类的效果。</p>
-<p>深度卷积对抗生成网络</p>
-<p>生成模型<br>输入时随机噪声<br>生成模型使用转置卷积层操作（微步卷积）<br>判别网络<br>简单来讲，可以退化为多类逻辑回归问题</p>
-<p>存在问题<br>最终生成数据的概率分布函数收敛于自然数据的概率分布函数<br>生成数据的分布函数和自然数据的分布函数接近，但其支撑集互不相交或者重叠，则生成模型所对应的优化目标函数（詹森香农散度）关于参数的偏导退化为常数，并且判别模型越好，退化越严重</p>
-<p>生成网络G（Z）接收随机噪声输入Z</p>
-<p>优点<br>模型只用到了反向传播,而不需要马尔科夫链<br>训练时不需要对隐变量做推断<br>理论上,只要是可微分函数都可以用于构建D和G,因为能够与深度神经网络结合做深度生成式模型<br>G的参数更新不是直接来自数据样本,而是使用来自D的反向传播(这也是与传统方法相比差别最大的一条吧)<br>缺点<br>可解释性差,生成模型的分布 Pg(G)没有显式的表达<br>比较难训练,D与G之间需要很好的同步,例如D更新k次而G更新一次</p>
+      <title><![CDATA[Jensen-Shannon散度]]></title>
+      <url>/2018/10/02/Jensen-Shannon%E6%95%A3%E5%BA%A6/</url>
+      <content type="html"><![CDATA[<p>KL散度（Kullback-Leibler divergence）<br>在概率论或信息论中，KL散度( Kullback–Leibler divergence)，又称相对熵（relative entropy)，是描述两个概率分布P和Q差异的一种方法。它是非对称的，这意味着D(P||Q) ≠ D(Q||P)。特别的，在信息论中，D(P||Q)表示当用概率分布Q来拟合真实分布P时，产生的信息损耗，其中P表示真实分布，Q表示P的拟合分布。<br>有人将KL散度称为KL距离，但事实上，KL散度并不满足距离的概念，因为：<br>1）KL散度不是对称的；<br>2）KL散度不满足三角不等式。<br><a id="more"></a><br>由于对数函数是上凸函数，所以：</p>
+<p>所以KL散度始终是大于等于0的，当且仅当两分布相同时，KL散度等于0。<br>JS散度（Jensen-Shannon）<br>JS散度相似度衡量指标。现有两个分布P1和P2，其JS散度公式为：</p>
+<p>Wasserstein距离<br>Wasserstein距离又叫Earth-Mover距离(EM距离)，用于衡量两个分布之间的距离，定义：</p>
+<p>Π(P1,P2)是P1和P2分布组合起来的所有可能的联合分布的集合。对于每一个可能的联合分布γ，可以从中采样(x,y)∼γ得到一个样本x和y，并计算出这对样本的距离||x−y||，所以可以计算该联合分布γ下，样本对距离的期望值E(x,y)∼γ[||x−y||]。在所有可能的联合分布中能够对这个期望值取到的下界infγ∼Π(P1,P2)E(x,y)∼γ[||x−y||]就是Wasserstein距离。<br>直观上可以把E(x,y)∼γ[||x−y||]理解为在γ这个路径规划下把土堆P1挪到土堆P2所需要的消耗。而Wasserstein距离就是在最优路径规划下的最小消耗。所以Wesserstein距离又叫Earth-Mover距离。<br>Wessertein距离相比KL散度和JS散度的优势在于，即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而[js散度在此情况下是常量，KL散度可能无意义。</p>
+<p>根据Kantorovich-Rubinstein对偶原理，可以得到Wasserstein距离的等价形式：</p>
 ]]></content>
       
         <categories>
@@ -437,9 +514,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> BST </tag>
             
@@ -504,9 +581,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -615,9 +692,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -646,9 +723,9 @@
             
             <tag> Algorithm </tag>
             
-            <tag> DP </tag>
-            
             <tag> dfs </tag>
+            
+            <tag> DP </tag>
             
         </tags>
         
@@ -677,9 +754,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> dfs </tag>
             
@@ -705,9 +782,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -735,9 +812,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -766,9 +843,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -814,9 +891,9 @@
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -881,9 +958,9 @@ public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DP </tag>
             
@@ -944,9 +1021,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -967,9 +1044,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -1041,9 +1118,9 @@ public void dfs(String s, int i, Set<string> res, StringBuilder sb, int rmL, int
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -1084,9 +1161,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
         </tags>
         
@@ -1108,9 +1185,9 @@ class Solution {
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Leetcode </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> BST </tag>
             
